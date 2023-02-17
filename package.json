@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Chat app project for yandex.practicum's \"middle front-end developer\" course",
   "scripts": {
-    "dev": "parcel ./index.hbs --no-cache",
-    "build": "parcel build ./index.hbs --no-cache"
+    "dev": "parcel ./src/pages/index.hbs --no-cache",
+    "build": "parcel build ./src/pages/index.hbs --no-cache"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/mrdarkside/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "parcel": "2.8.3",
-    "parcel-transformer-handlebars": "^1.0.0"
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@parcel/transformer-sass": "^2.8.3",
+    "parcel": "2.8.3"
   },
   "dependencies": {
     "handlebars": "4.7.7"

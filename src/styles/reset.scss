@@ -6,7 +6,7 @@
 *,
 *::before,
 *::after {
-   box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 ul[class],
@@ -36,6 +36,20 @@ body {
   min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizespeed;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+
+  &,
+  &:focus,
+  &:focus-visible {
+    border: none;
+    outline: none;
+  }
 }
 
 img {

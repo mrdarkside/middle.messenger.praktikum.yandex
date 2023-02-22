@@ -3,14 +3,21 @@
 @import './typography.scss';
 
 @import '../components/nav.scss';
+@import '../components/error.scss';
 
 main.login,
-main.signin {
+main.signin,
+main.error {
   min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
 }
 
 .user-form {
@@ -86,9 +93,7 @@ main.signin {
     a {
       margin-top: 14px;
       align-self: center;
-      color: var(--color-primary);
       font-size: 11px;
-      text-decoration: none;
     }
   }
 

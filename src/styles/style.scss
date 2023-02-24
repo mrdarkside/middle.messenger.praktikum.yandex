@@ -6,6 +6,7 @@
 @import '../components/error.scss';
 @import '../components/submitbtn.scss';
 @import '../pages/profile.scss';
+@import '../pages/modals.scss';
 
 main.login,
 main.signin,
@@ -35,6 +36,15 @@ a {
   border-radius: var(--radius-panel);
   box-shadow: var(--shadow-panel);
   margin-block-end: 0;
+
+  &--modal {
+    min-height: auto;
+    padding: 0;
+    text-align: left;
+    border-radius: 0;
+    box-shadow: none;
+    pointer-events: all;
+  }
 
   &__title {
     display: flex;
@@ -85,6 +95,7 @@ a {
   }
 
   &__buttons {
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
 

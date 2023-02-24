@@ -8,6 +8,8 @@
 
 ### 🏠 [Homepage](https://github.com/mrdarkside/middle.messenger.praktikum.yandex#readme)
 
+### ✨ [Demo](https://enchanting-mermaid-704166.netlify.app/)
+
 ## Install
 
 ```sh

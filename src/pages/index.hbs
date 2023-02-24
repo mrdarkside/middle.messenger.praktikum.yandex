@@ -1,3 +1,7 @@
+---
+buttonText: Авторизоваться
+---
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -28,8 +32,8 @@
                 </div>
             </div>
             <div class="user-form__buttons">
-                <button type="submit">Авторизоваться</button>
-                <a href="signin.hbs">Нет аккаунта?</a>
+                {{> submitbtn}}
+                <a href="signUp.hbs">Нет аккаунта?</a>
             </div>
         </form>
     </main>

@@ -4,6 +4,7 @@
 
 @import '../components/nav.scss';
 @import '../components/error.scss';
+@import '../components/submitbtn.scss';
 @import '../pages/profile.scss';
 
 main.login,
@@ -86,14 +87,6 @@ a {
   &__buttons {
     display: flex;
     flex-direction: column;
-
-    button {
-      padding: 12px;
-      margin-top: 46px;
-      border-radius: var(--radius-button);
-      color: #fff;
-      background-color: var(--color-primary);
-    }
 
     a {
       margin-top: 14px;

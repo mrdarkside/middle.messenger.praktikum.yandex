@@ -1,4 +1,10 @@
 ---
+firstName: Иван
+lastName: Иванов
+email: pochta@yandex.ru
+login: ivanivanov
+inChat: Иван
+phone: +7 (909) 967 30 30
 buttonText: Сохранить
 ---
 
@@ -16,13 +22,13 @@ buttonText: Сохранить
 <body>
   {{> nav}}
   <div class="profile-wrapper">
-    <aside class="profile-sidebar"><a href="./chatlist.hbs"><img src="../img/back.png" alt="Назад"></a></aside>
+    <aside class="profile-sidebar"><a href="./profile.hbs"><img src="../img/back.png" alt="Назад"></a></aside>
     <main class="profile">
       <section class="profile-info">
         <header class="profile-info__header profile-header">
-          <div class="profile-header__pic-container">
-            <img src="../img/profile_pic.png" alt="photo" class="profile-header__pic">
-          </div>
+
+          <img src="../img/profile_pic.png" alt="photo" class="profile-header__pic">
+
           <h2 class="profile-header__name">{{firstName}}</h2>
         </header>
         <section class="profile-info__bio">
@@ -51,7 +57,7 @@ buttonText: Сохранить
             <span class="profile-field__data">{{phone}}</span>
           </div>
         </section>
-        <footer class="profile-info__footer">
+        <footer class="profile-info__footer--center">
           {{> submitbtn}}
         </footer>
       </section>

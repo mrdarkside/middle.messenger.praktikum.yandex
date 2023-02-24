@@ -19,12 +19,6 @@ npm install
 ## Usage
 
 ```sh
-npm run build
-```
-
-then
-
-```sh
 npm run start
 ```
 

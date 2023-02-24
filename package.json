@@ -4,7 +4,8 @@
   "description": "Chat app project for yandex.practicum's \"middle front-end developer\" course",
   "scripts": {
     "dev": "parcel ./src/pages/index.hbs --no-cache",
-    "build": "parcel build ./src/pages/index.hbs --no-cache"
+    "build": "parcel build ./src/pages/index.hbs --no-cache",
+    "start": "node ./server.js"
   },
   "repository": {
     "type": "git",

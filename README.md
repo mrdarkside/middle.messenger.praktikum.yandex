@@ -16,6 +16,12 @@
 npm install
 ```
 
+## Dev environment
+
+```sh
+npm run dev
+```
+
 ## Usage
 
 ```sh

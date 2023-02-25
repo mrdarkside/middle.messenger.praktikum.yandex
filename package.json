@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Chat app project for yandex.practicum's \"middle front-end developer\" course",
   "scripts": {
-    "dev": "parcel ./src/pages/index.hbs --no-cache",
+    "dev": "parcel ./src/pages/index.hbs --no-cache --open",
     "build": "parcel build ./src/pages/index.hbs --no-cache",
     "start": "parcel build ./src/pages/index.hbs && node ./server.js"
   },

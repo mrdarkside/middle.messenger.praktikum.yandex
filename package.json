@@ -1,6 +1,6 @@
 {
-  "name": "chatapp",
-  "version": "0.1.0",
+  "name": "yandex.messenger",
+  "version": "0.1.1",
   "description": "Chat app project for yandex.practicum's \"middle front-end developer\" course",
   "scripts": {
     "dev": "parcel ./src/pages/index.hbs --no-cache --open",

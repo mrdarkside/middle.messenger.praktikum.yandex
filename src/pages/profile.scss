@@ -109,7 +109,9 @@
     border-bottom: 1px solid var(--color-border);
   }
 
-  &__data {
-    color: var(--color-text-gray);
+  input {
+    flex-grow: 1;
+    text-align: end;
+    // color: var(--color-text-gray);
   }
 }

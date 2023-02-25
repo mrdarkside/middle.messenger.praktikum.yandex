@@ -1,0 +1,30 @@
+{
+  "name": "yandex.messenger",
+  "version": "0.1.1",
+  "description": "Chat app project for yandex.practicum's \"middle front-end developer\" course",
+  "scripts": {
+    "dev": "parcel ./src/pages/index.hbs --no-cache --open",
+    "build": "parcel build ./src/pages/index.hbs --no-cache",
+    "start": "parcel build ./src/pages/index.hbs && node ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrdarkside/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "tomitomion@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrdarkside/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/mrdarkside/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@parcel/transformer-sass": "2.8.3",
+    "parcel": "2.8.3"
+  },
+  "dependencies": {
+    "express": "4.18.2",
+    "handlebars": "4.7.7"
+  }
+}

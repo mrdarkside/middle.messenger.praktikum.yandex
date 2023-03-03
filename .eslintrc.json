@@ -4,6 +4,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "no-console": 0
   }
 }

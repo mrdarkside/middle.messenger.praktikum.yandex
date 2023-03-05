@@ -2,6 +2,7 @@ import SignInPage from './pages/SignIn';
 import Error404 from './pages/404';
 import Error500 from './pages/500';
 import Profile from './pages/Profile';
+import Settings from './pages/Settings';
 
 // eslint-disable-next-line import/prefer-default-export
 export const ROUTES: Record<string, any> = {
@@ -9,6 +10,7 @@ export const ROUTES: Record<string, any> = {
   err404: Error404,
   err500: Error500,
   profile: Profile,
+  settings: Settings,
 };
 
 function render(Page: any) {

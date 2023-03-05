@@ -4,8 +4,8 @@
   "description": "Chat app project for yandex.practicum's \"middle front-end developer\" course",
   "scripts": {
     "dev": "parcel ./src/index.html --no-cache --open",
-    "build": "parcel build ./index.ts --no-cache",
-    "start": "parcel build ./src/index.ts && node ./server.js"
+    "build": "parcel build ./src/index.html --no-cache",
+    "start": "parcel build ./src/index.html && node ./server.js"
   },
   "repository": {
     "type": "git",

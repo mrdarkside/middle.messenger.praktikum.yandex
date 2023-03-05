@@ -1,5 +1,6 @@
 import Block from '../../utils/Block';
 import template from './signIn.hbs';
+import Nav from '../../components/nav';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import styles from './signIn.module.scss';
@@ -10,6 +11,7 @@ export default class SignInPage extends Block {
   }
 
   init() {
+    this.children.nav = new Nav();
     this.children.input_login = new Input({
       type: 'text',
       label: 'Логин',

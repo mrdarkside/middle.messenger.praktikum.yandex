@@ -1,12 +1,14 @@
 import SignInPage from './pages/SignIn';
 import Error404 from './pages/404';
 import Error500 from './pages/500';
+import Profile from './pages/Profile';
 
 // eslint-disable-next-line import/prefer-default-export
 export const ROUTES: Record<string, any> = {
   home: SignInPage,
   err404: Error404,
   err500: Error500,
+  profile: Profile,
 };
 
 function render(Page: any) {

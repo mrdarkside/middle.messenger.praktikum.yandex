@@ -8,8 +8,7 @@
 // @import '../pages/profile.scss';
 // @import '../pages/modals.scss';
 
-main,
-#app {
+main {
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -17,14 +16,18 @@ main,
   align-items: center;
 }
 
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-
-  &.link-warning {
-    color: var(--color-error);
-  }
+#app {
+  height: 100%;
 }
+
+// a {
+//   color: var(--color-primary);
+//   text-decoration: none;
+
+//   &.link-warning {
+//     color: var(--color-error);
+//   }
+// }
 
 .user-form {
   &--modal {

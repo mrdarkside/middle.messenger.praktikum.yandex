@@ -19,7 +19,7 @@ export default class SignInPage extends Block {
       name: 'login',
     });
     this.children.input_password = new Input({
-      type: 'text',
+      type: 'password',
       label: 'Пароль',
       placeholder: ' ',
       name: 'password',

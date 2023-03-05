@@ -13,7 +13,7 @@ export default class Block<P extends Record<string, any> = any> {
   public id = nanoid(6);
   private eventBus: () => EventBus;
   protected props: P;
-  public children: Record<string, Block | Block[]>;
+  protected children: Record<string, Block | Block[]>;
   private _element: HTMLElement | null = null;
 
   constructor(propsWithChildren: P) {
@@ -73,8 +73,6 @@ export default class Block<P extends Record<string, any> = any> {
 
   private _init() {
     this.init();
-
-    console.log('block.children', this.children, this.id);
 
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }

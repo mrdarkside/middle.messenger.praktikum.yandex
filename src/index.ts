@@ -3,6 +3,7 @@ import Error404 from './pages/404';
 import Error500 from './pages/500';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
+import Password from './pages/Password';
 
 // eslint-disable-next-line import/prefer-default-export
 export const ROUTES: Record<string, any> = {
@@ -11,6 +12,7 @@ export const ROUTES: Record<string, any> = {
   err500: Error500,
   profile: Profile,
   settings: Settings,
+  password: Password,
 };
 
 function render(Page: any) {

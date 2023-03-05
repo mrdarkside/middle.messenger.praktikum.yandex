@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './404.hbs';
+import template from './500.hbs';
 import Nav from '../../components/nav';
 import Error from '../../components/error';
 

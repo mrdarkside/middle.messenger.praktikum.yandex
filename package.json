@@ -3,9 +3,9 @@
   "version": "0.1.1",
   "description": "Chat app project for yandex.practicum's \"middle front-end developer\" course",
   "scripts": {
-    "dev": "parcel ./src/pages/index.hbs --no-cache --open",
-    "build": "parcel build ./src/pages/index.hbs --no-cache",
-    "start": "parcel build ./src/pages/index.hbs && node ./server.js"
+    "dev": "parcel ./src/index.html --no-cache --open",
+    "build": "parcel build ./index.ts --no-cache",
+    "start": "parcel build ./src/index.ts && node ./server.js"
   },
   "repository": {
     "type": "git",

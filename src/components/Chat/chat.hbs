@@ -1,0 +1,13 @@
+<article class="{{styles.container}}">
+  <div class="{{styles.chat}}">
+    <img class="{{styles.avatar}}" src="{{chatavatar}}" alt="chat avatar">
+    <div class="{{styles.text}}">
+      <h3 class="{{styles.name}}">{{name}}</h3>
+      <p class="{{styles.message}}">{{text}}</p>
+    </div>
+    <div class="{{styles.meta}}">
+      <div class="{{styles.time}}">{{time}}</div>
+      {{#if unread}} <div class="{{styles.unread}}">{{unread}}</div> {{/if}}
+    </div>
+  </div>
+</article>

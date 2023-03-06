@@ -5,6 +5,7 @@ import Error500 from './pages/500';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import Password from './pages/Password';
+import Messenger from './pages/Messenger';
 
 // eslint-disable-next-line import/prefer-default-export
 export const ROUTES: Record<string, any> = {
@@ -15,6 +16,7 @@ export const ROUTES: Record<string, any> = {
   profile: Profile,
   settings: Settings,
   password: Password,
+  messenger: Messenger,
 };
 
 function render(Page: any) {
@@ -34,5 +36,5 @@ window.goToPage = (path: string) => {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
-  render(ROUTES.home);
+  render(ROUTES.messenger);
 });

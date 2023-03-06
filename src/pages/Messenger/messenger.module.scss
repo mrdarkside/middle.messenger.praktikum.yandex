@@ -1,0 +1,9 @@
+.container {
+  height: 100%;
+  display: flex;
+
+  .messenger {
+    flex-grow: 1;
+    color: var(--color-text-grey);
+  }
+}

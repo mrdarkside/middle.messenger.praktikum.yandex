@@ -2,12 +2,6 @@
 @import './variables.scss';
 @import './typography.scss';
 
-// @import '../components/nav.scss';
-// @import '../components/error.scss';
-// @import '../components/submitbtn.scss';
-// @import '../pages/profile.scss';
-// @import '../pages/modals.scss';
-
 main {
   min-height: 100%;
   display: flex;
@@ -19,15 +13,6 @@ main {
 #app {
   height: 100%;
 }
-
-// a {
-//   color: var(--color-primary);
-//   text-decoration: none;
-
-//   &.link-warning {
-//     color: var(--color-error);
-//   }
-// }
 
 .user-form {
   &--modal {

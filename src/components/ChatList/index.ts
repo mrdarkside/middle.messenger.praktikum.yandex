@@ -3,6 +3,9 @@ import template from './chatList.hbs';
 import styles from './chatList.module.scss';
 
 import Chat from '../Chat';
+import Input from '../Input';
+
+import { submitByEnter } from '../../utils/Validation';
 
 import arrow from '../../img/arrow.png';
 import chatavatar from '../../img/chatavatar.png';
@@ -13,6 +16,15 @@ export default class ChatList extends Block {
   }
 
   protected init(): void {
+    this.children.search = new Input({
+      type: 'text',
+      name: 'search',
+      placeholder: '',
+      style: styles.input,
+      events: {
+        keydown: (e) => this.onSubmit(e),
+      },
+    });
     this.children.chat = new Chat({
       name: 'Андрей',
       text: 'Изображение',
@@ -51,6 +63,10 @@ export default class ChatList extends Block {
       time: '10:49',
       chatavatar,
     });
+  }
+
+  onSubmit(e: KeyboardEvent): void {
+    submitByEnter(e);
   }
 
   render() {

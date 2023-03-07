@@ -5,6 +5,8 @@ import Button from '../../components/button';
 import styles from './signIn.module.scss';
 import LoginField from '../../components/LoginField';
 
+import { formSubmit } from '../../utils/Validation';
+
 export default class SignInPage extends Block {
   constructor() {
     super({});
@@ -34,9 +36,7 @@ export default class SignInPage extends Block {
   }
 
   onSubmit(e: Event) {
-    e.preventDefault();
-    const login = document.getElementById('login') as HTMLInputElement;
-    console.log(login?.value);
+    formSubmit(e, styles);
   }
 
   render() {

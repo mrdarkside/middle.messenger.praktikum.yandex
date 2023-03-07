@@ -7,6 +7,8 @@ import Button from '../../components/button';
 import Link from '../../components/link';
 import LoginField from '../../components/LoginField';
 
+import { formSubmit } from '../../utils/Validation';
+
 export default class SignUpPage extends Block {
   constructor() {
     super({});
@@ -59,11 +61,18 @@ export default class SignUpPage extends Block {
     this.children.button = new Button({
       label: 'Зарегистрироваться',
       type: 'submit',
+      events: {
+        click: (e) => this.onSubmit(e!),
+      },
     });
     this.children.link = new Link({
       label: 'Уже есть аккаунт?',
       href: '#',
     });
+  }
+
+  onSubmit(e: Event) {
+    formSubmit(e, styles);
   }
 
   render() {

@@ -3,15 +3,15 @@ import template from './input.hbs';
 import styles from './input.module.scss';
 
 interface InputProps {
-  type: string;
-  label: string;
-  placeholder: string;
   name: string;
+  type: string;
+  placeholder: string;
   readonly?: boolean;
   style: string;
   events?: {
     focus?: (e: Event) => void;
     blur?: (e: Event) => void;
+    keydown?: (e: KeyboardEvent) => void;
   };
 }
 export default class Input extends Block<InputProps> {

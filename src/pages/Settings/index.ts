@@ -6,6 +6,8 @@ import Nav from '../../components/nav';
 import ProfileField from '../../components/profileField';
 import Button from '../../components/button';
 
+import { formSubmit } from '../../utils/Validation';
+
 import icon from '../../img/back.png';
 import avatar from '../../img/profile_pic.png';
 
@@ -66,7 +68,14 @@ export default class Settings extends Block<SettingsProps> {
     this.children.button = new Button({
       label: 'Сохранить',
       type: 'submit',
+      events: {
+        click: (e) => this.onSubmit(e!),
+      },
     });
+  }
+
+  onSubmit(e: Event) {
+    formSubmit(e, styles);
   }
 
   render() {

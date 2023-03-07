@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './loginField.hbs';
 import styles from './loginField.module.scss';
-import { validateInput, InputName } from '../../utils/Validation';
+import { InputName, checkOnBlur } from '../../utils/Validation';
 
 import Input from '../Input';
 
@@ -20,7 +20,6 @@ export default class LoginField extends Block<LoginFiledProps> {
   protected init(): void {
     this.children.input = new Input({
       type: this.props.type,
-      label: this.props.label,
       placeholder: this.props.placeholder,
       name: this.props.name,
       style: styles.input,
@@ -32,41 +31,11 @@ export default class LoginField extends Block<LoginFiledProps> {
   }
 
   onFocus(e: Event) {
-    const input = e.target as HTMLInputElement;
-    const error = input.parentElement!.children[2] as HTMLElement;
-
-    input.classList.remove(styles.input_error);
-    error.innerText = '';
-
-    if (input.value === '') {
-      input.classList.add(styles.input_error);
-      error.innerText = 'Поле не должно быть пустым';
-      return;
-    }
-
-    if (!validateInput(input.name as InputName, input.value)) {
-      input.classList.add(styles.input_error);
-      error.innerText = 'Неверное значение';
-    }
+    checkOnBlur(e, styles);
   }
 
   onBlur(e: Event) {
-    const input = e.target as HTMLInputElement;
-    const error = input.parentElement!.children[2] as HTMLElement;
-
-    input.classList.remove(styles.input_error);
-    error.innerText = '';
-
-    if (input.value === '') {
-      input.classList.add(styles.input_error);
-      error.innerText = 'Поле не должно быть пустым';
-      return;
-    }
-
-    if (!validateInput(input.name as InputName, input.value)) {
-      input.classList.add(styles.input_error);
-      error.innerText = 'Неверное значение';
-    }
+    checkOnBlur(e, styles);
   }
 
   render() {

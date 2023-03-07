@@ -7,13 +7,13 @@ interface InputProps {
   label: string;
   placeholder: string;
   name: string;
+  readonly?: boolean;
+  style: string;
   events?: {
-    focus: () => void;
-    blur: () => void;
-    input: () => void;
+    focus?: (e: Event) => void;
+    blur?: (e: Event) => void;
   };
 }
-
 export default class Input extends Block<InputProps> {
   constructor(props: InputProps) {
     super({ ...props });

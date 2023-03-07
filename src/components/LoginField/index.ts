@@ -1,20 +1,19 @@
 import Block from '../../utils/Block';
-import template from './profileField.hbs';
-import styles from './profileField.module.scss';
+import template from './loginField.hbs';
+import styles from './loginField.module.scss';
 import { validateInput, InputName } from '../../utils/Validation';
 
 import Input from '../Input';
 
-interface ProfileFieldProps {
-  name: InputName;
+interface LoginFiledProps {
   type: string;
   label: string;
   placeholder: string;
-  readonly?: boolean;
+  name: InputName;
 }
 
-export default class ProfileField extends Block<ProfileFieldProps> {
-  constructor(props: ProfileFieldProps) {
+export default class LoginField extends Block<LoginFiledProps> {
+  constructor(props: LoginFiledProps) {
     super({ ...props });
   }
 
@@ -25,7 +24,6 @@ export default class ProfileField extends Block<ProfileFieldProps> {
       placeholder: this.props.placeholder,
       name: this.props.name,
       style: styles.input,
-      readonly: this.props.readonly,
       events: {
         focus: (e: Event) => this.onFocus(e),
         blur: (e: Event) => this.onBlur(e),
@@ -36,8 +34,6 @@ export default class ProfileField extends Block<ProfileFieldProps> {
   onFocus(e: Event) {
     const input = e.target as HTMLInputElement;
     const error = input.parentElement!.children[2] as HTMLElement;
-
-    if (input.readOnly) return;
 
     input.classList.remove(styles.input_error);
     error.innerText = '';
@@ -51,17 +47,12 @@ export default class ProfileField extends Block<ProfileFieldProps> {
     if (!validateInput(input.name as InputName, input.value)) {
       input.classList.add(styles.input_error);
       error.innerText = 'Неверное значение';
-    } else {
-      input.classList.remove(styles.input_error);
-      error.innerText = '';
     }
   }
 
   onBlur(e: Event) {
     const input = e.target as HTMLInputElement;
     const error = input.parentElement!.children[2] as HTMLElement;
-
-    if (input.readOnly) return;
 
     input.classList.remove(styles.input_error);
     error.innerText = '';
@@ -79,6 +70,9 @@ export default class ProfileField extends Block<ProfileFieldProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, {
+      ...this.props,
+      styles,
+    });
   }
 }

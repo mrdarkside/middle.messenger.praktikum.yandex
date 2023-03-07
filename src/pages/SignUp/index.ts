@@ -4,8 +4,8 @@ import styles from './signup.module.scss';
 
 import Nav from '../../components/nav';
 import Button from '../../components/button';
-import Input from '../../components/input';
 import Link from '../../components/link';
+import LoginField from '../../components/LoginField';
 
 export default class SignUpPage extends Block {
   constructor() {
@@ -14,43 +14,43 @@ export default class SignUpPage extends Block {
 
   init() {
     this.children.nav = new Nav();
-    this.children.email = new Input({
+    this.children.email = new LoginField({
       type: 'email',
       label: 'Почта',
       placeholder: ' ',
       name: 'email',
     });
-    this.children.login = new Input({
+    this.children.login = new LoginField({
       type: 'text',
       label: 'Логин',
       placeholder: ' ',
       name: 'login',
     });
-    this.children.first_name = new Input({
+    this.children.first_name = new LoginField({
       type: 'text',
       label: 'Имя',
       placeholder: ' ',
       name: 'first_name',
     });
-    this.children.second_name = new Input({
+    this.children.second_name = new LoginField({
       type: 'text',
       label: 'Фамилия',
       placeholder: ' ',
       name: 'second_name',
     });
-    this.children.phone = new Input({
+    this.children.phone = new LoginField({
       type: 'phone',
       label: 'Телефон',
       placeholder: ' ',
       name: 'phone',
     });
-    this.children.password = new Input({
+    this.children.password = new LoginField({
       type: 'password',
       label: 'Пароль',
       placeholder: ' ',
       name: 'password',
     });
-    this.children.confirm_password = new Input({
+    this.children.confirm_password = new LoginField({
       type: 'password',
       label: 'Пароль(еще раз)',
       placeholder: ' ',

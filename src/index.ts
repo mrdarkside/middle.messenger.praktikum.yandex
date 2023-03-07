@@ -38,5 +38,5 @@ window.goToPage = (path: string) => {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
-  render(ROUTES.openchat);
+  render(ROUTES.home);
 });

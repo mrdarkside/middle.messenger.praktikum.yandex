@@ -2,6 +2,20 @@
   {{{nav}}}
   {{{chatList}}}
   <main class="{{styles.messenger}}">
-    Выберите чат чтобы отправить сообщение
+    <div class="{{styles.wrapper}}">
+      <section class="{{styles.topbar}}">
+        <img class="{{styles.avatar}}" src="{{avatar}}" alt="аватар">
+        <div class="{{styles.name}}">Вадим</div>
+        <div class="{{styles.menu}}"></div>
+      </section>
+      <section class="{{styles.bubbles}}">Сообщения</section>
+      <section class="{{styles.interface}}">
+        <form class="{{styles.form}}" action="">
+          <div class="{{styles.clip}}"></div>
+          <input class="{{styles.message}}" name="message" id="message" type="text">
+          <button class="{{styles.button}}" type="submit"></button>
+        </form>
+      </section>
+    </div>
   </main>
 </div>

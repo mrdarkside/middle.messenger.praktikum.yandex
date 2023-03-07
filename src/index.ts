@@ -6,6 +6,7 @@ import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import Password from './pages/Password';
 import Messenger from './pages/Messenger';
+import OpenChat from './pages/OpenChat';
 
 // eslint-disable-next-line import/prefer-default-export
 export const ROUTES: Record<string, any> = {
@@ -17,6 +18,7 @@ export const ROUTES: Record<string, any> = {
   settings: Settings,
   password: Password,
   messenger: Messenger,
+  openchat: OpenChat,
 };
 
 function render(Page: any) {
@@ -36,5 +38,5 @@ window.goToPage = (path: string) => {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
-  render(ROUTES.messenger);
+  render(ROUTES.openchat);
 });

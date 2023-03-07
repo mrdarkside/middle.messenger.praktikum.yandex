@@ -1,1 +1,91 @@
 @import '../Messenger/messenger.module.scss';
+
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .topbar {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--divider);
+
+    .avatar {
+      width: 34px;
+      height: 34px;
+    }
+
+    .name {
+      flex-grow: 1;
+      color: var(--color-text);
+      font-size: 13px;
+    }
+
+    .menu {
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      background-image: url('../../img/menu.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: initial;
+    }
+
+  }
+
+  .bubbles {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border-bottom: var(--divider);
+
+
+  }
+
+  .interface {
+    padding-top: 10px;
+  }
+
+  .form {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    .clip {
+      height: 32px;
+      width: 23px;
+      cursor: pointer;
+      background-image: url('../../img/clip.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .message {
+      width: 100%;
+      padding: 0 20px;
+      font-size: 12px;
+      background-color: var(--color-input-bg);
+      border-radius: 20px;
+    }
+
+    .button {
+      height: 28px;
+      width: 28px;
+      align-self: center;
+      background-color: transparent;
+      background-image: url('../../img/forward.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  }
+}

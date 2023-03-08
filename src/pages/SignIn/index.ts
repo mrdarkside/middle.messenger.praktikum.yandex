@@ -4,7 +4,7 @@ import * as styles from './signIn.module.scss';
 
 import Nav from '../../components/nav';
 import Button from '../../components/button';
-import LoginField from '../../components/loginField';
+import LoginField from '../../components/LoginField';
 
 import { formSubmit } from '../../utils/Validation';
 

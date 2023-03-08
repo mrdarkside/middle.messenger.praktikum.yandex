@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/mrdarkside/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@parcel/transformer-sass": "2.8.3",
     "@typescript-eslint/eslint-plugin": "5.54.0",
     "@typescript-eslint/parser": "5.54.0",
@@ -31,7 +31,7 @@
     "parcel": "2.8.3",
     "stylelint": "15.2.0",
     "stylelint-config-clean-order": "5.0.0",
-    "stylelint-config-standard": "^30.0.1",
+    "stylelint-config-standard": "30.0.1",
     "stylelint-scss": "4.4.0",
     "typescript": "4.9.5"
   },

@@ -41,11 +41,68 @@
   }
 
   .bubbles {
+    padding-bottom: 30px;
     display: flex;
     flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
     flex-grow: 1;
+    font-size: 12px;
+    color: var(--color-text);
     border-bottom: var(--divider);
 
+    .bubble {
+      position: relative;
+      max-width: 400px;
+      padding: 10px;
+      align-self: flex-start;
+      background-color: var(--color-bubble-bg);
+      border-radius: var(--radius-bubble);
+
+      &.bubble--own {
+        padding-right: 60px;
+        align-self: flex-end;
+        border-radius: var(--radius-bubble-own);
+        background-color: var(--color-chat-bg);
+
+        .time {
+          color: var(--color-primary);
+        }
+      }
+
+      &--media {
+        padding: 10px;
+        background-color: transparent;
+        border-radius: var(--radius-panel);
+        border: 1px solid var(--color-border);
+
+        .duration {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          padding: 2px 7px;
+          color: white;
+          font-size: 9px;
+          border-radius: 20px;
+          background-color: var(--color-duration-bg);
+        }
+      }
+
+      .time {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        color: var(--color-text-gray);
+        font-size: 9px;
+
+      }
+    }
+
+    .date {
+      margin: 30px 0;
+      color: var(--color-text-grey);
+    }
 
   }
 

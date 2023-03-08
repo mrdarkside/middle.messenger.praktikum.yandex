@@ -13,6 +13,7 @@ import menu from '../../img/menu.png';
 import clip from '../../img/clip.png';
 import forward from '../../img/forward.png';
 import Input from '../../components/Input';
+import hasselblad from '../../img/hasselblad.png';
 
 export default class OpenChat extends Block {
   constructor() {
@@ -55,6 +56,7 @@ export default class OpenChat extends Block {
       menu,
       clip,
       forward,
+      hasselblad,
     });
   }
 }

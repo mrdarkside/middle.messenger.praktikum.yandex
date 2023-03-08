@@ -14,16 +14,18 @@ export type InputName =
 export function validateInput(name: InputName, value: string): boolean {
   const patterns: Record<InputName, RegExp> = {
     email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-    phone: /^\+?[1-9]\d{1,14}$/,
-    login: /^[a-zA-Z0-9!.\-_]+$/,
+    phone: /^\+?\d{10,15}$/,
+    login: /^(?!\\d+$)[a-zA-Z0-9_-]{3,20}$/,
     search: /^[^<>'"]*$/,
     message: /^[^<>'"]*$/,
-    first_name: /^[a-zA-Zа-яА-Я-]+$/,
-    second_name: /^[a-zA-Zа-яА-Я-]+$/,
+    first_name:
+      /^(?=.{1,50}$)[A-Za-zА-ЯЁ][a-zа-яё]*(?:-[A-Za-zА-ЯЁ][a-zа-яё]*)*$/,
+    second_name:
+      /^(?=.{1,50}$)[A-Za-zА-ЯЁ][a-zа-яё]*(?:-[A-Za-zА-ЯЁ][a-zа-яё]*)*$/,
     display_name: /^[a-zA-Zа-яА-Я0-9-_. ]+$/,
-    password: /^.{6,}$/,
-    old_password: /^.{6,}$/,
-    confirm_password: /^.{6,}$/,
+    password: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
+    old_password: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
+    confirm_password: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
   };
 
   if (!patterns[name]) {

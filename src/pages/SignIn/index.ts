@@ -1,9 +1,9 @@
 import Block from '../../utils/Block';
 import template from './signIn.hbs';
 import Nav from '../../components/Nav';
-import Button from '../../components/Button';
+import Button from '../../components/button';
 import styles from './signIn.module.scss';
-import LoginField from '../../components/LoginField';
+import LoginField from '../../components/loginField';
 
 import { formSubmit } from '../../utils/Validation';
 

@@ -3,7 +3,7 @@ import template from './messenger.hbs';
 import styles from './messenger.module.scss';
 
 import Nav from '../../components/Nav';
-import ChatList from '../../components/ChatList';
+import ChatList from '../../components/chatList';
 
 export default class Messenger extends Block {
   constructor() {

@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './chat.hbs';
-import styles from './chat.module.scss';
+import * as styles from './chat.module.scss';
 
 interface ChatProps {
   chatavatar: ImageBitmap;

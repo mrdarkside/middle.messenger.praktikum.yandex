@@ -1,9 +1,9 @@
 import Block from '../../utils/Block';
 import template from './settings.hbs';
-import styles from './settings.module.scss';
+import * as styles from './settings.module.scss';
 
-import Nav from '../../components/Nav';
-import ProfileField from '../../components/ProfileField';
+import Nav from '../../components/nav';
+import ProfileField from '../../components/profileField';
 import Button from '../../components/button';
 
 import { formSubmit } from '../../utils/Validation';

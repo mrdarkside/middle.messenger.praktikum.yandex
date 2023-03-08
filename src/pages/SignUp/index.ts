@@ -1,10 +1,10 @@
 import Block from '../../utils/Block';
 import template from './signup.hbs';
-import styles from './signup.module.scss';
+import * as styles from './signup.module.scss';
 
-import Nav from '../../components/Nav';
+import Nav from '../../components/nav';
 import Button from '../../components/button';
-import Link from '../../components/Link';
+import Link from '../../components/link';
 import LoginField from '../../components/loginField';
 
 import { formSubmit } from '../../utils/Validation';

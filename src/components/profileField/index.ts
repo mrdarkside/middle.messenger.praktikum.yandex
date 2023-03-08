@@ -1,9 +1,9 @@
 import Block from '../../utils/Block';
 import template from './profile-field.hbs';
-import styles from './profile-field.module.scss';
+import * as styles from './profile-field.module.scss';
 import { InputName, checkOnBlur } from '../../utils/Validation';
 
-import Input from '../Input';
+import Input from '../input';
 
 interface ProfileFieldProps {
   name: InputName;

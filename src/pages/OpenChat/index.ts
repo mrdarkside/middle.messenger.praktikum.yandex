@@ -1,8 +1,8 @@
 import Block from '../../utils/Block';
 import template from './openchat.hbs';
-import styles from './openchat.module.scss';
+import * as styles from './openchat.module.scss';
 
-import Nav from '../../components/Nav';
+import Nav from '../../components/nav';
 import ChatList from '../../components/chatList';
 import RoundButton from '../../components/roundButton';
 

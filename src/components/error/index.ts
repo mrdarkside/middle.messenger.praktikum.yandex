@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './error.hbs';
-import styles from './error.module.scss';
+import * as styles from './error.module.scss';
 
 interface ErrorProps {
   code: number;

@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './404.hbs';
-import Nav from '../../components/Nav';
-import Error from '../../components/Error';
+import Nav from '../../components/nav';
+import Error from '../../components/error';
 
 export default class Error404 extends Block {
   constructor() {

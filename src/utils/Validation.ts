@@ -40,7 +40,9 @@ export function formSubmit(e: Event, styles: any) {
   const form = document.querySelector('#form') as HTMLFormElement;
   const inputs = form.querySelectorAll('input');
 
-  const data = {};
+  let data = {};
+
+  const passwords = { old_password: '', password: '', confirm_password: '' };
 
   inputs.forEach((input) => {
     const name = input.name as InputName;
@@ -56,12 +58,31 @@ export function formSubmit(e: Event, styles: any) {
       return;
     }
 
+    if (
+      name === 'old_password' ||
+      name === 'password' ||
+      name === 'confirm_password'
+    ) {
+      passwords[name] = value;
+    }
+
     if (!validateInput(name, value)) {
       input.classList.add(styles.input_error);
       error.innerText = 'Неверное значение';
-    } else {
-      Object.assign(data, { name, value });
+      return;
     }
+    if (name === 'password' && value === passwords.old_password) {
+      input.classList.add(styles.input_error);
+      error.innerText = 'Пароль совпадает со старым';
+      return;
+    }
+    if (name === 'confirm_password' && value !== passwords.password) {
+      input.classList.add(styles.input_error);
+      error.innerText = 'Пароли не совпадают';
+      return;
+    }
+
+    data = { ...data, [name]: value };
   });
 
   console.log(data);
@@ -72,7 +93,7 @@ export function buttonSubmit(e: Event) {
   const form = document.querySelector('#form') as HTMLFormElement;
   const inputs = form.querySelectorAll('input');
 
-  const data = {};
+  let data = {};
 
   inputs.forEach((input) => {
     const name = input.name as InputName;
@@ -83,7 +104,7 @@ export function buttonSubmit(e: Event) {
     }
 
     if (validateInput(name, value)) {
-      Object.assign(data, { name, value });
+      data = { ...data, [name]: value };
     }
   });
 

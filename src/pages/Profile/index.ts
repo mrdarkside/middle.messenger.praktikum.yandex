@@ -2,9 +2,9 @@ import Block from '../../utils/Block';
 import template from './profile.hbs';
 import styles from './profile.module.scss';
 
-import Nav from '../../components/nav';
-import ProfileField from '../../components/profileField';
-import Link from '../../components/link';
+import Nav from '../../components/Nav';
+import ProfileField from '../../components/ProfileField';
+import Link from '../../components/Link';
 
 import icon from '../../img/back.png';
 import avatar from '../../img/profile_pic.png';

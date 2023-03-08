@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
-import template from './profileField.hbs';
-import styles from './profileField.module.scss';
+import template from './profile-field.hbs';
+import styles from './profile-field.module.scss';
 import { InputName, checkOnBlur } from '../../utils/Validation';
 
 import Input from '../Input';

@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './signIn.hbs';
-import Nav from '../../components/nav';
-import Button from '../../components/button';
+import Nav from '../../components/Nav';
+import Button from '../../components/Button';
 import styles from './signIn.module.scss';
 import LoginField from '../../components/LoginField';
 

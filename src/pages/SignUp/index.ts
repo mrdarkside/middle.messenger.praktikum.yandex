@@ -5,7 +5,7 @@ import * as styles from './signup.module.scss';
 import Nav from '../../components/nav';
 import Button from '../../components/button';
 import Link from '../../components/link';
-import LoginField from '../../components/loginField';
+import LoginField from '../../components/LoginField';
 
 import { formSubmit } from '../../utils/Validation';
 

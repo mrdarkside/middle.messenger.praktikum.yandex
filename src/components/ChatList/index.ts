@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import template from './chat-list.hbs';
 import * as styles from './chat-list.module.scss';
 
-import Chat from '../chat';
+import Chat from '../Chat';
 import Input from '../input';
 
 import { submitByEnter } from '../../utils/Validation';

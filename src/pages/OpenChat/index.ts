@@ -3,8 +3,8 @@ import template from './openchat.hbs';
 import * as styles from './openchat.module.scss';
 
 import Nav from '../../components/nav';
-import ChatList from '../../components/chatList';
-import RoundButton from '../../components/roundButton';
+import ChatList from '../../components/ChatList';
+import RoundButton from '../../components/RoundButton';
 
 import { submitByEnter, buttonSubmit } from '../../utils/Validation';
 

@@ -4,7 +4,7 @@ import styles from './settings.module.scss';
 
 import Nav from '../../components/Nav';
 import ProfileField from '../../components/ProfileField';
-import Button from '../../components/Button';
+import Button from '../../components/button';
 
 import { formSubmit } from '../../utils/Validation';
 

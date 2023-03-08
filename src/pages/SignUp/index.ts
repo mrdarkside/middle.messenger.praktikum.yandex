@@ -3,9 +3,9 @@ import template from './signup.hbs';
 import styles from './signup.module.scss';
 
 import Nav from '../../components/Nav';
-import Button from '../../components/Button';
+import Button from '../../components/button';
 import Link from '../../components/Link';
-import LoginField from '../../components/LoginField';
+import LoginField from '../../components/loginField';
 
 import { formSubmit } from '../../utils/Validation';
 

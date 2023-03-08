@@ -2,8 +2,8 @@ import Block from '../../utils/Block';
 import template from './chat-list.hbs';
 import styles from './chat-list.module.scss';
 
-import Chat from '../Chat';
-import Input from '../Input';
+import Chat from '../chat';
+import Input from '../input';
 
 import { submitByEnter } from '../../utils/Validation';
 

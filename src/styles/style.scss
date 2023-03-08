@@ -13,14 +13,3 @@ main {
 #app {
   height: 100%;
 }
-
-.user-form {
-  &--modal {
-    min-height: auto;
-    padding: 0;
-    text-align: left;
-    border-radius: 0;
-    box-shadow: none;
-    pointer-events: all;
-  }
-}

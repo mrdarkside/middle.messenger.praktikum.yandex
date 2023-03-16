@@ -5,7 +5,7 @@ import * as styles from './messenger.module.scss';
 import Nav from '../../components/nav';
 import ChatList from '../../components/ChatList';
 
-export default class Messenger extends Block {
+export default class MessengerPage extends Block {
   constructor() {
     super({});
   }

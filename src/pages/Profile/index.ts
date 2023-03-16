@@ -9,13 +9,13 @@ import Link from '../../components/link';
 import icon from '../../img/back.png';
 import avatar from '../../img/profile_pic.png';
 
-interface ProfileProps {
+interface ProfilePageProps {
   icon: ImageBitmap;
   avatar: ImageBitmap;
 }
 
-export default class Profile extends Block<ProfileProps> {
-  constructor(props: ProfileProps) {
+export default class ProfilePage extends Block<ProfilePageProps> {
+  constructor(props: ProfilePageProps) {
     super({ ...props });
   }
 

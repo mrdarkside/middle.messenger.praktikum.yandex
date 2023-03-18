@@ -6,8 +6,8 @@ import Nav from '../../components/Nav';
 import ProfileField from '../../components/ProfileField';
 import Link from '../../components/Link';
 
-import icon from '../../img/back.png';
-import avatar from '../../img/profile_pic.png';
+import icon from '../../assets/img/back.png';
+import avatar from '../../assets/img/profile_pic.png';
 
 interface ProfilePageProps {
   icon: ImageBitmap;

@@ -7,8 +7,8 @@ import Input from '../Input';
 
 import { submitByEnter } from '../../utils/Validation';
 
-import arrow from '../../img/arrow.png';
-import chatavatar from '../../img/chatavatar.png';
+import arrow from '../../assets/img/arrow.png';
+import chatavatar from '../../assets/img/chatavatar.png';
 
 export default class ChatList extends Block {
   constructor() {

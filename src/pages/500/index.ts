@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import template from './500.hbs';
-import Nav from '../../components/nav';
-import Error from '../../components/error';
+import Nav from '../../components/Nav';
+import Error from '../../components/Error';
 
 export default class Error500 extends Block {
   constructor() {

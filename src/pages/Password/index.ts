@@ -2,9 +2,9 @@ import Block from '../../utils/Block';
 import template from './password.hbs';
 import * as styles from './password.module.scss';
 
-import Nav from '../../components/nav';
-import ProfileField from '../../components/profileField';
-import Button from '../../components/button';
+import Nav from '../../components/Nav';
+import ProfileField from '../../components/ProfileField';
+import Button from '../../components/Button';
 
 import { formSubmit } from '../../utils/Validation';
 

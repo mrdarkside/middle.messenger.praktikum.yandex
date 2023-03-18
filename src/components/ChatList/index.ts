@@ -3,7 +3,7 @@ import template from './chat-list.hbs';
 import * as styles from './chat-list.module.scss';
 
 import Chat from '../Chat';
-import Input from '../input';
+import Input from '../Input';
 
 import { submitByEnter } from '../../utils/Validation';
 

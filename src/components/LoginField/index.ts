@@ -3,7 +3,7 @@ import template from './login-field.hbs';
 import * as styles from './login-field.module.scss';
 import { InputName, checkOnBlur } from '../../utils/Validation';
 
-import Input from '../input';
+import Input from '../Input';
 
 interface LoginFiledProps {
   type: string;

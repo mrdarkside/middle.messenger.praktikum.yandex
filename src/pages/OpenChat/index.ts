@@ -2,7 +2,7 @@ import Block from '../../utils/Block';
 import template from './openchat.hbs';
 import * as styles from './openchat.module.scss';
 
-import Nav from '../../components/nav';
+import Nav from '../../components/Nav';
 import ChatList from '../../components/ChatList';
 import RoundButton from '../../components/RoundButton';
 
@@ -12,7 +12,7 @@ import avatar from '../../img/chatavatar.png';
 import menu from '../../img/menu.png';
 import clip from '../../img/clip.png';
 import forward from '../../img/forward.png';
-import Input from '../../components/input';
+import Input from '../../components/Input';
 import hasselblad from '../../img/hasselblad.png';
 
 export default class OpenChat extends Block {

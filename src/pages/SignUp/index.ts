@@ -2,9 +2,9 @@ import Block from '../../utils/Block';
 import template from './signup.hbs';
 import * as styles from './signup.module.scss';
 
-import Nav from '../../components/nav';
-import Button from '../../components/button';
-import Link from '../../components/link';
+import Nav from '../../components/Nav';
+import Button from '../../components/Button';
+import Link from '../../components/Link';
 import LoginField from '../../components/LoginField';
 
 import { formSubmit } from '../../utils/Validation';

@@ -3,7 +3,7 @@ import template from './profile-field.hbs';
 import * as styles from './profile-field.module.scss';
 import { InputName, checkOnBlur } from '../../utils/Validation';
 
-import Input from '../input';
+import Input from '../Input';
 
 interface ProfileFieldProps {
   name: InputName;

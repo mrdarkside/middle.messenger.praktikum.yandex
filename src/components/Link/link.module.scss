@@ -2,7 +2,7 @@
   color: var(--color-primary);
   text-decoration: none;
 
-  &.warning {
+  &-warning {
     color: var(--color-error);
   }
 
@@ -10,5 +10,13 @@
     margin-top: 14px;
     align-self: center;
     font-size: 11px;
+  }
+
+  &-profile {
+    color: var(--color-text-grey);
+    padding-right: 16px;
+    background-image: url('../../assets/img/arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right center;
   }
 }

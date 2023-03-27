@@ -2,7 +2,6 @@ import Block from '../../utils/Block';
 import template from './messenger.hbs';
 import * as styles from './messenger.module.scss';
 
-import Nav from '../../components/Nav';
 import ChatList from '../../components/ChatList';
 
 export default class MessengerPage extends Block {
@@ -11,7 +10,6 @@ export default class MessengerPage extends Block {
   }
 
   protected init(): void {
-    this.children.nav = new Nav();
     this.children.chatList = new ChatList();
   }
 

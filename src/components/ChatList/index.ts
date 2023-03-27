@@ -9,6 +9,7 @@ import { submitByEnter } from '../../utils/Validation';
 
 import arrow from '../../assets/img/arrow.png';
 import chatavatar from '../../assets/img/chatavatar.png';
+import Link from '../Link';
 
 export default class ChatList extends Block {
   constructor() {
@@ -16,6 +17,11 @@ export default class ChatList extends Block {
   }
 
   protected init(): void {
+    this.children.profileLink = new Link({
+      isProfile: true,
+      label: 'Профиль',
+      to: '/profile',
+    });
     this.children.search = new Input({
       type: 'text',
       name: 'search',

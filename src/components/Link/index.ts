@@ -8,6 +8,7 @@ interface LinkProps extends PropsWithRouter {
   label: string;
   isWarning?: boolean;
   isLogin?: boolean;
+  isProfile?: boolean;
   href?: string;
   events?: {
     click: (e: Event) => void;

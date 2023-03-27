@@ -1,70 +1,72 @@
 import Route, { BlockConstructable } from './Route';
 
-export default class Router {
-  private static __instance: Router;
-  private routes: Route[] = [];
-  private currentRoute: Route | null = null;
-  private history = window.history;
+class Router {
+  static #instance: Router;
+  #routes: Route[] = [];
+  #currentRoute: Route | null = null;
+  #history = window.history;
 
   constructor(private readonly rootQuery: string) {
-    if (!Router.__instance) {
+    if (!Router.#instance) {
       // eslint-disable-next-line no-constructor-return
-      return Router.__instance;
+      return Router.#instance;
     }
 
-    this.routes = [];
+    this.#routes = [];
 
-    Router.__instance = this;
+    Router.#instance = this;
   }
 
   public use(pathname: string, block: BlockConstructable) {
     const route = new Route(pathname, block, this.rootQuery);
-    this.routes.push(route);
+    this.#routes.push(route);
 
     return this;
   }
 
   public go(pathname: string) {
-    this.history.pushState({}, '', pathname);
+    this.#history.pushState({}, '', pathname);
 
-    this._onRoute(pathname);
+    this.#onRoute(pathname);
   }
 
   public back() {
-    this.history.back();
+    this.#history.back();
   }
 
   public forward() {
-    this.history.forward();
+    this.#history.forward();
   }
 
   public start() {
     window.onpopstate = (event: PopStateEvent) => {
       const target = event.currentTarget as Window;
 
-      this._onRoute(target.location.pathname);
+      this.#onRoute(target.location.pathname);
     };
 
-    this._onRoute(window.location.pathname);
+    this.#onRoute(window.location.pathname);
   }
 
-  private _onRoute(pathname: string) {
-    const route = this.getRoute(pathname);
+  #onRoute(pathname: string) {
+    const route = this.#getRoute(pathname);
 
     if (!route) {
       return;
     }
 
-    if (this.currentRoute && this.currentRoute !== route) {
-      this.currentRoute.leave();
+    if (this.#currentRoute && this.#currentRoute !== route) {
+      this.#currentRoute.leave();
     }
 
-    this.currentRoute = route;
+    this.#currentRoute = route;
 
     route.render();
   }
 
-  private getRoute(pathname: string) {
-    return this.routes.find((route) => route.match(pathname));
+  #getRoute(pathname: string) {
+    return this.#routes.find((route) => route.match(pathname));
   }
 }
+
+export default new Router('#app');

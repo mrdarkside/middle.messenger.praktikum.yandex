@@ -13,11 +13,11 @@ enum Routes {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  const router = new Router('#app');
-  router.use(Routes.Index, SignInPage);
-  router.use(Routes.Register, SignUpPage);
-  router.use(Routes.Profile, ProfilePage);
-  router.use(Routes.Messenger, MessengerPage);
-  router.start();
-  // router.go(Routes.Index);
+  Router.use(Routes.Index, SignInPage)
+    .use(Routes.Register, SignUpPage)
+    .use(Routes.Profile, ProfilePage)
+    .use(Routes.Messenger, MessengerPage);
+
+  Router.start();
+  // Router.go(Routes.Index);
 });

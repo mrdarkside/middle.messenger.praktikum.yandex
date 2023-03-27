@@ -88,6 +88,8 @@ export function formSubmit(e: Event, styles: any) {
   });
 
   console.log(data);
+  // temporal return for router
+  return true;
 }
 
 export function buttonSubmit(e: Event) {

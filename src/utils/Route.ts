@@ -1,6 +1,6 @@
 import Block from './Block';
 
-export interface BlockConstructable<P extends Record<string, any> = any> {
+export interface BlockConstructable<P extends Record<string, unknown> = any> {
   new (props: P): Block<P>;
 }
 
@@ -23,7 +23,7 @@ function render(query: string, block: Block) {
 }
 
 export default class Route {
-  private block: Block | null = null;
+  #block: Block | null = null;
 
   constructor(
     private pathname: string,
@@ -32,7 +32,7 @@ export default class Route {
   ) {}
 
   leave() {
-    this.block = null;
+    this.#block = null;
   }
 
   match(pathname: string) {
@@ -40,10 +40,10 @@ export default class Route {
   }
 
   render() {
-    if (!this.block) {
-      this.block = new this.BlockClass({});
+    if (!this.#block) {
+      this.#block = new this.BlockClass({});
 
-      render(this.query, this.block);
+      render(this.query, this.#block);
     }
   }
 }

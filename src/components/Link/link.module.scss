@@ -5,4 +5,10 @@
   &.warning {
     color: var(--color-error);
   }
+
+  &-login {
+    margin-top: 14px;
+    align-self: center;
+    font-size: 11px;
+  }
 }

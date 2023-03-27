@@ -2,35 +2,36 @@ import { TemplateDelegate } from 'handlebars';
 import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
-export default class Block<P extends Record<string, any> = any> {
-  static EVENTS = {
+// https://github.com/microsoft/TypeScript/issues/15300
+export default abstract class Block<P extends Record<string, any> = any> {
+  static LIFE_EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-  };
+  } as const;
 
   public id = nanoid(6);
-  private eventBus: () => EventBus;
+  #eventBus: () => EventBus;
   protected props: P;
   protected children: Record<string, Block | Block[]>;
-  private _element: HTMLElement | null = null;
+  #element: HTMLElement | null = null;
 
-  constructor(propsWithChildren: P) {
+  protected constructor(propsWithChildren: P) {
     const eventBus = new EventBus();
 
-    const { props, children } = this._getChildrenAndProps(propsWithChildren);
+    const { props, children } = this.#getChildrenAndProps(propsWithChildren);
 
-    this.props = this._makePropsProxy(props);
+    this.props = this.#makePropsProxy(props);
     this.children = children;
 
-    this.eventBus = () => eventBus;
+    this.#eventBus = () => eventBus;
 
-    this._registerEvents(eventBus);
-    eventBus.emit(Block.EVENTS.INIT);
+    this.#registerLifeEvents(eventBus);
+    eventBus.emit(Block.LIFE_EVENTS.INIT);
   }
 
-  private _getChildrenAndProps(childrenAndProps: P): {
+  #getChildrenAndProps(childrenAndProps: P): {
     props: P;
     children: Record<string, Block | Block[]>;
   } {
@@ -54,49 +55,49 @@ export default class Block<P extends Record<string, any> = any> {
     return { props: props as P, children };
   }
 
-  _addEvents() {
+  #registerLifeEvents(eventBus: EventBus) {
+    eventBus.on(Block.LIFE_EVENTS.INIT, this.#init.bind(this));
+    eventBus.on(Block.LIFE_EVENTS.FLOW_CDM, this.#componentDidMount.bind(this));
+    eventBus.on(Block.LIFE_EVENTS.FLOW_CDU, this.#componentDidUpdate.bind(this));
+    eventBus.on(Block.LIFE_EVENTS.FLOW_RENDER, this._render.bind(this));
+  }
+
+  #addEvents() {
     const { events = {} } = this.props as P & {
       events: Record<string, () => void>;
     };
 
     Object.keys(events).forEach((eventName) => {
-      this._element?.addEventListener(eventName, events[eventName]);
+      this.#element?.addEventListener(eventName, events[eventName]);
     });
   }
 
-  _removeEvents() {
+  #removeEvents() {
     const { events = {} } = this.props as P & {
       events: Record<string, () => void>;
     };
 
     Object.keys(events).forEach((eventName) => {
-      this._element?.removeEventListener(eventName, events[eventName]);
+      this.#element?.removeEventListener(eventName, events[eventName]);
     });
   }
 
-  private _registerEvents(eventBus: EventBus) {
-    eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-  }
-
-  private _init() {
+  #init() {
     this.init();
 
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.#eventBus().emit(Block.LIFE_EVENTS.FLOW_RENDER);
   }
 
   protected init() {}
 
-  private _componentDidMount() {
+  #componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  protected componentDidMount() {}
 
   public dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.#eventBus().emit(Block.LIFE_EVENTS.FLOW_CDM);
 
     Object.values(this.children).forEach((child) => {
       if (Array.isArray(child)) {
@@ -107,9 +108,17 @@ export default class Block<P extends Record<string, any> = any> {
     });
   }
 
-  private _componentDidUpdate(oldProps: P, newProps: P) {
+  protected setProps = (nextProps: Partial<P>) => {
+    if (!nextProps) {
+      return;
+    }
+
+    Object.assign(this.props, nextProps);
+  };
+
+  #componentDidUpdate(oldProps: P, newProps: P) {
     if (this.componentDidUpdate(oldProps, newProps)) {
-      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+      this.#eventBus().emit(Block.LIFE_EVENTS.FLOW_RENDER);
     }
   }
 
@@ -118,16 +127,8 @@ export default class Block<P extends Record<string, any> = any> {
     return true;
   }
 
-  setProps = (nextProps: Partial<P>) => {
-    if (!nextProps) {
-      return;
-    }
-
-    Object.assign(this.props, nextProps);
-  };
-
-  get element() {
-    return this._element;
+  protected get element() {
+    return this.#element;
   }
 
   private _render() {
@@ -135,14 +136,14 @@ export default class Block<P extends Record<string, any> = any> {
 
     const newElement = fragment.firstElementChild as HTMLElement;
 
-    if (this._element && newElement) {
-      this._removeEvents();
-      this._element.replaceWith(newElement);
+    if (this.#element && newElement) {
+      this.#removeEvents();
+      this.#element.replaceWith(newElement);
     }
 
-    this._element = newElement;
+    this.#element = newElement;
 
-    this._addEvents();
+    this.#addEvents();
   }
 
   protected render(): DocumentFragment {
@@ -192,30 +193,36 @@ export default class Block<P extends Record<string, any> = any> {
     return temp.content;
   }
 
-  getContent() {
+  public getContent() {
     return this.element;
   }
 
-  _makePropsProxy(props: P) {
-    const self = this;
-
+  #makePropsProxy(props: P) {
     return new Proxy(props, {
       get(target: P, prop) {
         const value = target[prop as keyof P];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set: (target, prop, value) => {
         const oldTarget = { ...target };
 
         const newTarget = { ...target };
         newTarget[prop as keyof P] = value;
 
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, newTarget);
+        this.#eventBus().emit(Block.LIFE_EVENTS.FLOW_CDU, oldTarget, newTarget);
         return true;
       },
       deleteProperty() {
         throw new Error('Нет прав');
       },
     });
+  }
+
+  protected show() {
+    this.getContent()?.removeAttribute('hidden');
+  }
+
+  protected hide() {
+    this.getContent()?.setAttribute('hidden', '');
   }
 }

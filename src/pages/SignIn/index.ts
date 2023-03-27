@@ -2,11 +2,14 @@ import Block from '../../utils/Block';
 import template from './signIn.hbs';
 import * as styles from './signIn.module.scss';
 
-import Nav from '../../components/Nav';
 import Button from '../../components/Button';
 import LoginField from '../../components/LoginField';
 
 import { formSubmit } from '../../utils/Validation';
+import Link from '../../components/Link';
+import Router from '../../utils/Router';
+
+const router = Router;
 
 export default class SignInPage extends Block {
   constructor() {
@@ -14,7 +17,6 @@ export default class SignInPage extends Block {
   }
 
   init() {
-    this.children.nav = new Nav();
     this.children.input_login = new LoginField({
       type: 'text',
       label: 'Логин',
@@ -34,10 +36,16 @@ export default class SignInPage extends Block {
         click: (e) => this.onSubmit(e!),
       },
     });
+    this.children.link = new Link({
+      isLogin: true,
+      to: '/sign-up',
+      label: 'Нет аккаунта?',
+    });
   }
 
   onSubmit(e: Event) {
     formSubmit(e, styles);
+    router.go('/messenger');
   }
 
   render() {

@@ -2,12 +2,14 @@ import Block from '../../utils/Block';
 import template from './signup.hbs';
 import * as styles from './signup.module.scss';
 
-import Nav from '../../components/Nav';
 import Button from '../../components/Button';
 import Link from '../../components/Link';
 import LoginField from '../../components/LoginField';
 
 import { formSubmit } from '../../utils/Validation';
+import Router from '../../utils/Router';
+
+const router = Router;
 
 export default class SignUpPage extends Block {
   constructor() {
@@ -15,7 +17,6 @@ export default class SignUpPage extends Block {
   }
 
   init() {
-    this.children.nav = new Nav();
     this.children.email = new LoginField({
       type: 'email',
       label: 'Почта',
@@ -66,20 +67,18 @@ export default class SignUpPage extends Block {
       },
     });
     this.children.link = new Link({
+      isLogin: true,
+      to: '/',
       label: 'Уже есть аккаунт?',
-      href: '#',
     });
   }
 
   onSubmit(e: Event) {
     formSubmit(e, styles);
+    router.go('/messenger');
   }
 
   render() {
     return this.compile(template, { ...this.props, styles });
-  }
-
-  onButtonClick() {
-    console.log('button clicked');
   }
 }

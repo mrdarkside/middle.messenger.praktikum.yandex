@@ -2,7 +2,6 @@ import Block from '../../utils/Block';
 import template from './openchat.hbs';
 import * as styles from './openchat.module.scss';
 
-import Nav from '../../components/Nav';
 import ChatList from '../../components/ChatList';
 import RoundButton from '../../components/RoundButton';
 
@@ -21,7 +20,6 @@ export default class OpenChat extends Block {
   }
 
   protected init(): void {
-    this.children.nav = new Nav();
     this.children.chatList = new ChatList();
     this.children.input = new Input({
       name: 'message',

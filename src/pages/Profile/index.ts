@@ -2,7 +2,6 @@ import Block from '../../utils/Block';
 import template from './profile.hbs';
 import * as styles from './profile.module.scss';
 
-import Nav from '../../components/Nav';
 import ProfileField from '../../components/ProfileField';
 import Link from '../../components/Link';
 
@@ -20,7 +19,6 @@ export default class ProfilePage extends Block<ProfilePageProps> {
   }
 
   init() {
-    this.children.nav = new Nav();
     this.children.field_email = new ProfileField({
       name: 'email',
       type: 'email',

@@ -2,7 +2,6 @@ import Block from '../../utils/Block';
 import template from './password.hbs';
 import * as styles from './password.module.scss';
 
-import Nav from '../../components/Nav';
 import ProfileField from '../../components/ProfileField';
 import Button from '../../components/Button';
 
@@ -22,7 +21,6 @@ export default class Password extends Block<PasswordProps> {
   }
 
   init() {
-    this.children.nav = new Nav();
     this.children.old_password = new ProfileField({
       name: 'old_password',
       type: 'password',

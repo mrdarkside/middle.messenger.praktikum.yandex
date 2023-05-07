@@ -1,28 +1,18 @@
+import { IUser } from '../types';
 import BaseAPI from './BaseAPI';
 
-export interface SigninData {
+export interface ISigninData {
   login: string;
   password: string;
 }
 
-export interface SignupData {
+export interface ISignupData {
   first_name: string;
   second_name: string;
   login: string;
   email: string;
   password: string;
   phone: string;
-}
-
-export interface User {
-  id: number;
-  first_name: string;
-  second_name: string;
-  login: string;
-  email: string;
-  password: string;
-  phone: string;
-  avatar: string;
 }
 
 export default class AuthAPI extends BaseAPI {
@@ -30,16 +20,16 @@ export default class AuthAPI extends BaseAPI {
     super('/auth');
   }
 
-  signup(data: SignupData) {
+  signup(data: ISignupData) {
     return this.http.post('/signup', data);
   }
 
-  signin(data: SigninData) {
+  signin(data: ISigninData) {
     return this.http.post('/signin', data);
   }
 
   getUser() {
-    return this.http.get<User>('/user');
+    return this.http.get<IUser>('/user');
   }
 
   logout() {

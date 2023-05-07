@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './404.hbs';
 import Error from '../../components/Error';
 

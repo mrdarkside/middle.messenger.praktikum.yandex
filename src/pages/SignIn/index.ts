@@ -1,15 +1,13 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './signIn.hbs';
 import * as styles from './signIn.module.scss';
 
 import Button from '../../components/Button';
 import LoginField from '../../components/LoginField';
 
-import { formSubmit } from '../../utils/Validation';
+import { submitForm } from '../../utils/Validation';
 import Link from '../../components/Link';
-import Router from '../../utils/Router';
-
-const router = Router;
+import authController from '../../controllers/AuthController';
 
 export default class SignInPage extends Block {
   constructor() {
@@ -44,8 +42,12 @@ export default class SignInPage extends Block {
   }
 
   onSubmit(e: Event) {
-    formSubmit(e, styles);
-    router.go('/messenger');
+    const { login, password } = submitForm(e, styles);
+    console.log('submit', submitForm(e, styles));
+
+    if (login && password) {
+      authController.signin({ login, password });
+    }
   }
 
   render() {

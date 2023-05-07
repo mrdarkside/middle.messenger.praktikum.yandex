@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './signup.hbs';
 import * as styles from './signup.module.scss';
 
@@ -7,7 +7,7 @@ import Link from '../../components/Link';
 import LoginField from '../../components/LoginField';
 
 import { formSubmit } from '../../utils/Validation';
-import Router from '../../utils/Router';
+import Router from '../../core/Router';
 
 const router = Router;
 

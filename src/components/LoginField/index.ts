@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './login-field.hbs';
 import * as styles from './login-field.module.scss';
 import { InputName, checkOnBlur } from '../../utils/Validation';

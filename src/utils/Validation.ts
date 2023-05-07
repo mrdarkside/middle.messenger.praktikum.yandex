@@ -37,12 +37,12 @@ export function validateInput(name: InputName, value: string): boolean {
   return pattern.test(value);
 }
 
-export function formSubmit(e: Event, styles: any) {
+export function submitForm(e: Event, styles: any) {
   e.preventDefault();
   const form = document.querySelector('#form') as HTMLFormElement;
   const inputs = form.querySelectorAll('input');
 
-  let data = {};
+  let data: Record<string, string> = {};
 
   const passwords = { old_password: '', password: '', confirm_password: '' };
 
@@ -86,10 +86,8 @@ export function formSubmit(e: Event, styles: any) {
 
     data = { ...data, [name]: value };
   });
-
   console.log(data);
-  // temporal return for router
-  return true;
+  return data;
 }
 
 export function buttonSubmit(e: Event) {

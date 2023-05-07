@@ -39,11 +39,7 @@ export default abstract class Block<P extends Record<string, any> = any> {
     const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (
-        Array.isArray(value) &&
-        value.length > 0 &&
-        value.every((v) => v instanceof Block)
-      ) {
+      if (Array.isArray(value) && value.length > 0 && value.every((v) => v instanceof Block)) {
         children[key as string] = value;
       } else if (value instanceof Block) {
         children[key as string] = value;
@@ -59,7 +55,7 @@ export default abstract class Block<P extends Record<string, any> = any> {
     eventBus.on(Block.LIFE_EVENTS.INIT, this.#init.bind(this));
     eventBus.on(Block.LIFE_EVENTS.FLOW_CDM, this.#componentDidMount.bind(this));
     eventBus.on(Block.LIFE_EVENTS.FLOW_CDU, this.#componentDidUpdate.bind(this));
-    eventBus.on(Block.LIFE_EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Block.LIFE_EVENTS.FLOW_RENDER, this.#render.bind(this));
   }
 
   #addEvents() {
@@ -131,7 +127,7 @@ export default abstract class Block<P extends Record<string, any> = any> {
     return this.#element;
   }
 
-  private _render() {
+  #render() {
     const fragment = this.render();
 
     const newElement = fragment.firstElementChild as HTMLElement;
@@ -155,9 +151,7 @@ export default abstract class Block<P extends Record<string, any> = any> {
 
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
-        contextAndStubs[name] = component.map(
-          (child) => `<div data-id="${child.id}"></div>`,
-        );
+        contextAndStubs[name] = component.map((child) => `<div data-id="${child.id}"></div>`);
       } else {
         contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
       }

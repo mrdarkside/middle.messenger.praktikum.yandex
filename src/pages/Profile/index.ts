@@ -1,24 +1,27 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './profile.hbs';
 import * as styles from './profile.module.scss';
+import icon from '../../assets/img/back.png';
+import avatar from '../../assets/img/profile_pic.png';
 
 import ProfileField from '../../components/ProfileField';
 import Link from '../../components/Link';
-
-import icon from '../../assets/img/back.png';
-import avatar from '../../assets/img/profile_pic.png';
+import { withStore } from '../../core/Store';
+import authController from '../../controllers/AuthController';
 
 interface ProfilePageProps {
   icon: ImageBitmap;
   avatar: ImageBitmap;
 }
 
-export default class ProfilePage extends Block<ProfilePageProps> {
+class ProfilePageBase extends Block<ProfilePageProps> {
   constructor(props: ProfilePageProps) {
     super({ ...props });
   }
 
   init() {
+    authController.fetchUser();
+
     this.children.field_email = new ProfileField({
       name: 'email',
       type: 'email',
@@ -81,3 +84,9 @@ export default class ProfilePage extends Block<ProfilePageProps> {
     return this.compile(template, { ...this.props, styles, icon, avatar });
   }
 }
+
+const withUser = withStore((state) => ({ ...state.user }));
+
+const ProfilePage = withUser(ProfilePageBase);
+
+export default ProfilePage;

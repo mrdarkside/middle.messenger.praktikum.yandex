@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './round-button.hbs';
 import * as styles from './round-button.module.scss';
 

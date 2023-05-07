@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './chat-list.hbs';
 import * as styles from './chat-list.module.scss';
 

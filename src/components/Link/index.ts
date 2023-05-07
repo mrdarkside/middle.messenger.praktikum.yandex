@@ -1,5 +1,5 @@
 import { PropsWithRouter, withRouter } from '../../hocs/withRouter';
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './link.hbs';
 import * as styles from './link.module.scss';
 
@@ -12,7 +12,7 @@ interface LinkProps extends PropsWithRouter {
   href?: string;
   events?: {
     click: (e: Event) => void;
-  }
+  };
 }
 
 class LinkClass extends Block<LinkProps> {

@@ -1,4 +1,5 @@
-import AuthAPI, { SigninData, SignupData } from '../api/AuthAPI';
+import AuthAPI from '../api/AuthAPI';
+import { ISigninData, ISignupData } from '../types/index';
 import router from '../core/Router';
 import store from '../core/Store';
 
@@ -9,25 +10,25 @@ class AuthController {
     this.api = new AuthAPI();
   }
 
-  async signin(data: SigninData) {
+  async signin(data: ISigninData) {
     try {
       await this.api.signin(data);
 
       await this.fetchUser();
 
-      router.go('/messenger');
+      router.go('/profile');
     } catch (e: any) {
       console.error('Signin error', e);
     }
   }
 
-  async signup(data: SignupData) {
+  async signup(data: ISignupData) {
     try {
       await this.api.signup(data);
 
       await this.fetchUser();
 
-      router.go('/messenger');
+      router.go('/profile');
     } catch (e: any) {
       console.error('Signup error', e);
     }
@@ -35,14 +36,20 @@ class AuthController {
 
   async fetchUser() {
     try {
-      store.set('isLoading', true);
+      store.setState('user.isLoading', true);
       const user = await this.api.getUser();
 
-      store.set('user.data', user);
-      store.set('isLoading', false);
-    } catch (e: any) {
-      store.set('user.hasError', true);
-      console.error('Fetch user error', e);
+      if (user.reason === 'Cookie is not valid') {
+        throw new Error('Cookie is not valid');
+      }
+
+      store.setState('user.data', user);
+      store.setState('user.isLoading', false);
+      store.setState('user.hasError', false);
+    } catch (e) {
+      store.setState('user.data', null);
+      store.setState('user.isLoading', false);
+      store.setState('user.hasError', true);
     }
   }
 
@@ -50,7 +57,7 @@ class AuthController {
     try {
       await this.api.logout();
 
-      store.set('user', null);
+      store.setState('user', null);
 
       router.go('/');
     } catch (e: any) {

@@ -31,7 +31,7 @@ export default class SignInPage extends Block {
       label: 'Авторизоваться',
       type: 'submit',
       events: {
-        click: (e) => this.onSubmit(e!),
+        click: (e) => this.onSubmit(e),
       },
     });
     this.children.link = new Link({
@@ -43,7 +43,6 @@ export default class SignInPage extends Block {
 
   onSubmit(e: Event) {
     const { login, password } = submitForm(e, styles);
-    console.log('submit', submitForm(e, styles));
 
     if (login && password) {
       authController.signin({ login, password });

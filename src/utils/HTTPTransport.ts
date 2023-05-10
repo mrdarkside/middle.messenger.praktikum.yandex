@@ -27,10 +27,7 @@ export default class HTTPTransport {
     return this.#request<Response>(this.endpoint + path);
   }
 
-  public post<Response = void>(
-    path: string,
-    data?: unknown,
-  ): Promise<Response> {
+  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
     return this.#request<Response>(this.endpoint + path, {
       method: Method.Post,
       data,
@@ -44,10 +41,7 @@ export default class HTTPTransport {
     });
   }
 
-  public patch<Response = void>(
-    path: string,
-    data: unknown,
-  ): Promise<Response> {
+  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
     return this.#request<Response>(this.endpoint + path, {
       method: Method.Patch,
       data,
@@ -66,7 +60,7 @@ export default class HTTPTransport {
     options: Options = { method: Method.Get },
     timeout = 5000,
   ): Promise<Response> {
-    const { headers = {}, method, data } = options;
+    const { headers = { 'Content-Type': 'application/json' }, method, data } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -74,9 +68,7 @@ export default class HTTPTransport {
 
       xhr.open(method, isGet && !!data ? `${url}${queryString(data)}` : url);
 
-      Object.keys(headers).forEach((key) => {
-        xhr.setRequestHeader(key, headers[key]);
-      });
+      Object.entries(headers).forEach(([key, value]) => xhr.setRequestHeader(key, value));
 
       xhr.onload = () => {
         resolve(xhr.response);
@@ -87,8 +79,6 @@ export default class HTTPTransport {
 
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
-
-      xhr.setRequestHeader('Content-Type', 'application/json');
 
       xhr.withCredentials = true;
 

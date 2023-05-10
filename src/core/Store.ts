@@ -2,13 +2,22 @@ import { IState, StoreEvents } from '../types';
 import EventBus from './EventBus';
 import { set } from '../utils/helpers';
 
-class Store extends EventBus {
-  #state: IState = { user: {} };
+const initialState: IState = {
+  user: {
+    data: null,
+    isLoading: false,
+    hasError: false,
+  },
+  chats: [],
+};
 
-  public set(keypath: string, value: unknown) {
+class Store extends EventBus {
+  #state: IState = initialState;
+
+  public setState(keypath: string, value: unknown) {
     set(this.#state, keypath, value);
 
-    this.emit(StoreEvents.Updated, this.#state);
+    this.emit(StoreEvents.Updated, this.getState());
   }
 
   public getState() {

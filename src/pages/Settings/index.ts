@@ -5,7 +5,7 @@ import * as styles from './settings.module.scss';
 import ProfileField from '../../components/ProfileField';
 import Button from '../../components/Button';
 
-import { formSubmit } from '../../utils/Validation';
+import { submitForm } from '../../utils/Validation';
 
 import icon from '../../img/back.png';
 import avatar from '../../img/profile_pic.png';
@@ -73,7 +73,7 @@ export default class Settings extends Block<SettingsProps> {
   }
 
   onSubmit(e: Event) {
-    formSubmit(e, styles);
+    submitForm(e, styles);
   }
 
   render() {

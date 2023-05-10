@@ -1,38 +1,31 @@
-import { IUser } from '../types';
+import { IUser, ISignupData, ISigninData } from '../types';
 import BaseAPI from './BaseAPI';
-
-export interface ISigninData {
-  login: string;
-  password: string;
-}
-
-export interface ISignupData {
-  first_name: string;
-  second_name: string;
-  login: string;
-  email: string;
-  password: string;
-  phone: string;
-}
 
 export default class AuthAPI extends BaseAPI {
   constructor() {
     super('/auth');
   }
 
-  signup(data: ISignupData) {
+  public signup(data: ISignupData) {
     return this.http.post('/signup', data);
   }
 
-  signin(data: ISigninData) {
+  public signin(data: ISigninData) {
     return this.http.post('/signin', data);
   }
 
-  getUser() {
-    return this.http.get<IUser>('/user');
+  public async getUser() {
+    try {
+      const response = await this.http.get('/user');
+      const user = JSON.parse(response as string) as IUser;
+      return user;
+    } catch (error) {
+      console.error('Error fetching user', error);
+      throw error;
+    }
   }
 
-  logout() {
+  public logout() {
     return this.http.post('/logout');
   }
 

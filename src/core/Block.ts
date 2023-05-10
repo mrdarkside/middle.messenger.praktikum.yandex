@@ -108,6 +108,7 @@ export default abstract class Block<P extends Record<string, any> = any> {
     if (!nextProps) {
       return;
     }
+    console.log('setProps', Object.assign(this.props, nextProps));
 
     Object.assign(this.props, nextProps);
   };

@@ -6,8 +6,10 @@ import Button from '../../components/Button';
 import Link from '../../components/Link';
 import LoginField from '../../components/LoginField';
 
-import { formSubmit } from '../../utils/Validation';
+import { submitForm } from '../../utils/Validation';
 import Router from '../../core/Router';
+import authController from '../../controllers/AuthController';
+import { ISignupData } from '../../types/index';
 
 const router = Router;
 
@@ -72,10 +74,11 @@ export default class SignUpPage extends Block {
       label: 'Уже есть аккаунт?',
     });
   }
-
+  // TODO fix types
   onSubmit(e: Event) {
-    formSubmit(e, styles);
-    router.go('/messenger');
+    const data = submitForm(e, styles);
+    authController.signup(data as unknown as ISignupData);
+    router.go('/profile');
   }
 
   render() {

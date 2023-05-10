@@ -2,27 +2,31 @@
   <aside class="{{styles.sidebar}}"><a class="{{styles.back_link}}" href="#"><img src="{{icon}}" alt="Назад"></a>
   </aside>
   <main class="{{styles.profile}}">
-    <form class="{{styles.form}}">
-      <header class="{{styles.header}}">
-        <div class="{{styles.pic-container}}">
-          <img src="{{avatar}}" alt="photo" class="{{styles.pic}}">
-          <div class="{{styles.overlay}}"><span>Поменять аватар</span></div>
-        </div>
-        <h2 class="{{styles.name}}">Иван</h2>
-      </header>
-      <section class="{{styles.bio}}">
-        {{{field_email}}}
-        {{{field_login}}}
-        {{{field_first_name}}}
-        {{{field_second_name}}}
-        {{{field_display_name}}}
-        {{{field_phone}}}
-      </section>
-      <footer class="{{styles.footer}}">
-        <div class="{{styles.field}}">{{{link_settings}}}</div>
-        <div class="{{styles.field}}">{{{link_password}}}</div>
-        <div class="{{styles.field}}">{{{link_logout}}}</div>
-      </footer>
-    </form>
+    {{#if isLoading}}
+      Loading...
+    {{else}}
+      <form class="{{styles.form}}">
+        <header class="{{styles.header}}">
+          <div class="{{styles.pic-container}}">
+            <img src="{{avatarPlaceholder}}" alt="photo" class="{{styles.pic}}">
+            <div class="{{styles.overlay}}"><span>Поменять аватар</span></div>
+          </div>
+          <h2 class="{{styles.name}}">{{firstName}}</h2>
+        </header>
+        <section class="{{styles.bio}}">
+          {{{field_email}}}
+          {{{field_login}}}
+          {{{field_first_name}}}
+          {{{field_second_name}}}
+          {{{field_display_name}}}
+          {{{field_phone}}}
+        </section>
+        <footer class="{{styles.footer}}">
+          <div class="{{styles.field}}">{{{link_settings}}}</div>
+          <div class="{{styles.field}}">{{{link_password}}}</div>
+          <div class="{{styles.field}}">{{{link_logout}}}</div>
+        </footer>
+      </form>
+    {{/if}}
   </main>
 </div>

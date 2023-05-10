@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
 export type Indexed<T = any> = {
@@ -8,13 +9,13 @@ export type PlainObject<T = any> = {
   [k in string]: T;
 };
 
-export function trim(string: string, chars?: string): string {
-  if (string && !chars) {
+export function trimString(string: string, charsToRemove?: string): string {
+  if (string && !charsToRemove) {
     return string.trim();
   }
 
-  const reg = new RegExp(`[${chars}]`, 'gi');
-  return string.replace(reg, '');
+  const regex = new RegExp(`[${charsToRemove}]`, 'gi');
+  return string.replace(regex, '');
 }
 
 export function isPlainObject(value: unknown): value is PlainObject {
@@ -56,32 +57,28 @@ export function isEqual(lhs: PlainObject, rhs: PlainObject) {
   return true;
 }
 
-export function merge(
-  lhs: Indexed<unknown>,
-  rhs: Indexed<unknown>,
-): Indexed<unknown> {
-  const result: Indexed<unknown> = { ...lhs };
+export function merge(lhs: Indexed, rhs: Indexed): Indexed {
+  for (const p in rhs) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (!rhs.hasOwnProperty(p)) {
+      continue;
+    }
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const [key, value] of Object.entries(rhs)) {
-    if (typeof value === 'object' && value !== null && key in result) {
-      result[key] = merge(
-        result[key] as Indexed<unknown>,
-        value as Indexed<unknown>,
-      );
-    } else {
-      result[key] = value;
+    try {
+      if (rhs[p].constructor === Object) {
+        rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
+      } else {
+        lhs[p] = rhs[p];
+      }
+    } catch (e) {
+      lhs[p] = rhs[p];
     }
   }
 
-  return result;
+  return lhs;
 }
 
-export function set(
-  object: Indexed | unknown,
-  path: string,
-  value: unknown,
-): Indexed | unknown {
+export function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
   if (typeof object !== 'object' || object === null) {
     return object;
   }
@@ -96,6 +93,7 @@ export function set(
     }),
     value as any,
   );
+
   return merge(object as Indexed, result);
 }
 

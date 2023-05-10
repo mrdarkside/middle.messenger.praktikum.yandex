@@ -3,22 +3,24 @@ import template from './profile.hbs';
 import * as styles from './profile.module.scss';
 import icon from '../../assets/img/back.png';
 import avatarPlaceholder from '../../assets/img/profile_pic.png';
+import Button from '../../components/Button';
 
 import ProfileField from '../../components/ProfileField';
 import Link from '../../components/Link';
 import withStore from '../../hocs/withStore';
 import authController from '../../controllers/AuthController';
-import Button from '../../components/Button';
 
 interface ProfilePageProps {
   icon: ImageBitmap;
   avatarPlaceholder: ImageBitmap;
-  email: string;
-  login: string;
-  firstName: string;
-  secondName: string;
-  displayName: string;
-  phone: string;
+  data: {
+    email: string;
+    login: string;
+    first_name: string;
+    second_name: string;
+    display_name: string;
+    phone: string;
+  };
   isLoading: boolean;
   hasError: boolean;
 }
@@ -29,49 +31,46 @@ class ProfilePageBase extends Block<ProfilePageProps> {
   }
 
   init() {
-    authController.fetchUser();
-    console.log('profile page props', this.props);
-
     this.children.field_email = new ProfileField({
       name: 'email',
       type: 'email',
       label: 'Почта',
-      placeholder: this.props.email,
+      placeholder: this.props.data.email,
       readonly: true,
     });
     this.children.field_login = new ProfileField({
       name: 'login',
       type: 'text',
       label: 'Логин',
-      placeholder: this.props.login,
+      placeholder: this.props.data.login,
       readonly: true,
     });
     this.children.field_first_name = new ProfileField({
       name: 'first_name',
       type: 'text',
       label: 'Имя',
-      placeholder: this.props.firstName,
+      placeholder: this.props.data.first_name,
       readonly: true,
     });
     this.children.field_second_name = new ProfileField({
       name: 'second_name',
       type: 'text',
       label: 'Фамилия',
-      placeholder: this.props.secondName,
+      placeholder: this.props.data.second_name,
       readonly: true,
     });
     this.children.field_display_name = new ProfileField({
       name: 'display_name',
       type: 'text',
       label: 'Имя в чате',
-      placeholder: this.props.displayName || 'не выбрано',
+      placeholder: this.props.data.display_name || 'не выбрано',
       readonly: true,
     });
     this.children.field_phone = new ProfileField({
       name: 'phone',
       type: 'phone',
       label: 'Телефон',
-      placeholder: this.props.phone,
+      placeholder: this.props.data.phone,
       readonly: true,
     });
     this.children.link_settings = new Link({
@@ -92,7 +91,6 @@ class ProfilePageBase extends Block<ProfilePageProps> {
 
   onLogout = (e: Event) => {
     e.preventDefault();
-    console.log('logout');
     authController.logout();
   };
 
@@ -106,22 +104,8 @@ class ProfilePageBase extends Block<ProfilePageProps> {
   }
 }
 
-const mapStateToProps = (state: any) => {
-  const user = state.user.data;
-  const { isLoading, hasError } = state.user;
+const withUser = withStore((state) => ({ ...state.user }));
 
-  return {
-    email: user.email,
-    login: user.login,
-    firstName: user.first_name,
-    secondName: user.second_name,
-    displayName: user.display_name,
-    phone: user.phone,
-    isLoading,
-    hasError,
-  };
-};
-
-const ProfilePage = withStore(mapStateToProps)(ProfilePageBase);
+const ProfilePage = withUser(ProfilePageBase as typeof Block);
 
 export default ProfilePage;

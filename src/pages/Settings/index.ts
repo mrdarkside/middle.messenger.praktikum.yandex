@@ -15,7 +15,7 @@ interface SettingsProps {
   avatar: ImageBitmap;
 }
 
-export default class Settings extends Block<SettingsProps> {
+export default class SettingsPage extends Block<SettingsProps> {
   constructor(props: SettingsProps) {
     super({ ...props });
   }

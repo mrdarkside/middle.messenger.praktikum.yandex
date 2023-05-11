@@ -6,12 +6,16 @@ import SignUpPage from './pages/SignUp';
 import ProfilePage from './pages/Profile';
 import MessengerPage from './pages/Messenger';
 import store from './core/Store';
+import SettingsPage from './pages/Settings';
+import PasswordPage from './pages/Password';
 
 enum Routes {
   Index = '/',
   Login = '/sign-in',
   Register = '/sign-up',
   Profile = '/profile',
+  Settings = '/settings',
+  Password = '/password',
   Messenger = '/messenger',
 }
 
@@ -20,7 +24,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Login, SignInPage)
     .use(Routes.Register, SignUpPage)
     .use(Routes.Profile, ProfilePage)
-    .use(Routes.Messenger, MessengerPage);
+    .use(Routes.Messenger, MessengerPage)
+    .use(Routes.Settings, SettingsPage)
+    .use(Routes.Password, PasswordPage);
 
   let isProtectedRoute = true;
 
@@ -45,9 +51,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (!isProtectedRoute) {
       Router.go(Routes.Profile);
     }
-  } catch (e) {
-    console.log(e);
-
+  } catch (_) {
     Router.start();
 
     if (isProtectedRoute) {

@@ -15,7 +15,7 @@ interface PasswordProps {
   avatar: ImageBitmap;
 }
 
-export default class Password extends Block<PasswordProps> {
+export default class PasswordPage extends Block<PasswordProps> {
   constructor(props: PasswordProps) {
     super({ ...props });
   }

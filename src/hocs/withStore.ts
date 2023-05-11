@@ -9,7 +9,6 @@ const withStore = (mapStateToProps: (state: IState) => any) => (Component: typeo
   return class WithStoreComponent extends Component {
     constructor(props: any) {
       mappedState = mapStateToProps(store.getState());
-      console.log(store.getState());
 
       super({ ...props, ...mappedState });
 

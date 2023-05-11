@@ -2,10 +2,6 @@
   color: var(--color-primary);
   text-decoration: none;
 
-  &-warning {
-    color: var(--color-error);
-  }
-
   &-login {
     margin-top: 14px;
     align-self: center;
@@ -18,5 +14,15 @@
     background-image: url('../../assets/img/arrow.svg');
     background-repeat: no-repeat;
     background-position: right center;
+  }
+
+  &-back {
+    height: 100%;
+    width: 64px;
+    padding: 28px;
+    background-color: var(--color-sidebar-bg);
+    background-image: url('../../assets/img/back.png');
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }

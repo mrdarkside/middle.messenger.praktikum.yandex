@@ -6,9 +6,9 @@ import * as styles from './link.module.scss';
 interface LinkProps extends PropsWithRouter {
   to: string;
   label: string;
-  isWarning?: boolean;
   isLogin?: boolean;
   isProfile?: boolean;
+  isBackIcon?: boolean;
   href?: string;
   events?: {
     click: (e: Event) => void;

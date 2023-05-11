@@ -5,6 +5,7 @@ import * as styles from './button.module.scss';
 interface ButtonProps {
   type?: string;
   label: string;
+  isLogout?: boolean;
   events?: {
     click: (e: Event) => void;
   };

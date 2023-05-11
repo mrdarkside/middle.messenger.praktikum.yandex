@@ -31,6 +31,10 @@ class ProfilePageBase extends Block<ProfilePageProps> {
   }
 
   init() {
+    this.children.back_button = new Link({
+      to: '/messenger',
+      isBackIcon: true,
+    });
     this.children.field_email = new ProfileField({
       name: 'email',
       type: 'email',
@@ -74,15 +78,16 @@ class ProfilePageBase extends Block<ProfilePageProps> {
       readonly: true,
     });
     this.children.link_settings = new Link({
-      href: '#',
+      to: '/settings',
       label: 'Изменить данные',
     });
     this.children.link_password = new Link({
-      href: '#',
+      to: '/password',
       label: 'Изменить пароль',
     });
     this.children.link_logout = new Button({
       label: 'Выйти',
+      isLogout: true,
       events: {
         click: (e) => this.onLogout(e),
       },
@@ -93,7 +98,6 @@ class ProfilePageBase extends Block<ProfilePageProps> {
     e.preventDefault();
     authController.logout();
   };
-
   render() {
     return this.compile(template, {
       ...this.props,

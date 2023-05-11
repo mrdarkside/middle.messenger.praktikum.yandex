@@ -1,5 +1,5 @@
 <div class="{{styles.wrapper}}">
-  <aside class="{{styles.sidebar}}"><a class="{{styles.back_link}}" href="#"><img src="{{icon}}" alt="Назад"></a>
+  {{{back_button}}}
   </aside>
   <main class="{{styles.profile}}">
     {{#if isLoading}}
@@ -11,7 +11,7 @@
             <img src="{{avatarPlaceholder}}" alt="photo" class="{{styles.pic}}">
             <div class="{{styles.overlay}}"><span>Поменять аватар</span></div>
           </div>
-          <h2 class="{{styles.name}}">{{firstName}}</h2>
+          <h2 class="{{styles.name}}">{{data.first_name}}</h2>
         </header>
         <section class="{{styles.bio}}">
           {{{field_email}}}

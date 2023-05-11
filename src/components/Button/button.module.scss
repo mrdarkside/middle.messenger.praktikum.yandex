@@ -5,4 +5,11 @@
   color: #fff;
   background-color: var(--color-primary);
   cursor: pointer;
+  
+  &-logout {
+    width: auto;
+    padding: 0;
+    color: var(--color-error);
+    background-color: transparent;
+  }
 }

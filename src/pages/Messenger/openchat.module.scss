@@ -1,4 +1,13 @@
-@import '../Messenger/messenger.module.scss';
+.container {
+  height: 100%;
+  display: flex;
+
+  .messenger {
+    height: 100%;
+    flex-grow: 1;
+    color: var(--color-text-grey);
+  }
+}
 
 
 .wrapper {

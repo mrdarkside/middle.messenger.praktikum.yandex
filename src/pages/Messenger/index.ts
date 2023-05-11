@@ -9,14 +9,17 @@ import menu from '../../assets/img/menu.png';
 import clip from '../../assets/img/clip.png';
 import forward from '../../assets/img/forward.png';
 import Input from '../../components/Input';
+import withStore from '../../hocs/withStore';
 
-export default class Messenger extends Block {
+class MessengerPageBase extends Block {
   constructor() {
     super({});
   }
 
   protected init(): void {
-    this.children.chatList = new ChatList();
+    this.children.chatList = new ChatList({
+      chatList: this.props.chats,
+    });
     this.children.input = new Input({
       name: 'message',
       type: 'text',
@@ -53,3 +56,12 @@ export default class Messenger extends Block {
     });
   }
 }
+
+const withChats = withStore((state) => ({
+  chatList: state.chats,
+  activeChatId: state.activeChatId,
+}));
+
+const MessengerPage = withChats(MessengerPageBase);
+
+export default MessengerPage;

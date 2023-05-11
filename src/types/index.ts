@@ -1,3 +1,6 @@
+export enum StoreEvents {
+  Updated = 'updated',
+}
 export interface IUser {
   id: number;
   first_name: string;
@@ -10,8 +13,23 @@ export interface IUser {
   display_name: string;
 }
 
-export enum StoreEvents {
-  Updated = 'updated',
+export interface IChat {
+  id: number;
+  title: string;
+  avatar: string;
+  unread_count: number;
+  last_message: {
+    user: {
+      first_name: string;
+      second_name: string;
+      avatar: string;
+      email: string;
+      login: string;
+      phone: string;
+    };
+    time: string;
+    content: string;
+  };
 }
 
 export interface IState {
@@ -20,7 +38,8 @@ export interface IState {
     isLoading: boolean;
     hasError: boolean;
   };
-  chats: any[];
+  chats: IChat[];
+  activeChatId: number | null;
 }
 
 export interface ISigninData {

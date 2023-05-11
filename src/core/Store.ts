@@ -9,6 +9,7 @@ const initialState: IState = {
     hasError: false,
   },
   chats: [],
+  activeChatId: null,
 };
 
 class Store extends EventBus {

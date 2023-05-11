@@ -1,17 +1,12 @@
 import Block from '../../core/Block';
 import template from './signup.hbs';
 import * as styles from './signup.module.scss';
-
 import Button from '../../components/Button';
 import Link from '../../components/Link';
 import LoginField from '../../components/LoginField';
-
 import { submitForm } from '../../utils/Validation';
-import Router from '../../core/Router';
 import authController from '../../controllers/AuthController';
 import { ISignupData } from '../../types/index';
-
-const router = Router;
 
 export default class SignUpPage extends Block {
   constructor() {
@@ -59,7 +54,7 @@ export default class SignUpPage extends Block {
       type: 'password',
       label: 'Пароль(еще раз)',
       placeholder: ' ',
-      name: 'confirm_password',
+      name: 'confirmPassword',
     });
     this.children.button = new Button({
       label: 'Зарегистрироваться',
@@ -74,11 +69,9 @@ export default class SignUpPage extends Block {
       label: 'Уже есть аккаунт?',
     });
   }
-  // TODO fix types
   onSubmit(e: Event) {
     const data = submitForm(e, styles);
     authController.signup(data as unknown as ISignupData);
-    router.go('/profile');
   }
 
   render() {

@@ -25,9 +25,8 @@ class AuthController {
   async signup(data: ISignupData) {
     try {
       await this.api.signup(data);
-
       await this.fetchUser();
-
+      store.setState('user.data', data);
       router.go('/profile');
     } catch (e: any) {
       console.error('Signup error', e);

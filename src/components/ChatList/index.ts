@@ -10,13 +10,20 @@ import { submitByEnter } from '../../utils/Validation';
 import arrow from '../../assets/img/arrow.png';
 import chatavatar from '../../assets/img/chatavatar.png';
 import Link from '../Link';
+import Button from '../Button';
 
-export default class ChatList extends Block {
-  constructor() {
-    super({});
+interface ChatListProps {
+  chatList: any[];
+}
+export default class ChatList extends Block<ChatListProps> {
+  constructor(props: ChatListProps) {
+    super({ ...props });
   }
 
   protected init(): void {
+    this.children.addChat = new Button({
+      label: 'Создать чат',
+    });
     this.children.profileLink = new Link({
       isProfile: true,
       label: 'Профиль',
@@ -36,37 +43,6 @@ export default class ChatList extends Block {
       text: 'Изображение',
       time: '10:49',
       unread: 2,
-      chatavatar,
-    });
-    this.children.chat1 = new Chat({
-      name: 'Киноклуб',
-      text: 'Стикер',
-      time: '12:00',
-      chatavatar,
-    });
-    this.children.chat2 = new Chat({
-      name: 'Илья',
-      text: 'Друзья, у меня для вас особенный выпуск новостей!...',
-      time: '10:49',
-      unread: 4,
-      chatavatar,
-    });
-    this.children.chat3 = new Chat({
-      name: 'тет-а-теты',
-      text: 'И Human Interface Guidelines и Material Design рекомендуют...',
-      time: '10:49',
-      chatavatar,
-    });
-    this.children.chat4 = new Chat({
-      name: 'Design Destroyer',
-      text: 'В 2008 году художник Jon Rafman  начал собирать...',
-      time: '10:49',
-      chatavatar,
-    });
-    this.children.chat5 = new Chat({
-      name: 'Day.',
-      text: 'Так увлёкся работой по курсу, что совсем забыл его анонсир...',
-      time: '10:49',
       chatavatar,
     });
   }

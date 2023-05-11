@@ -8,7 +8,6 @@ export interface IUser {
   phone: string;
   avatar: string;
   display_name: string;
-  reason?: string;
 }
 
 export enum StoreEvents {
@@ -44,4 +43,9 @@ export interface IProfileData {
   login: 'string';
   email: 'string';
   phone: 'string';
+}
+
+export interface IPasswordData {
+  oldPassword: string;
+  newPassword: string;
 }

@@ -4,7 +4,7 @@ import * as styles from './settings.module.scss';
 import ProfileField from '../../components/ProfileField';
 import Button from '../../components/Button';
 import { submitForm } from '../../utils/Validation';
-import avatarPlaceholder from '../../img/profile_pic.png';
+import avatarPlaceholder from '../../assets/img/profile_pic.png';
 import withStore from '../../hocs/withStore';
 import Link from '../../components/Link';
 

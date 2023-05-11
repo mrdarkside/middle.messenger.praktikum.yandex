@@ -1,13 +1,13 @@
 import Block from '../../core/Block';
 import template from './openchat.hbs';
-import * as styles from './openchat.module.scss';
+import * as styles from './messenger.module.scss';
 import ChatList from '../../components/ChatList';
 import RoundButton from '../../components/RoundButton';
 import { submitByEnter, buttonSubmit } from '../../utils/Validation';
-import avatar from '../../img/chatavatar.png';
-import menu from '../../img/menu.png';
-import clip from '../../img/clip.png';
-import forward from '../../img/forward.png';
+import avatar from '../../assets/img/chatavatar.png';
+import menu from '../../assets/img/menu.png';
+import clip from '../../assets/img/clip.png';
+import forward from '../../assets/img/forward.png';
 import Input from '../../components/Input';
 
 export default class Messenger extends Block {

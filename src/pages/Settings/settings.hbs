@@ -7,10 +7,10 @@
       <form class="{{styles.form}}" id="form">
         <header class="{{styles.header}}">
           <div class="{{styles.pic-container}}">
-            <img src="{{avatar}}" alt="photo" class="{{styles.pic}}">
+            <img src="{{avatarPlaceholder}}" alt="photo" class="{{styles.pic}}">
             <div class="{{styles.overlay}}"><span>Поменять аватар</span></div>
           </div>
-          <h2 class="{{styles.name}}">Иван</h2>
+          <h2 class="{{styles.name}}">{{data.first_name}}</h2>
         </header>
         <section class="{{styles.bio}}">
           {{{field_email}}}

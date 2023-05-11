@@ -4,12 +4,12 @@ import * as styles from './settings.module.scss';
 import ProfileField from '../../components/ProfileField';
 import Button from '../../components/Button';
 import { submitForm } from '../../utils/Validation';
-import avatar from '../../img/profile_pic.png';
+import avatarPlaceholder from '../../img/profile_pic.png';
 import withStore from '../../hocs/withStore';
 import Link from '../../components/Link';
 
 interface SettingsPageProps {
-  avatar: ImageBitmap;
+  avatarPlaceholder: ImageBitmap;
   data: {
     email: string;
     login: string;
@@ -85,7 +85,7 @@ class SettingsPageBase extends Block<SettingsPageProps> {
     return this.compile(template, {
       ...this.props,
       styles,
-      avatar,
+      avatarPlaceholder,
     });
   }
 }

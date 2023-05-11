@@ -1,46 +1,52 @@
 import Block from '../../core/Block';
 import template from './password.hbs';
 import * as styles from './password.module.scss';
-
 import ProfileField from '../../components/ProfileField';
 import Button from '../../components/Button';
-
 import { submitForm } from '../../utils/Validation';
+import avatarPlaceholder from '../../img/profile_pic.png';
+import Link from '../../components/Link';
+import withStore from '../../hocs/withStore';
 
-import icon from '../../img/back.png';
-import avatar from '../../img/profile_pic.png';
-
-interface PasswordProps {
-  icon: ImageBitmap;
-  avatar: ImageBitmap;
+interface PasswordPageProps {
+  avatarPlaceholder: ImageBitmap;
+  data: {
+    first_name: string;
+  };
+  isLoading: boolean;
+  hasError: boolean;
 }
 
-export default class PasswordPage extends Block<PasswordProps> {
-  constructor(props: PasswordProps) {
+class PasswordPageBase extends Block<PasswordPageProps> {
+  constructor(props: PasswordPageProps) {
     super({ ...props });
   }
 
   init() {
+    this.children.back_button = new Link({
+      to: '/profile',
+      isBackIcon: true,
+    });
     this.children.old_password = new ProfileField({
       name: 'old_password',
       type: 'password',
       label: 'Старый пароль',
       placeholder: '•••••••••',
-      readonly: false,
+      value: '',
     });
     this.children.password = new ProfileField({
       name: 'password',
       type: 'password',
       label: 'Новый пароль',
       placeholder: '•••••••••',
-      readonly: false,
+      value: '',
     });
     this.children.confirm_password = new ProfileField({
       name: 'confirm_password',
       type: 'password',
       label: 'Повторите новый пароль',
       placeholder: '•••••••••',
-      readonly: false,
+      value: '',
     });
     this.children.button = new Button({
       label: 'Сохранить',
@@ -56,7 +62,16 @@ export default class PasswordPage extends Block<PasswordProps> {
   }
 
   render() {
-    // eslint-disable-next-line object-curly-newline
-    return this.compile(template, { ...this.props, styles, icon, avatar });
+    return this.compile(template, {
+      ...this.props,
+      styles,
+      avatarPlaceholder,
+    });
   }
 }
+
+const withUser = withStore((state) => ({ ...state.user }));
+
+const PasswordPage = withUser(PasswordPageBase as typeof Block);
+
+export default PasswordPage;

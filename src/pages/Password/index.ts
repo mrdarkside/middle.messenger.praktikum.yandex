@@ -7,6 +7,8 @@ import { submitForm } from '../../utils/Validation';
 import avatarPlaceholder from '../../assets/img/profile_pic.png';
 import Link from '../../components/Link';
 import withStore from '../../hocs/withStore';
+import profileController from '../../controllers/ProfileController';
+import { IPasswordData } from '../../types';
 
 interface PasswordPageProps {
   avatarPlaceholder: ImageBitmap;
@@ -28,24 +30,21 @@ class PasswordPageBase extends Block<PasswordPageProps> {
       isBackIcon: true,
     });
     this.children.old_password = new ProfileField({
-      name: 'old_password',
+      name: 'oldPassword',
       type: 'password',
       label: 'Старый пароль',
-      placeholder: '•••••••••',
       value: '',
     });
     this.children.password = new ProfileField({
-      name: 'password',
+      name: 'newPassword',
       type: 'password',
       label: 'Новый пароль',
-      placeholder: '•••••••••',
       value: '',
     });
     this.children.confirm_password = new ProfileField({
-      name: 'confirm_password',
+      name: 'confirmPassword',
       type: 'password',
       label: 'Повторите новый пароль',
-      placeholder: '•••••••••',
       value: '',
     });
     this.children.button = new Button({
@@ -58,9 +57,10 @@ class PasswordPageBase extends Block<PasswordPageProps> {
   }
 
   onSubmit(e: Event) {
-    submitForm(e, styles);
+    e.preventDefault();
+    const data = submitForm(e, styles) as unknown as IPasswordData;
+    profileController.changePassword(data);
   }
-
   render() {
     return this.compile(template, {
       ...this.props,

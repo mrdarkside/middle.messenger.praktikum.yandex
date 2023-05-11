@@ -8,8 +8,9 @@ export type InputName =
   | 'second_name'
   | 'display_name'
   | 'password'
-  | 'old_password'
-  | 'confirm_password';
+  | 'newPassword'
+  | 'oldPassword'
+  | 'confirmPassword';
 
 export function validateInput(name: InputName, value: string): boolean {
   const patterns: Record<InputName, RegExp> = {
@@ -18,14 +19,13 @@ export function validateInput(name: InputName, value: string): boolean {
     login: /^(?!\\d+$)[a-zA-Z0-9_-]{3,20}$/,
     search: /^[^<>'"]*$/,
     message: /^[^<>'"]*$/,
-    first_name:
-      /^(?=.{1,50}$)[A-Za-zА-ЯЁ][a-zа-яё]*(?:-[A-Za-zА-ЯЁ][a-zа-яё]*)*$/,
-    second_name:
-      /^(?=.{1,50}$)[A-Za-zА-ЯЁ][a-zа-яё]*(?:-[A-Za-zА-ЯЁ][a-zа-яё]*)*$/,
+    first_name: /^(?=.{1,50}$)[A-Za-zА-ЯЁ][a-zа-яё]*(?:-[A-Za-zА-ЯЁ][a-zа-яё]*)*$/,
+    second_name: /^(?=.{1,50}$)[A-Za-zА-ЯЁ][a-zа-яё]*(?:-[A-Za-zА-ЯЁ][a-zа-яё]*)*$/,
     display_name: /^[a-zA-Zа-яА-Я0-9-_. ]+$/,
     password: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
-    old_password: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
-    confirm_password: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
+    oldPassword: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
+    newPassword: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
+    confirmPassword: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
   };
 
   if (!patterns[name]) {
@@ -44,7 +44,7 @@ export function submitForm(e: Event, styles: any) {
 
   let data: Record<string, string> = {};
 
-  const passwords = { old_password: '', password: '', confirm_password: '' };
+  const passwords = { oldPassword: '', newPassword: '', confirmPassword: '' };
 
   inputs.forEach((input) => {
     const name = input.name as InputName;
@@ -60,11 +60,7 @@ export function submitForm(e: Event, styles: any) {
       return;
     }
 
-    if (
-      name === 'old_password' ||
-      name === 'password' ||
-      name === 'confirm_password'
-    ) {
+    if (name === 'oldPassword' || name === 'confirmPassword' || name === 'newPassword') {
       passwords[name] = value;
     }
 
@@ -73,12 +69,12 @@ export function submitForm(e: Event, styles: any) {
       error.innerText = 'Неверное значение';
       return;
     }
-    if (name === 'password' && value === passwords.old_password) {
+    if (name === 'password' && value === passwords.oldPassword) {
       input.classList.add(styles.input_error);
       error.innerText = 'Пароль совпадает со старым';
       return;
     }
-    if (name === 'confirm_password' && value !== passwords.password) {
+    if (name === 'confirmPassword' && value !== passwords.newPassword) {
       input.classList.add(styles.input_error);
       error.innerText = 'Пароли не совпадают';
       return;

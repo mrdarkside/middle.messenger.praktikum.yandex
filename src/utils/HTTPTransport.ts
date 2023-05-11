@@ -34,15 +34,10 @@ export default class HTTPTransport {
     });
   }
 
-  public put<Response = void>(
-    path: string,
-    data: unknown,
-    headers: Record<string, string> = {},
-  ): Promise<Response> {
+  public put<Response = void>(path: string, data: unknown): Promise<Response> {
     return this.#request<Response>(this.endpoint + path, {
       method: Method.Put,
       data,
-      headers,
     });
   }
 

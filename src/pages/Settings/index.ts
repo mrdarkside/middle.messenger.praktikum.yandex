@@ -7,6 +7,8 @@ import { submitForm } from '../../utils/Validation';
 import avatarPlaceholder from '../../assets/img/profile_pic.png';
 import withStore from '../../hocs/withStore';
 import Link from '../../components/Link';
+import profileController from '../../controllers/ProfileController';
+import { IProfileData } from '../../types';
 
 interface SettingsPageProps {
   avatarPlaceholder: ImageBitmap;
@@ -78,7 +80,9 @@ class SettingsPageBase extends Block<SettingsPageProps> {
   }
 
   onSubmit(e: Event) {
-    submitForm(e, styles);
+    e.preventDefault();
+    const data = submitForm(e, styles) as unknown as IProfileData;
+    profileController.updateProfile(data);
   }
 
   render() {

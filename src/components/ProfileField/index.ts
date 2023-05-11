@@ -9,7 +9,8 @@ interface ProfileFieldProps {
   name: InputName;
   type: string;
   label: string;
-  placeholder: string;
+  placeholder?: string;
+  value?: string;
   readonly?: boolean;
 }
 
@@ -25,6 +26,7 @@ export default class ProfileField extends Block<ProfileFieldProps> {
       name: this.props.name,
       style: styles.input,
       readonly: this.props.readonly,
+      value: this.props.value,
       events: {
         focus: (e: Event) => this.onFocus(e),
         blur: (e: Event) => this.onBlur(e),

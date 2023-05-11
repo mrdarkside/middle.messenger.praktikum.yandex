@@ -5,9 +5,10 @@ import * as styles from './input.module.scss';
 interface InputProps {
   name: string;
   type: string;
-  placeholder: string;
+  placeholder?: string;
   readonly?: boolean;
   style: string;
+  value?: string;
   events?: {
     focus?: (e: Event) => void;
     blur?: (e: Event) => void;

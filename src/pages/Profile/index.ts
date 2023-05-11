@@ -1,17 +1,14 @@
 import Block from '../../core/Block';
 import template from './profile.hbs';
 import * as styles from './profile.module.scss';
-import icon from '../../assets/img/back.png';
 import avatarPlaceholder from '../../assets/img/profile_pic.png';
 import Button from '../../components/Button';
-
 import ProfileField from '../../components/ProfileField';
 import Link from '../../components/Link';
 import withStore from '../../hocs/withStore';
 import authController from '../../controllers/AuthController';
 
 interface ProfilePageProps {
-  icon: ImageBitmap;
   avatarPlaceholder: ImageBitmap;
   data: {
     email: string;
@@ -67,7 +64,7 @@ class ProfilePageBase extends Block<ProfilePageProps> {
       name: 'display_name',
       type: 'text',
       label: 'Имя в чате',
-      placeholder: this.props.data.display_name || 'не выбрано',
+      placeholder: this.props.data.display_name || this.props.data.first_name,
       readonly: true,
     });
     this.children.field_phone = new ProfileField({
@@ -102,7 +99,6 @@ class ProfilePageBase extends Block<ProfilePageProps> {
     return this.compile(template, {
       ...this.props,
       styles,
-      icon,
       avatarPlaceholder,
     });
   }

@@ -8,6 +8,7 @@ import MessengerPage from './pages/Messenger';
 import store from './core/Store';
 import SettingsPage from './pages/Settings';
 import PasswordPage from './pages/Password';
+import Error404 from './pages/404';
 
 enum Routes {
   Index = '/',
@@ -17,6 +18,7 @@ enum Routes {
   Settings = '/settings',
   Password = '/password',
   Messenger = '/messenger',
+  NoPage = '/404',
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -26,7 +28,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Profile, ProfilePage)
     .use(Routes.Messenger, MessengerPage)
     .use(Routes.Settings, SettingsPage)
-    .use(Routes.Password, PasswordPage);
+    .use(Routes.Password, PasswordPage)
+    .use(Routes.NoPage, Error404);
 
   let isProtectedRoute = true;
 

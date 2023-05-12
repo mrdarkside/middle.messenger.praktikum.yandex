@@ -58,7 +58,7 @@ class PasswordPageBase extends Block<PasswordPageProps> {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    const data = submitForm(e, styles) as unknown as IPasswordData;
+    const data = submitForm(e, 'form', styles) as unknown as IPasswordData;
     profileController.changePassword(data);
   }
   render() {

@@ -10,7 +10,8 @@ export type InputName =
   | 'password'
   | 'newPassword'
   | 'oldPassword'
-  | 'confirmPassword';
+  | 'confirmPassword'
+  | 'title';
 
 export function validateInput(name: InputName, value: string): boolean {
   const patterns: Record<InputName, RegExp> = {
@@ -26,6 +27,7 @@ export function validateInput(name: InputName, value: string): boolean {
     oldPassword: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
     newPassword: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
     confirmPassword: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
+    title: /^[^<>'"]*$/,
   };
 
   if (!patterns[name]) {
@@ -37,9 +39,9 @@ export function validateInput(name: InputName, value: string): boolean {
   return pattern.test(value);
 }
 
-export function submitForm(e: Event, styles: any) {
+export function submitForm(e: Event, formId: string, styles: any) {
   e.preventDefault();
-  const form = document.querySelector('#form') as HTMLFormElement;
+  const form = document.querySelector(`#${formId}`) as HTMLFormElement;
   const inputs = form.querySelectorAll('input');
 
   let data: Record<string, string> = {};
@@ -82,7 +84,7 @@ export function submitForm(e: Event, styles: any) {
 
     data = { ...data, [name]: value };
   });
-  console.log(data);
+  console.log('submitForm returned: ', data);
   return data;
 }
 

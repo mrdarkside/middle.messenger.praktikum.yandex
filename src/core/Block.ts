@@ -212,12 +212,4 @@ export default abstract class Block<P extends Record<string, any> = any> {
       },
     });
   }
-
-  protected show() {
-    this.getContent()?.removeAttribute('hidden');
-  }
-
-  protected hide() {
-    this.getContent()?.setAttribute('hidden', '');
-  }
 }

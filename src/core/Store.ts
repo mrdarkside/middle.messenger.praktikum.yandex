@@ -1,4 +1,4 @@
-import { IState, StoreEvents } from '../types';
+import { IState } from '../types';
 import EventBus from './EventBus';
 import { set } from '../utils/helpers';
 
@@ -11,6 +11,10 @@ const initialState: IState = {
   chats: [],
   activeChatId: null,
 };
+
+export enum StoreEvents {
+  Updated = 'updated',
+}
 
 class Store extends EventBus {
   #state: IState = initialState;

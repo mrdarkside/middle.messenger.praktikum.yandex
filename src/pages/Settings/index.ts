@@ -81,7 +81,7 @@ class SettingsPageBase extends Block<SettingsPageProps> {
 
   onSubmit(e: Event) {
     e.preventDefault();
-    const data = submitForm(e, styles) as unknown as IProfileData;
+    const data = submitForm(e, 'form', styles) as unknown as IProfileData;
     profileController.updateProfile(data);
   }
 

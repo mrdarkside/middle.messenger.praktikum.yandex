@@ -22,7 +22,7 @@ export default class ChatAPI extends BaseAPI {
     return this.http.post('', { title: chatTitle });
   }
 
-  read(): Promise<IProfileData[]> {
+  read(): Promise<string> {
     return this.http.get('');
   }
 

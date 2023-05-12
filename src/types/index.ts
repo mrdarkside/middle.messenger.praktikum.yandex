@@ -1,6 +1,3 @@
-export enum StoreEvents {
-  Updated = 'updated',
-}
 export interface IUser {
   id: number;
   first_name: string;
@@ -11,6 +8,7 @@ export interface IUser {
   phone: string;
   avatar: string;
   display_name: string;
+  reason?: string;
 }
 
 export interface IChat {

@@ -10,6 +10,7 @@ class ChatController {
 
   async createChat(chatTitle: string) {
     await this.api.create(chatTitle);
+    await this.getChats();
   }
 
   async deleteChat(chatId: string) {
@@ -19,7 +20,7 @@ class ChatController {
   async getChats() {
     const chats = await this.api.read();
 
-    store.setState('chats', chats);
+    store.setState('chats', JSON.parse(chats));
   }
 
   async getChatUsers(chatId: string) {

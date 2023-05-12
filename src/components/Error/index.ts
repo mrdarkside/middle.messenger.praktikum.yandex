@@ -1,4 +1,5 @@
 import Block from '../../core/Block';
+import Link from '../Link';
 import template from './error.hbs';
 import * as styles from './error.module.scss';
 
@@ -12,6 +13,12 @@ export default class Error extends Block<ErrorProps> {
     super({ ...props });
   }
 
+  init() {
+    this.children.link = new Link({
+      label: 'Вернуться на главную',
+      to: '/messenger',
+    });
+  }
   render() {
     return this.compile(template, { ...this.props, styles });
   }

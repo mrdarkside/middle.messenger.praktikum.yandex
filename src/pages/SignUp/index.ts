@@ -70,7 +70,7 @@ export default class SignUpPage extends Block {
     });
   }
   onSubmit(e: Event) {
-    const data = submitForm(e, styles);
+    const data = submitForm(e, 'form', styles);
     authController.signup(data as unknown as ISignupData);
   }
 

@@ -42,7 +42,7 @@ export default class SignInPage extends Block {
   }
 
   onSubmit(e: Event) {
-    const { login, password } = submitForm(e, styles);
+    const { login, password } = submitForm(e, 'form', styles);
 
     if (login && password) {
       authController.signin({ login, password });

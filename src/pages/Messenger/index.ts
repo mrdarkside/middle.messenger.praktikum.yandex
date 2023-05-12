@@ -3,17 +3,21 @@ import template from './openchat.hbs';
 import * as styles from './messenger.module.scss';
 import ChatList from '../../components/ChatList';
 import RoundButton from '../../components/RoundButton';
-import { submitByEnter, buttonSubmit } from '../../utils/Validation';
+import { submitByEnter, buttonSubmit, submitForm } from '../../utils/Validation';
 import avatar from '../../assets/img/chatavatar.png';
 import menu from '../../assets/img/menu.png';
 import clip from '../../assets/img/clip.png';
 import forward from '../../assets/img/forward.png';
 import Input from '../../components/Input';
 import withStore from '../../hocs/withStore';
+import PopupInput from '../../components/PopupInput';
+import chatController from '../../controllers/ChatController';
+import store from '../../core/Store';
 
 class MessengerPageBase extends Block {
-  constructor() {
-    super({});
+  constructor(props: any) {
+    super({ ...props });
+    chatController.getChats();
   }
 
   protected init(): void {
@@ -35,6 +39,11 @@ class MessengerPageBase extends Block {
         click: (e) => this.onSubmit(e),
       },
     });
+    this.children.addChatPopup = new PopupInput({
+      title: 'Создать новый чат',
+      formId: 'addChatForm',
+      onSubmit: (e) => this.onAddChatSubmit(e),
+    });
   }
 
   onEnterSubmit(e: KeyboardEvent): void {
@@ -43,6 +52,18 @@ class MessengerPageBase extends Block {
 
   onSubmit(e: Event): void {
     buttonSubmit(e);
+  }
+
+  onAddChatSubmit(e: Event): void {
+    const { title } = submitForm(e, 'addChatForm', styles);
+    console.log(title);
+    console.log(this.props);
+
+    if (title) {
+      chatController.createChat(title);
+    }
+    store.getState();
+    this.setProps(store.getState());
   }
 
   render() {

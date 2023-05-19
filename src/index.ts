@@ -1,14 +1,14 @@
-import Router from './core/Router';
-import authController from './controllers/AuthController';
-
-import SignInPage from './pages/SignIn';
-import SignUpPage from './pages/SignUp';
-import ProfilePage from './pages/Profile';
-import MessengerPage from './pages/Messenger';
-import store from './core/Store';
-import SettingsPage from './pages/Settings';
-import PasswordPage from './pages/Password';
-import Error404 from './pages/404';
+import { store, router } from './core';
+import { authController } from './controllers';
+import {
+  SignInPage,
+  SignUpPage,
+  ProfilePage,
+  SettingsPage,
+  PasswordPage,
+  MessengerPage,
+  Error404,
+} from './pages';
 
 enum Routes {
   Index = '/',
@@ -22,7 +22,8 @@ enum Routes {
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-  Router.use(Routes.Index, SignInPage)
+  router
+    .use(Routes.Index, SignInPage)
     .use(Routes.Login, SignInPage)
     .use(Routes.Register, SignUpPage)
     .use(Routes.Profile, ProfilePage)
@@ -49,16 +50,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (store.getState().user.hasError) {
       throw new Error('user has error');
     }
-    Router.start();
+    router.start();
 
     if (!isProtectedRoute) {
-      Router.go(Routes.Profile);
+      router.go(Routes.Profile);
     }
   } catch (_) {
-    Router.start();
+    router.start();
 
     if (isProtectedRoute) {
-      Router.go(Routes.Index);
+      router.go(Routes.Index);
     }
   }
 });

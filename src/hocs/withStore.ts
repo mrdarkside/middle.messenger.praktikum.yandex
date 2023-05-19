@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/indent */
-import store, { StoreEvents } from '../core/Store';
-import { IState } from '../types';
-import Block from '../core/Block';
-import { isEqual } from '../utils/helpers';
+import { store, Block } from '../core';
+import { IState, StoreEvents } from '../types';
+import { isEqual } from '../utils';
 
-const withStore = (mapStateToProps: (state: IState) => any) => (Component: typeof Block) => {
+export const withStore = (mapStateToProps: (state: IState) => any) => (Component: typeof Block) => {
   let mappedState: any;
   return class WithStoreComponent extends Component {
     constructor(props: any) {
@@ -23,5 +22,3 @@ const withStore = (mapStateToProps: (state: IState) => any) => (Component: typeo
     }
   };
 };
-
-export default withStore;

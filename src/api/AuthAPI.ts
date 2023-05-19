@@ -1,7 +1,7 @@
 import { IUser, ISignupData, ISigninData } from '../types';
 import BaseAPI from './BaseAPI';
 
-export default class AuthAPI extends BaseAPI {
+export class AuthAPI extends BaseAPI {
   constructor() {
     super('/auth');
   }

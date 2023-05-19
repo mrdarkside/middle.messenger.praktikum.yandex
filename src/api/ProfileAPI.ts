@@ -1,7 +1,7 @@
 import BaseAPI from './BaseAPI';
 import { IProfileData, IPasswordData } from '../types';
 
-export default class ProfileAPI extends BaseAPI {
+export class ProfileAPI extends BaseAPI {
   constructor() {
     super('/user');
   }
@@ -15,7 +15,7 @@ export default class ProfileAPI extends BaseAPI {
   }
 
   changeAvatar(data: FormData): Promise<string> {
-    return this.http.put('/profile/avatar', data, { 'Content-Type': 'multipart/form-data' });
+    return this.http.put('/profile/avatar', data);
   }
 
   // mute abstract CRUD methods

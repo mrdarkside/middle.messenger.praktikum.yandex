@@ -1,5 +1,5 @@
-import ProfileAPI from '../api/ProfileAPI';
-import store from '../core/Store';
+import { ProfileAPI } from '../api';
+import { store } from '../core';
 import { IPasswordData, IProfileData } from '../types';
 
 class ProfileController {
@@ -24,5 +24,4 @@ class ProfileController {
   }
 }
 
-const profileController = new ProfileController();
-export default profileController;
+export const profileController = new ProfileController();

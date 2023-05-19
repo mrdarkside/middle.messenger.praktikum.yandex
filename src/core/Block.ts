@@ -1,9 +1,9 @@
 import { TemplateDelegate } from 'handlebars';
 import { nanoid } from 'nanoid';
-import EventBus from './EventBus';
+import { EventBus } from './EventBus';
 
 // https://github.com/microsoft/TypeScript/issues/15300
-export default abstract class Block<P extends Record<string, any> = any> {
+export abstract class Block<P extends Record<string, any> = any> {
   static LIFE_EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',

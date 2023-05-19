@@ -1,7 +1,6 @@
-import AuthAPI from '../api/AuthAPI';
-import { ISigninData, ISignupData } from '../types/index';
-import router from '../core/Router';
-import store from '../core/Store';
+import { AuthAPI } from '../api';
+import { ISigninData, ISignupData } from '../types';
+import { store, router } from '../core';
 
 class AuthController {
   private api: AuthAPI;
@@ -65,5 +64,4 @@ class AuthController {
     }
   }
 }
-const authController = new AuthController();
-export default authController;
+export const authController = new AuthController();

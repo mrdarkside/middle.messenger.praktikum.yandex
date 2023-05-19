@@ -1,6 +1,7 @@
-import Route, { BlockConstructable } from './Route';
+import { Route } from './Route';
+import { BlockConstructable } from './types';
 
-class Router {
+export class Router {
   static #instance: Router;
   #routes: Route[] = [];
   #currentRoute: Route | null = null;
@@ -70,4 +71,4 @@ class Router {
   }
 }
 
-export default new Router('#app');
+export const router = new Router('#app');

@@ -1,8 +1,5 @@
-import Block from './Block';
-
-export interface BlockConstructable<P extends Record<string, unknown> = any> {
-  new (props: P): Block<P>;
-}
+import { Block } from '../Block';
+import { BlockConstructable } from './types';
 
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs;
@@ -22,7 +19,7 @@ function render(query: string, block: Block) {
   return root;
 }
 
-export default class Route {
+export class Route {
   #block: Block | null = null;
 
   constructor(

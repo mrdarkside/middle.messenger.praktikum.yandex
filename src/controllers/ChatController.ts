@@ -1,5 +1,5 @@
-import ChatAPI from '../api/ChatAPI';
-import store from '../core/Store';
+import { ChatAPI } from '../api';
+import { store } from '../core';
 
 class ChatController {
   private api: ChatAPI;
@@ -36,5 +36,4 @@ class ChatController {
   }
 }
 
-const chatController = new ChatController();
-export default chatController;
+export const chatController = new ChatController();

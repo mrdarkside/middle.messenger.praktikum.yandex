@@ -1,6 +1,6 @@
 type Callback = (...args: any[]) => void;
 
-export default class EventBus {
+export class EventBus {
   #listeners: Record<string, Callback[]> = {};
 
   public on(event: string, callback: Callback): void {
@@ -14,9 +14,7 @@ export default class EventBus {
     if (!this.#listeners[event]) {
       throw new Error(`Нет события: ${event}`);
     }
-    this.#listeners[event] = this.#listeners[event].filter(
-      (listener) => listener !== callback,
-    );
+    this.#listeners[event] = this.#listeners[event].filter((listener) => listener !== callback);
   }
 
   public emit(event: string, ...args: any[]): void {

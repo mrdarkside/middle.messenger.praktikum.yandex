@@ -1,4 +1,4 @@
-import { queryString } from './helpers';
+import { queryStringify } from './helpers';
 
 export enum Method {
   Get = 'Get',
@@ -15,7 +15,7 @@ type Options = {
   timeout?: number;
 };
 
-export default class HTTPTransport {
+export class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2';
   protected endpoint: string;
 
@@ -66,7 +66,7 @@ export default class HTTPTransport {
       const xhr = new XMLHttpRequest();
       const isGet = method === Method.Get;
 
-      xhr.open(method, isGet && !!data ? `${url}${queryString(data)}` : url);
+      xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
 
       Object.entries(headers).forEach(([key, value]) => xhr.setRequestHeader(key, value));
 

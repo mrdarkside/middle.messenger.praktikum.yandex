@@ -88,7 +88,7 @@ export function submitForm(e: Event, formId: string, styles: any) {
   return data;
 }
 
-export function buttonSubmit(e: Event) {
+export function submitButton(e: Event) {
   e.preventDefault();
   const form = document.querySelector('#form') as HTMLFormElement;
   const inputs = form.querySelectorAll('input');

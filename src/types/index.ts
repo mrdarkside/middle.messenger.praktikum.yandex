@@ -40,6 +40,10 @@ export interface IState {
   activeChatId: number | null;
 }
 
+export enum StoreEvents {
+  Updated = 'updated',
+}
+
 export interface ISigninData {
   login: string;
   password: string;

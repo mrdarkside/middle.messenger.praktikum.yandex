@@ -1,7 +1,7 @@
 import BaseAPI from './BaseAPI';
 import { IProfileData } from '../types';
 
-export default class ChatAPI extends BaseAPI {
+export class ChatAPI extends BaseAPI {
   constructor() {
     super('/chats');
   }

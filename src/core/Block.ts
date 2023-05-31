@@ -108,8 +108,6 @@ export abstract class Block<P extends Record<string, any> = any> {
     if (!nextProps) {
       return;
     }
-    console.log('setProps', Object.assign(this.props, nextProps));
-
     Object.assign(this.props, nextProps);
   };
 
@@ -194,22 +192,32 @@ export abstract class Block<P extends Record<string, any> = any> {
 
   #makePropsProxy(props: P) {
     return new Proxy(props, {
-      get(target: P, prop) {
+      get: (target: P, prop) => {
         const value = target[prop as keyof P];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set: (target, prop, value) => {
-        const oldTarget = { ...target };
+      set: (target: any, prop, value) => {
+        // eslint-disable-next-line no-param-reassign
+        target[prop] = value;
 
-        const newTarget = { ...target };
-        newTarget[prop as keyof P] = value;
-
-        this.#eventBus().emit(Block.LIFE_EVENTS.FLOW_CDU, oldTarget, newTarget);
+        this.#eventBus().emit(Block.LIFE_EVENTS.FLOW_CDU, { ...target }, target);
         return true;
       },
       deleteProperty() {
         throw new Error('Нет прав');
       },
     });
+  }
+
+  public toggleActive() {
+    this.getContent()?.toggleAttribute('active');
+  }
+
+  public makeActive() {
+    this.getContent()?.setAttribute('active', '');
+  }
+
+  public makeNotActive() {
+    this.getContent()?.removeAttribute('active');
   }
 }

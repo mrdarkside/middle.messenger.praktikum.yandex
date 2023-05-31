@@ -1,6 +1,4 @@
-.popup-wrapper {
-  display: none;
- &[active] {
+.wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -11,7 +9,7 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.4);
   z-index: 1000;
- }
+  pointer-events: none;
 }
 
 .popup {

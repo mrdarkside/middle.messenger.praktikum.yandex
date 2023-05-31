@@ -14,7 +14,7 @@ export interface IUser {
 export interface IChat {
   id: number;
   title: string;
-  avatar: string;
+  avatar: string | ImageBitmap;
   unread_count: number;
   last_message: {
     user: {

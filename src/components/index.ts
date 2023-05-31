@@ -7,6 +7,7 @@ export { Link } from './Link';
 export { LoginField } from './LoginField';
 export { PopupInput } from './PopupInput';
 export { ProfileField } from './ProfileField';
-export { RoundButton } from './RoundButton/RoundButton';
+export { RoundButton } from './RoundButton';
 export { TopBar } from './TopBar/TopBar';
+export { AddChat } from './AddChat';
 // export { MessageInput } from './MessageInput';

@@ -59,4 +59,57 @@
     }
   }
 
+  .chat {
+    padding: 12px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+  
+    &:hover,
+    &:active {
+      background-color: var(--color-chat-bg);
+    }
+  
+    .avatar {
+      width: 47px;
+      height: 47px;
+    }
+  
+    .text {
+      // TODO find out why text expands sidebar
+      max-width: 200px;
+      flex-grow: 1;
+  
+      .name {
+        margin-bottom: 2px;
+        color: var(--color-text);
+      }
+    }
+  
+  
+    .meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+  
+      .time {
+        font-size: 9px;
+      }
+  
+      .unread {
+        width: 20px;
+        height: 20px;
+        padding-top: 3px;
+        color: white;
+        font-size: 11px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: var(--color-primary);
+      }
+    }
+  
+  }
 }
+

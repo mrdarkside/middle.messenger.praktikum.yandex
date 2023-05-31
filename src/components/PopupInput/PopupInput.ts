@@ -5,8 +5,11 @@ import styles from './popup-input.module.scss';
 import { Button, LoginField } from '..';
 
 interface PopupInputProps {
+  id: string;
   title: string;
   formId: string;
+  label: string;
+  buttonText: string;
   onSubmit: (e: Event) => void;
 }
 
@@ -18,21 +21,23 @@ export class PopupInput extends Block<PopupInputProps> {
   init() {
     this.children.input = new LoginField({
       type: 'text',
-      label: 'Имя чата',
+      label: this.props.label,
       placeholder: ' ',
       name: 'title',
     });
     this.children.addChatButton = new Button({
-      label: 'Создать',
+      label: this.props.buttonText,
       type: 'submit',
       events: {
         click: (e) => this.onSubmit(e),
       },
     });
   }
+
   onSubmit(e: Event) {
     e.preventDefault();
     this.props.onSubmit(e);
+    this.makeNotActive();
   }
   render() {
     return this.compile(template, { ...this.props, styles });

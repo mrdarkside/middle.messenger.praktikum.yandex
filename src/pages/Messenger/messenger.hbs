@@ -5,7 +5,7 @@
       <div class="{{styles.wrapper}}">
         <section class="{{styles.topbar}}">
           <img class="{{styles.avatar}}" src="{{avatar}}" alt="аватар">
-          <div class="{{styles.name}}">Вадим</div>
+          <div class="{{styles.name}}">{{currentChat.title}}</div>
           <div class="{{styles.menu}}"></div>
         </section>
         <section class="{{styles.bubbles}}">
@@ -47,6 +47,6 @@
     {{else}}
        Выберите чат чтобы отправить сообщение
     {{/if}}
-    {{{addChatPopup}}}
+      {{{addChatPopup}}}
   </main>
 </div>

@@ -11,6 +11,17 @@ class ChatController {
   async createChat(chatTitle: string) {
     await this.api.create(chatTitle);
     await this.getChats();
+    store.setState('addChatPopup', false);
+  }
+
+  async setActiveChat(chatId: number | null) {
+    console.log(await store.getState().activeChatId);
+    const currentChatId = store.getState().activeChatId;
+    if (chatId === null || chatId === currentChatId) {
+      store.setState('activeChatId', null);
+      return;
+    }
+    store.setState('activeChatId', chatId);
   }
 
   async deleteChat(chatId: string) {

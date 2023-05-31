@@ -7,13 +7,19 @@
     </section>
       {{{addChat}}}
   </header>
-  {{#each dummy}}
-    {{this.id}}
+  {{#each chatList}}
+    <article data-id="{{id}}">
+      <div class="{{../styles.chat}}">
+        <img class="{{../styles.avatar}}" {{#if ../avatar}}src="{{../avatar}}"{{else}}src="{{../avatarPlaceholder}}"{{/if}} alt="chat avatar">
+        <div class="{{../styles.text}}">
+          <h3 class="{{../styles.name}}">{{title}}</h3>
+          <p class="{{../styles.message}}">{{last_message}}</p>
+        </div>
+        <div class="{{../styles.meta}}">
+          <div class="{{../styles.time}}">{{time}}</div>
+          {{#if unread}} <div class="{{styles.unread}}">{{unread}}</div> {{/if}}
+        </div>
+      </div>
+    </article>
   {{/each}}
-  {{!-- {{{chat}}}
-  {{{chat1}}}
-  {{{chat2}}}
-  {{{chat3}}}
-  {{{chat4}}}
-  {{{chat5}}} --}}
 </aside>

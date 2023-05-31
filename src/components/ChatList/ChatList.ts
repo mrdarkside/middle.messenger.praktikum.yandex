@@ -2,26 +2,37 @@ import { Block } from '../../core';
 import template from './chat-list.hbs';
 import * as styles from './chat-list.module.scss';
 
-import { Chat, Input, Link, Button } from '..';
+import { Input, Link, Button } from '..';
 
 import { submitByEnter } from '../../utils';
 
 import arrow from '../../assets/img/arrow.png';
-import chatavatar from '../../assets/img/chatavatar.png';
+import avatarPlaceholder from '../../assets/img/chatavatar.png';
+import { withStore } from '../../hocs';
+import { IChat } from '../../types';
 
 interface ChatListProps {
-  chatList: any[];
+  chatList: IChat[];
+  activeChatId: string;
+  openAddChat: (e: Event) => void;
+  events?: {
+    click: (e: Event) => void;
+  };
 }
 
-export class ChatList extends Block<ChatListProps> {
+export class ChatListBase extends Block<ChatListProps> {
   constructor(props: ChatListProps) {
     super({ ...props });
   }
 
-  protected init(): void {
+  protected init() {
     this.children.addChat = new Button({
       label: 'Создать чат',
+      events: {
+        click: (e) => this.props.openAddChat(e),
+      },
     });
+
     this.children.profileLink = new Link({
       isProfile: true,
       label: 'Профиль',
@@ -36,13 +47,6 @@ export class ChatList extends Block<ChatListProps> {
         keydown: (e) => this.onSubmit(e),
       },
     });
-    this.children.chat = new Chat({
-      name: 'Андрей',
-      text: 'Изображение',
-      time: '10:49',
-      unread: 2,
-      chatavatar,
-    });
   }
 
   onSubmit(e: KeyboardEvent): void {
@@ -50,6 +54,18 @@ export class ChatList extends Block<ChatListProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles, arrow });
+    return this.compile(template, {
+      ...this.props,
+      styles,
+      arrow,
+      avatarPlaceholder,
+    });
   }
 }
+
+const withChats = withStore((state) => ({
+  chatList: state.chats,
+  activeChatId: state.activeChatId,
+}));
+
+export const ChatList = withChats(ChatListBase as typeof Block);

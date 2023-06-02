@@ -1,7 +1,7 @@
 .container {
   height: 100%;
   display: flex;
-
+  
   .messenger {
     height: 100%;
     flex-grow: 1;
@@ -11,20 +11,26 @@
 
 
 .wrapper {
-  height: 100%;
+  max-height: 100vh;
   width: 100%;
-  padding: 10px 20px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: auto;
 
   .topbar {
+    position: sticky;
+    top: 0;
+    height: 54px;
     padding: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    background-color: white;
     border-bottom: var(--divider);
+    z-index: 1000;
 
     .avatar {
       width: 34px;
@@ -50,6 +56,7 @@
   }
 
   .bubbles {
+    min-height: 100vh;
     padding-bottom: 30px;
     display: flex;
     flex-direction: column;
@@ -69,14 +76,17 @@
       background-color: var(--color-bubble-bg);
       border-radius: var(--radius-bubble);
 
-      &.bubble--own {
-        padding-right: 60px;
+      &.own {
+        padding-right: 20px;
         align-self: flex-end;
         border-radius: var(--radius-bubble-own);
         background-color: var(--color-chat-bg);
 
         .time {
           color: var(--color-primary);
+          position: relative;
+          color: var(--color-text-gray);
+          font-size: 9px;
         }
       }
 
@@ -97,26 +107,15 @@
           background-color: var(--color-duration-bg);
         }
       }
-
-      .time {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        color: var(--color-text-gray);
-        font-size: 9px;
-
-      }
-    }
-
-    .date {
-      margin: 30px 0;
-      color: var(--color-text-grey);
     }
 
   }
 
   .interface {
-    padding-top: 10px;
+    position: sticky;
+    bottom: 0;
+    padding: 10px 0;
+    background-color: white;
   }
 
   .form {

@@ -1,10 +1,12 @@
 .aside {
   min-width: 310px;
+  max-height: 100vh;
   padding: 10px;
   color: var(--color-text-grey);
   font-size: 12px;
   background-color: var(--color-sidebar-bg);
   border-right: var(--color-border) 1px solid;
+  overflow-y: auto;
 
   &>* {
     border-bottom: var(--divider);

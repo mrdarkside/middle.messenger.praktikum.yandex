@@ -3,7 +3,7 @@ import template from './messenger.hbs';
 import * as styles from './messenger.module.scss';
 
 import { ChatList, RoundButton, Input, PopupInput } from '../../components';
-import { submitByEnter, submitButton, submitForm } from '../../utils';
+import { submitByEnter, submitButton, submitForm, scrollToBottom } from '../../utils';
 import { chatController } from '../../controllers';
 import { withStore } from '../../hocs';
 
@@ -11,15 +11,17 @@ import avatar from '../../assets/img/chatavatar.png';
 import menu from '../../assets/img/menu.png';
 import clip from '../../assets/img/clip.png';
 import forward from '../../assets/img/forward.png';
-import { IChat, StoreEvents } from '../../types';
+import { IChat, IMessage, StoreEvents } from '../../types';
+import { messageController } from '../../controllers/MessageController';
 
 class MessengerPageBase extends Block {
   protected currentChat: IChat | null = null;
+  protected currentMessages: IMessage[] = [];
   constructor(props: any) {
     super({ ...props });
     chatController.getChats();
     store.on(StoreEvents.Updated, () => {
-      this.setProps(store.getState().chats);
+      this.setProps(store.getState());
     });
   }
 
@@ -58,12 +60,14 @@ class MessengerPageBase extends Block {
   }
 
   protected componentDidUpdate() {
-    // console.log('message props', this.props);
-
+    scrollToBottom(styles.wrapper);
     if (this.props.activeChatId && this.props.chatList.length) {
       this.currentChat = this.props.chatList.find(
         (chat: IChat) => chat.id === this.props.activeChatId,
       );
+    }
+    if (this.props.activeChatId && this.props.messages) {
+      this.currentMessages = this.props.messages[this.props.activeChatId];
     }
     return true;
   }
@@ -77,11 +81,18 @@ class MessengerPageBase extends Block {
   }
 
   onEnterSubmit(e: KeyboardEvent): void {
-    submitByEnter(e);
+    const { value } = submitByEnter(e);
+    if (value) {
+      messageController.sendMessage(this.props.activeChatId, value);
+    }
   }
 
   onSubmit(e: Event): void {
-    submitButton(e);
+    e.preventDefault();
+    const { value } = submitButton(e);
+    if (value) {
+      messageController.sendMessage(this.props.activeChatId, value);
+    }
   }
 
   onOpenAddChat(e: Event): void {
@@ -115,6 +126,7 @@ class MessengerPageBase extends Block {
       clip,
       forward,
       currentChat: this.currentChat,
+      currentMessages: this.currentMessages,
     });
   }
 }
@@ -122,6 +134,8 @@ class MessengerPageBase extends Block {
 const withChats = withStore((state) => ({
   activeChatId: state.activeChatId,
   chatList: state.chats,
+  messages: state.messages,
+  user: state.user.data,
 }));
 
 export const MessengerPage = withChats(MessengerPageBase);

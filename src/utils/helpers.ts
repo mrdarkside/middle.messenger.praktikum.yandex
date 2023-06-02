@@ -124,3 +124,12 @@ export function queryStringify(data: PlainObject) {
     .map((arr) => arr.join('='))
     .join('&');
 }
+
+export function scrollToBottom(selector: string) {
+  setTimeout(() => {
+    const el = document.querySelector(`.${selector}`) as HTMLElement;
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
+  }, 0);
+}

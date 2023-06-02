@@ -26,27 +26,29 @@ export class ChatListBase extends Block<ChatListProps> {
   }
 
   protected init() {
-    this.children.addChat = new Button({
-      label: 'Создать чат',
-      events: {
-        click: (e) => this.props.openAddChat(e),
-      },
-    });
+    if (this.props.chatList) {
+      this.children.addChat = new Button({
+        label: 'Создать чат',
+        events: {
+          click: (e) => this.props.openAddChat(e),
+        },
+      });
 
-    this.children.profileLink = new Link({
-      isProfile: true,
-      label: 'Профиль',
-      to: '/profile',
-    });
-    this.children.search = new Input({
-      type: 'text',
-      name: 'search',
-      placeholder: '',
-      style: styles.input,
-      events: {
-        keydown: (e) => this.onSubmit(e),
-      },
-    });
+      this.children.profileLink = new Link({
+        isProfile: true,
+        label: 'Профиль',
+        to: '/profile',
+      });
+      this.children.search = new Input({
+        type: 'text',
+        name: 'search',
+        placeholder: '',
+        style: styles.input,
+        events: {
+          keydown: (e) => this.onSubmit(e),
+        },
+      });
+    }
   }
 
   onSubmit(e: KeyboardEvent): void {

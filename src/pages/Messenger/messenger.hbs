@@ -9,32 +9,13 @@
           <div class="{{styles.menu}}"></div>
         </section>
         <section class="{{styles.bubbles}}">
-          <div class="{{styles.date}}">19 июня</div>
-          <div class="{{styles.bubble}}">
-            <p class="{{styles.text}}">
-              Привет! Смотри, тут всплыл интересный кусок лунной космической истории&nbsp;&mdash; НАСА
-              в&nbsp;какой-то момент
-              попросила Хассельблад адаптировать модель SWC для полетов на&nbsp;Луну. Сейчас мы&nbsp;все знаем что
-              астронавты летали
-              с&nbsp;моделью 500&nbsp;EL&nbsp;&mdash; и&nbsp;к&nbsp;слову говоря, все тушки этих камер все еще находятся
-              на&nbsp;поверхности Луны, так как астронавты с&nbsp;собой забрали только кассеты с&nbsp;пленкой.
-              <br>
-              Хассельблад в&nbsp;итоге адаптировал SWC для космоса, но&nbsp;что-то пошло не&nbsp;так и&nbsp;на&nbsp;ракету
-              они так
-              никогда и&nbsp;не&nbsp;попали. Всего их&nbsp;было произведено 25&nbsp;штук, одну из&nbsp;них недавно продали
-              на&nbsp;аукционе за&nbsp;45000&nbsp;евро.
-            </p>
-            <div class="{{styles.time}}">11.56</div>
-          </div>
-          <div class="{{styles.bubble}} {{styles.bubble--media}}">
-            <img src="{{hasselblad}}" alt="Камера Хассеблад">
-            <div class="{{styles.duration}}">11:56</div>
-
-          </div>
-          <div class="{{styles.bubble}} {{styles.bubble--own}}">
-            <p>Круто!</p>
-            <div class="{{styles.time}}">12:00</div>
-          </div>
+          {{#each currentMessages}}
+              <div class="{{../styles.bubble}} {{#if mine}}{{../styles.own}}{{/if}}">
+              <p class="{{../styles.text}}">
+              {{content}}
+              </p>
+            </div>
+          {{/each}}
         </section>
         <section class="{{styles.interface}}">
           <form class="{{styles.form}}" id="form">

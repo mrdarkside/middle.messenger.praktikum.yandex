@@ -38,6 +38,7 @@ export interface IState {
   };
   chats: IChat[];
   activeChatId: number | null;
+  messages: Record<number, IMessage[]>;
 }
 
 export enum StoreEvents {
@@ -69,4 +70,29 @@ export interface IProfileData {
 export interface IPasswordData {
   oldPassword: string;
   newPassword: string;
+}
+
+export enum WSTransportEvents {
+  Connected = 'Connected',
+  Close = 'Close',
+  Error = 'Error',
+  Message = 'Message',
+}
+
+export interface IMessage {
+  chat_id: number;
+  time: string;
+  type: string;
+  user_id: number;
+  content: string;
+  file?: {
+    id: number;
+    user_id: number;
+    path: string;
+    filename: string;
+    content_type: string;
+    content_size: number;
+    upload_date: string;
+  };
+  mine?: boolean;
 }

@@ -29,6 +29,13 @@ export class ChatAPI extends BaseAPI {
   delete(chatId: string): Promise<string> {
     return this.http.delete('', { chatId });
   }
+
+  async getToken(chatId: number): Promise<string> {
+    const response = JSON.parse(await this.http.post(`/token/${chatId}`));
+
+    return response.token;
+  }
+
   // mute abstract CRUD methods
   update = undefined;
 }

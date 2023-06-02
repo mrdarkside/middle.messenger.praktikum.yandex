@@ -18,4 +18,6 @@ export {
   merge,
   set,
   queryStringify,
+  scrollToBottom,
 } from './helpers';
+export { WSTransport } from './WSTransport';

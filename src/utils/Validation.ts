@@ -88,9 +88,9 @@ export function submitForm(e: Event, formId: string, styles: any) {
   return data;
 }
 
-export function submitButton(e: Event) {
+export function submitButton(e: Event, id: string = '#form'): Record<string, string> {
   e.preventDefault();
-  const form = document.querySelector('#form') as HTMLFormElement;
+  const form = document.querySelector(id) as HTMLFormElement;
   const inputs = form.querySelectorAll('input');
 
   let data = {};
@@ -104,26 +104,32 @@ export function submitButton(e: Event) {
     }
 
     if (validateInput(name, value)) {
-      data = { ...data, [name]: value };
+      data = { ...data, name, value };
     }
   });
 
-  console.log(data);
+  inputs.forEach((input) => {
+    // eslint-disable-next-line no-param-reassign
+    input.value = '';
+  });
+  return data;
 }
 
-export function submitByEnter(e: KeyboardEvent) {
+export function submitByEnter(e: KeyboardEvent): Record<string, string> {
   const input = e.target as HTMLInputElement;
   const name = input.name as InputName;
-  const { value } = input;
+  let data = {};
   if (e.key === 'Enter') {
     e.preventDefault();
+    const { value } = input;
     if (value !== '') {
       if (validateInput(name, value)) {
-        console.log({ name: input.name, value: input.value });
+        data = { ...data, name: input.name, value: input.value };
         input.value = '';
       }
     }
   }
+  return data;
 }
 
 export function checkOnBlur(e: Event, styles: any) {

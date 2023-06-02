@@ -13,11 +13,10 @@
         <img class="{{../styles.avatar}}" {{#if ../avatar}}src="{{../avatar}}"{{else}}src="{{../avatarPlaceholder}}"{{/if}} alt="chat avatar">
         <div class="{{../styles.text}}">
           <h3 class="{{../styles.name}}">{{title}}</h3>
-          <p class="{{../styles.message}}">{{last_message}}</p>
+          <p class="{{../styles.message}}">{{last_message.content}}</p>
         </div>
         <div class="{{../styles.meta}}">
-          <div class="{{../styles.time}}">{{time}}</div>
-          {{#if unread}} <div class="{{styles.unread}}">{{unread}}</div> {{/if}}
+          {{#if unread_count}} <div class="{{../styles.unread}}">{{unread_count}}</div>{{/if}}
         </div>
       </div>
     </article>

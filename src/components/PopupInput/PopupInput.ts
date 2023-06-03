@@ -10,6 +10,7 @@ interface PopupInputProps {
   formId: string;
   label: string;
   buttonText: string;
+  value?: string;
   onSubmit: (e: Event) => void;
 }
 
@@ -24,6 +25,7 @@ export class PopupInput extends Block<PopupInputProps> {
       label: this.props.label,
       placeholder: ' ',
       name: 'title',
+      value: this.props.value,
     });
     this.children.addChatButton = new Button({
       label: this.props.buttonText,

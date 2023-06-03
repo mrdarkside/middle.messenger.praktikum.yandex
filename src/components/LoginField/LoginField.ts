@@ -10,6 +10,7 @@ interface LoginFiledProps {
   type: string;
   label: string;
   placeholder: string;
+  value?: string;
   name: InputName;
 }
 
@@ -24,6 +25,7 @@ export class LoginField extends Block<LoginFiledProps> {
       type: this.props.type,
       placeholder: this.props.placeholder,
       name: this.props.name,
+      value: this.props.value,
       style: styles.input,
       events: {
         focus: (e: Event) => this.onFocus(e),

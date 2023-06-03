@@ -84,7 +84,6 @@ export function submitForm(e: Event, formId: string, styles: any) {
 
     data = { ...data, [name]: value };
   });
-  console.log('submitForm returned: ', data);
   return data;
 }
 

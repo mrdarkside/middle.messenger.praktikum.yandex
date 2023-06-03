@@ -1,6 +1,6 @@
 import { ChatAPI } from '../api';
 import { store } from '../core';
-import { IChat } from '../types';
+import { IChat, StoreEvents } from '../types';
 import { messageController } from './MessageController';
 
 class ChatController {
@@ -27,6 +27,8 @@ class ChatController {
 
   async deleteChat(chatId: string) {
     await this.api.delete(chatId);
+    await this.getChats();
+    store.emit(StoreEvents.Updated, store.getState());
   }
 
   async getChats() {

@@ -2,7 +2,7 @@ import { Block, store } from '../../core';
 import template from './messenger.hbs';
 import * as styles from './messenger.module.scss';
 
-import { ChatList, RoundButton, Input, PopupInput } from '../../components';
+import { ChatList, RoundButton, Input, PopupInput, MenuButton, MenuPopup } from '../../components';
 import { submitByEnter, submitButton, submitForm, scrollToBottom } from '../../utils';
 import { chatController } from '../../controllers';
 import { withStore } from '../../hocs';
@@ -42,19 +42,46 @@ class MessengerPageBase extends Block {
       buttonText: 'Создать',
       onSubmit: (e: Event) => this.onAddChatSubmit(e),
     });
+    this.children.addUser = new PopupInput({
+      id: 'addUser',
+      title: 'Добавить пользователя по ID',
+      formId: 'addUserForm',
+      label: 'ID пользователя',
+      buttonText: 'Добавить',
+      onSubmit: (e: Event) => this.onAddUserSubmit(e),
+    });
+    this.children.deleteUser = new PopupInput({
+      id: 'deleteUser',
+      title: 'Удалить пользователя по ID',
+      formId: 'deleteUserForm',
+      label: 'ID пользователя',
+      buttonText: 'Удалить',
+      onSubmit: (e: Event) => this.onDeleteUserSubmit(e),
+    });
     this.children.input = new Input({
       name: 'message',
       type: 'text',
       placeholder: '',
       style: styles.message,
       events: {
-        keydown: (e) => this.onEnterSubmit(e),
+        keydown: (e) => this.onEnterMsgSubmit(e),
       },
     });
     this.children.round_button = new RoundButton({
       type: 'submit',
       events: {
-        click: (e) => this.onSubmit(e),
+        click: (e) => this.onButtonMsgSubmit(e),
+      },
+    });
+    this.children.menuButton = new MenuButton({
+      events: {
+        click: (e) => this.onOpenMenu(e),
+      },
+    });
+    this.children.menuPopup = new MenuPopup({
+      id: 'menu',
+      events: {
+        click: (e) => this.onMenuClick(e),
       },
     });
   }
@@ -69,7 +96,45 @@ class MessengerPageBase extends Block {
     if (this.props.activeChatId && this.props.messages) {
       this.currentMessages = this.props.messages[this.props.activeChatId];
     }
+
     return true;
+  }
+
+  onOpenMenu(e: Event): void {
+    e.preventDefault();
+    document.querySelector('#menu')?.toggleAttribute('active');
+  }
+
+  onMenuClick(e: Event): void {
+    e.preventDefault();
+
+    const popup = document.querySelector('#menu');
+    if (e.target !== popup) {
+      popup?.removeAttribute('active');
+    }
+
+    const el = e.target as HTMLElement;
+    switch (el.id) {
+      case 'add':
+        this.addUser(e, 'addUser');
+        break;
+      case 'delete':
+        this.deleteUser(e, 'deleteUser');
+        break;
+      case 'deleteChat':
+        chatController.deleteChat(this.props.activeChatId);
+        break;
+      default:
+        break;
+    }
+  }
+
+  addUser(e: Event, id: string): void {
+    this.onOpenModal(e, id);
+  }
+
+  deleteUser(e: Event, id: string): void {
+    this.onOpenModal(e, id);
   }
 
   onChatClick(e: Event): void {
@@ -80,14 +145,14 @@ class MessengerPageBase extends Block {
     }
   }
 
-  onEnterSubmit(e: KeyboardEvent): void {
+  onEnterMsgSubmit(e: KeyboardEvent): void {
     const { value } = submitByEnter(e);
     if (value) {
       messageController.sendMessage(this.props.activeChatId, value);
     }
   }
 
-  onSubmit(e: Event): void {
+  onButtonMsgSubmit(e: Event): void {
     e.preventDefault();
     const { value } = submitButton(e);
     if (value) {
@@ -110,11 +175,44 @@ class MessengerPageBase extends Block {
     }
   }
 
+  onOpenModal(e: Event, id: string): void {
+    e.preventDefault();
+
+    const el = document.getElementById(`${id}`);
+
+    if (el) {
+      el.toggleAttribute('active');
+      el.addEventListener('click', (ev: MouseEvent) => {
+        ev.stopPropagation();
+        if (ev.target === el) {
+          el.removeAttribute('active');
+        }
+      });
+    }
+  }
+
   onAddChatSubmit(e: Event): void {
     const { title } = submitForm(e, 'addChatForm', styles);
 
     if (title) {
       chatController.createChat(title);
+    }
+  }
+
+  onAddUserSubmit(e: Event): void {
+    const { title } = submitForm(e, 'addUserForm', styles);
+    console.log(title);
+
+    if (title) {
+      chatController.addUserToChat(this.props.activeChatId, +title);
+    }
+  }
+
+  onDeleteUserSubmit(e: Event): void {
+    const { title } = submitForm(e, 'deleteUserForm', styles);
+
+    if (title) {
+      chatController.removeUserFromChat(this.props.activeChatId, +title);
     }
   }
   render() {

@@ -6,7 +6,8 @@
         <section class="{{styles.topbar}}">
           <img class="{{styles.avatar}}" src="{{avatar}}" alt="аватар">
           <div class="{{styles.name}}">{{currentChat.title}}</div>
-          <div class="{{styles.menu}}"></div>
+          {{{menuButton}}}
+          {{{menuPopup}}}
         </section>
         <section class="{{styles.bubbles}}">
           {{#each currentMessages}}
@@ -29,5 +30,7 @@
        Выберите чат чтобы отправить сообщение
     {{/if}}
       {{{addChatPopup}}}
+      {{{addUser}}}
+      {{{deleteUser}}}
   </main>
 </div>

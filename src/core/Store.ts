@@ -19,8 +19,6 @@ class Store extends EventBus {
   public setState(keypath: string, value: unknown) {
     set(this.#state, keypath, value);
     this.emit(StoreEvents.Updated, this.getState());
-    // TODO remove clg
-    console.log('store updated', this.getState());
   }
 
   public getState() {

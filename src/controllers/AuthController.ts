@@ -38,8 +38,10 @@ class AuthController {
       const user = await this.api.getUser();
 
       if (user.reason === 'Cookie is not valid') {
-        router.go('/');
+        // router.go('/');
         throw new Error('Cookie is not valid');
+        store.setState('user.hasError', true);
+        return;
       }
 
       store.setState('user.data', user);

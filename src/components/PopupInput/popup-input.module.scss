@@ -1,36 +1,43 @@
 .popup-wrapper {
   display: none;
- &[active] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1000;
- }
+
+  &[active] {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0 0 0 14%);
+  }
 }
 
 .popup {
+  pointer-events: initial;
+  
+  z-index: 10000;
+  
   width: 340px;
   padding: 40px 30px;
-  color: var(--color-text);
+
   font-size: 15px;
-  border-radius: var(--radius-panel);
+  color: var(--color-text);
+
   background-color: white;
+  border-radius: var(--radius-panel);
   box-shadow: var(--shadow-panel);
-  z-index: 10000;
-  pointer-events: initial;
 
   &-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     gap: 40px;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &-form {

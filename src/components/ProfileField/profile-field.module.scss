@@ -1,9 +1,11 @@
 .field {
   position: relative;
-  width: 100%;
-  padding: 10px;
+
   display: flex;
   justify-content: space-between;
+
+  width: 100%;
+  padding: 10px;
 
   .input {
     flex-grow: 1;
@@ -17,8 +19,9 @@
 
   .error {
     position: absolute;
-    bottom: -4px;
     right: 10px;
+    bottom: -4px;
+  
     font-size: 8px;
     color: var(--color-error);
   }

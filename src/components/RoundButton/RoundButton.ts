@@ -1,5 +1,6 @@
 import { Block } from '../../core';
 import template from './round-button.hbs';
+import * as styles from './round-button.module.scss';
 
 interface RoundButtonProps {
   type?: string;
@@ -15,6 +16,6 @@ export class RoundButton extends Block<RoundButtonProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return this.compile(template, { ...this.props, styles });
   }
 }

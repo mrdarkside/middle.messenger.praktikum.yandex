@@ -10,6 +10,9 @@
     "implicit-arrow-linebreak": 0,
     "function-paren-newline": 0,
     "operator-linebreak": 0,
-    "@typescript-eslint/lines-between-class-members": 0
+    "@typescript-eslint/lines-between-class-members": 0,
+    "import/prefer-default-export": 0,
+    "object-curly-newline": 0,
+    "import/no-cycle": 0
   }
 }

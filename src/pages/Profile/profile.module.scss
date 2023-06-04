@@ -1,75 +1,24 @@
 .wrapper {
-  height: 100%;
   display: flex;
+  height: 100%;
 
   .profile {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-  }
-
-  .sidebar {
+    justify-content: center;
+    
     height: 100%;
-    width: 64px;
-    background-color: var(--color-sidebar-bg);
-
-    .back_link {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-}
-
-
-
-
-
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-
-  .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .bio {
-    width: 510px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-  }
-
-  .footer--center {
-    display: flex;
-    justify-content: center;
   }
 }
 
 .header {
   .pic-container {
-    position: relative;
     cursor: pointer;
+    position: relative;
 
-    &:hover .profile-header__pic-overlay {
+    &:hover .profile-header-pic-overlay {
       display: flex;
     }
   }
@@ -78,17 +27,21 @@
     position: absolute;
     top: 0;
     right: 0;
+    
+    display: none;
+    align-items: center;
+    justify-content: center;
+    
     width: 100%;
     height: 100%;
     padding: 20px;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
+    
     font-size: 13px;
+    color: white;
+    text-align: center;
+    
+    background-color: rgba($color: #000, $alpha: 50%);
     border-radius: 50%;
-    background-color: rgba($color: #000000, $alpha: 0.5);
   }
 
   .pic {
@@ -104,11 +57,49 @@
   }
 }
 
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    width: 510px;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+
+  .footer-center {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
+
 .field {
-  width: 100%;
-  padding: 10px;
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  padding: 10px;
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-border);

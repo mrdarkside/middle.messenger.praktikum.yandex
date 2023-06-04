@@ -1,6 +1,5 @@
 import { Block } from '../../core/Block';
 import template from './top-bar.hbs';
-import * as styles from './top-bar.module.scss';
 
 interface TopBarProps {
   name: string;
@@ -12,6 +11,6 @@ export class TopBar extends Block<TopBarProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, { ...this.props });
   }
 }

@@ -9,7 +9,5 @@ export { PopupInput } from './PopupInput';
 export { ProfileField } from './ProfileField';
 export { RoundButton } from './RoundButton';
 export { TopBar } from './TopBar/TopBar';
-export { AddChat } from './AddChat';
 export { MenuButton } from './MenuButton';
 export { MenuPopup } from './MenuPopup';
-// export { MessageInput } from './MessageInput';

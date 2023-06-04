@@ -1,6 +1,5 @@
 import { Block } from '../../core';
 import template from './input.hbs';
-import * as styles from './input.module.scss';
 
 interface InputProps {
   name: string;
@@ -21,6 +20,6 @@ export class Input extends Block<InputProps> {
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles });
+    return this.compile(template, { ...this.props });
   }
 }

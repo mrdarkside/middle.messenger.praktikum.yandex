@@ -35,7 +35,4 @@ export class ChatAPI extends BaseAPI {
 
     return response.token;
   }
-
-  // mute abstract CRUD methods
-  update = undefined;
 }

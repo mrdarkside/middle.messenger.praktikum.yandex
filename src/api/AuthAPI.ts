@@ -28,10 +28,4 @@ export class AuthAPI extends BaseAPI {
   public logout() {
     return this.http.post('/logout');
   }
-
-  // mute abstract CRUD methods
-  create = undefined;
-  delete = undefined;
-  read = undefined;
-  update = undefined;
 }

@@ -96,3 +96,14 @@ export interface IMessage {
   };
   mine?: boolean;
 }
+
+export enum Routes {
+  Index = '/',
+  Login = '/sign-in',
+  Register = '/sign-up',
+  Profile = '/profile',
+  Settings = '/settings',
+  Password = '/password',
+  Messenger = '/messenger',
+  NoPage = '/404',
+}

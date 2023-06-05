@@ -6,6 +6,7 @@ import avatarPlaceholder from '../../assets/img/profile_pic.png';
 import { Button, ProfileField, Link } from '../../components';
 import { withStore } from '../../hocs';
 import { authController } from '../../controllers';
+import { Routes } from '../../types';
 
 interface ProfilePageProps {
   avatarPlaceholder: ImageBitmap;
@@ -28,7 +29,7 @@ class ProfilePageBase extends Block<ProfilePageProps> {
 
   init() {
     this.children.back_button = new Link({
-      to: '/messenger',
+      to: Routes.Messenger,
       isBackIcon: true,
     });
     this.children.field_email = new ProfileField({
@@ -74,11 +75,11 @@ class ProfilePageBase extends Block<ProfilePageProps> {
       readonly: true,
     });
     this.children.link_settings = new Link({
-      to: '/settings',
+      to: Routes.Settings,
       label: 'Изменить данные',
     });
     this.children.link_password = new Link({
-      to: '/password',
+      to: Routes.Password,
       label: 'Изменить пароль',
     });
     this.children.link_logout = new Button({

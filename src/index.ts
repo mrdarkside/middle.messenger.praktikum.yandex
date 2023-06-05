@@ -9,17 +9,7 @@ import {
   MessengerPage,
   Error404,
 } from './pages';
-
-enum Routes {
-  Index = '/',
-  Login = '/sign-in',
-  Register = '/sign-up',
-  Profile = '/profile',
-  Settings = '/settings',
-  Password = '/password',
-  Messenger = '/messenger',
-  NoPage = '/404',
-}
+import { Routes } from './types';
 
 window.addEventListener('DOMContentLoaded', async () => {
   router

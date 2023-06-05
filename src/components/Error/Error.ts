@@ -3,6 +3,7 @@ import template from './error.hbs';
 import * as styles from './error.module.scss';
 
 import { Link } from '..';
+import { Routes } from '../../types';
 
 interface ErrorProps {
   code: number;
@@ -17,7 +18,7 @@ export class Error extends Block<ErrorProps> {
   init() {
     this.children.link = new Link({
       label: 'Вернуться на главную',
-      to: '/messenger',
+      to: Routes.Messenger,
     });
   }
   render() {

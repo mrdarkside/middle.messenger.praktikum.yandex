@@ -7,7 +7,7 @@ import { ProfileField, Button, Link } from '../../components';
 import { submitForm } from '../../utils';
 import { withStore } from '../../hocs';
 import { profileController } from '../../controllers';
-import { IPasswordData } from '../../types';
+import { IPasswordData, Routes } from '../../types';
 
 interface PasswordPageProps {
   avatarPlaceholder: ImageBitmap;
@@ -25,7 +25,7 @@ class PasswordPageBase extends Block<PasswordPageProps> {
 
   init() {
     this.children.back_button = new Link({
-      to: '/profile',
+      to: Routes.Profile,
       isBackIcon: true,
     });
     this.children.old_password = new ProfileField({

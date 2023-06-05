@@ -1,65 +1,42 @@
-import { store, router } from './core';
-import { authController } from './controllers';
-import {
-  SignInPage,
-  SignUpPage,
-  ProfilePage,
-  SettingsPage,
-  PasswordPage,
-  MessengerPage,
-  Error404,
-} from './pages';
+import SignInPage from './pages/SignIn';
+import SignUpPage from './pages/SignUp';
+import Error404 from './pages/404';
+import Error500 from './pages/500';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
+import Password from './pages/Password';
+import Messenger from './pages/Messenger';
+import OpenChat from './pages/OpenChat';
 
-enum Routes {
-  Index = '/',
-  Login = '/sign-in',
-  Register = '/sign-up',
-  Profile = '/profile',
-  Settings = '/settings',
-  Password = '/password',
-  Messenger = '/messenger',
-  NoPage = '/404',
+// eslint-disable-next-line import/prefer-default-export
+export const ROUTES: Record<string, any> = {
+  home: SignInPage,
+  signup: SignUpPage,
+  err404: Error404,
+  err500: Error500,
+  profile: Profile,
+  settings: Settings,
+  password: Password,
+  messenger: Messenger,
+  openchat: OpenChat,
+};
+
+function render(Page: any) {
+  const root = document.querySelector('#app');
+
+  const content = new Page();
+
+  root?.appendChild(content.getContent()!);
 }
 
-window.addEventListener('DOMContentLoaded', async () => {
-  router
-    .use(Routes.Index, SignInPage)
-    .use(Routes.Login, SignInPage)
-    .use(Routes.Register, SignUpPage)
-    .use(Routes.Profile, ProfilePage)
-    .use(Routes.Messenger, MessengerPage)
-    .use(Routes.Settings, SettingsPage)
-    .use(Routes.Password, PasswordPage)
-    .use(Routes.NoPage, Error404);
+// @ts-ignore
+window.goToPage = (path: string) => {
+  const root = document.querySelector('#app');
+  root?.removeChild(root.firstElementChild!);
 
-  let isProtectedRoute = true;
+  render(ROUTES[path]);
+};
 
-  switch (window.location.pathname) {
-    case Routes.Index:
-    case Routes.Login:
-    case Routes.Register:
-      isProtectedRoute = false;
-      break;
-    default:
-      isProtectedRoute = true;
-      break;
-  }
-
-  try {
-    await authController.fetchUser();
-    if (store.getState().user.hasError) {
-      throw new Error('user has error');
-    }
-    router.start();
-
-    if (!isProtectedRoute) {
-      router.go(Routes.Profile);
-    }
-  } catch (_) {
-    router.start();
-
-    if (isProtectedRoute) {
-      router.go(Routes.Index);
-    }
-  }
+window.addEventListener('DOMContentLoaded', () => {
+  render(ROUTES.home);
 });

@@ -1,0 +1,12 @@
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+
+  .list {
+    display: flex;
+    gap: 1em;
+    border-bottom: 1px solid;
+  }
+}

@@ -38,8 +38,8 @@ body {
 }
 
 body {
-  scroll-behavior: smooth;
   padding: 0;
+  scroll-behavior: smooth;
   text-rendering: optimizespeed;
 }
 
@@ -58,6 +58,6 @@ select {
 }
 
 img {
-  display: block;
   max-width: 100%;
+  display: block;
 }

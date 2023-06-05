@@ -1,29 +1,27 @@
 <div class="{{styles.wrapper}}">
-  {{{back_button}}}
+  {{{nav}}}
+  <aside class="{{styles.sidebar}}"><a class="{{styles.back_link}}" href="#"><img src="{{icon}}" alt="Назад"></a>
+  </aside>
   <main class="{{styles.profile}}">
-    {{#if isLoading}}
-      Loading...
-    {{else}}
-      <form class="{{styles.form}}" id="form">
-        <header class="{{styles.header}}">
-          <div class="{{styles.pic-container}}">
-            <img src="{{avatarPlaceholder}}" alt="photo" class="{{styles.pic}}">
-            <div class="{{styles.overlay}}"><span>Поменять аватар</span></div>
-          </div>
-          <h2 class="{{styles.name}}">{{data.first_name}}</h2>
-        </header>
-        <section class="{{styles.bio}}">
-          {{{field_email}}}
-          {{{field_login}}}
-          {{{field_first_name}}}
-          {{{field_second_name}}}
-          {{{field_display_name}}}
-          {{{field_phone}}}
-        </section>
-        <footer class="{{styles.footer--center}}">
-          {{{button}}}
-        </footer>
-      </form>
-    {{/if}}
+    <form class="{{styles.form}}" id="form">
+      <header class="{{styles.header}}">
+        <div class="{{styles.pic-container}}">
+          <img src="{{avatar}}" alt="photo" class="{{styles.pic}}">
+          <div class="{{styles.overlay}}"><span>Поменять аватар</span></div>
+        </div>
+        <h2 class="{{styles.name}}">Иван</h2>
+      </header>
+      <section class="{{styles.bio}}">
+        {{{field_email}}}
+        {{{field_login}}}
+        {{{field_first_name}}}
+        {{{field_second_name}}}
+        {{{field_display_name}}}
+        {{{field_phone}}}
+      </section>
+      <footer class="{{styles.footer--center}}">
+        {{{button}}}
+      </footer>
+    </form>
   </main>
 </div>

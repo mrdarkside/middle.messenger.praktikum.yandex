@@ -1,11 +1,9 @@
 .chat {
-  cursor: pointer;
-
-  display: flex;
-  gap: 10px;
-  justify-content: space-between;
-  
   padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
 
   &:hover,
   &:active {
@@ -18,8 +16,9 @@
   }
 
   .text {
-    flex-grow: 1;
+    // TODO find out why text expands sidebar
     max-width: 200px;
+    flex-grow: 1;
 
     .name {
       margin-bottom: 2px;
@@ -31,8 +30,8 @@
   .meta {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 
     .time {
       font-size: 9px;
@@ -42,13 +41,11 @@
       width: 20px;
       height: 20px;
       padding-top: 3px;
-
-      font-size: 11px;
       color: white;
+      font-size: 11px;
       text-align: center;
-
-      background-color: var(--color-primary);
       border-radius: 50%;
+      background-color: var(--color-primary);
     }
   }
 

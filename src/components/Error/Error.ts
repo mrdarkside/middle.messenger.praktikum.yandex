@@ -18,7 +18,7 @@ export class Error extends Block<ErrorProps> {
   init() {
     this.children.link = new Link({
       label: 'Вернуться на главную',
-      to: Routes.Messenger,
+      to: Routes.Index,
     });
   }
   render() {

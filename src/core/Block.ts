@@ -111,14 +111,13 @@ export abstract class Block<P extends Record<string, any> = any> {
     Object.assign(this.props, nextProps);
   };
 
-  #componentDidUpdate(oldProps: P, newProps: P) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+  #componentDidUpdate() {
+    if (this.componentDidUpdate()) {
       this.#eventBus().emit(Block.LIFE_EVENTS.FLOW_RENDER);
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected componentDidUpdate(_oldProps: P, _newProps: P) {
+  protected componentDidUpdate() {
     return true;
   }
 
@@ -174,8 +173,7 @@ export abstract class Block<P extends Record<string, any> = any> {
       stub.replaceWith(component.getContent()!);
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    Object.entries(this.children).forEach(([_, component]) => {
+    Object.entries(this.children).forEach(([, component]) => {
       if (Array.isArray(component)) {
         component.forEach(replaceStub);
       } else {
@@ -197,7 +195,6 @@ export abstract class Block<P extends Record<string, any> = any> {
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set: (target: any, prop, value) => {
-        // eslint-disable-next-line no-param-reassign
         target[prop] = value;
 
         this.#eventBus().emit(Block.LIFE_EVENTS.FLOW_CDU, { ...target }, target);

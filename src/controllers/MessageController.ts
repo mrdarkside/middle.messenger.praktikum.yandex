@@ -43,13 +43,11 @@ class MessageController {
       messagesToAdd = messages.reverse();
       messagesToAdd.forEach((message) => {
         if (message.user_id === userId) {
-          // eslint-disable-next-line no-param-reassign
           message.mine = true;
         }
       });
     } else {
       if (messages.user_id === userId) {
-        // eslint-disable-next-line no-param-reassign
         messages.mine = true;
       }
       messagesToAdd.push(messages);

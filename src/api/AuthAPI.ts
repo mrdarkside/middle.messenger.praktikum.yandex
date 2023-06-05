@@ -14,10 +14,9 @@ export class AuthAPI extends BaseAPI {
     return this.http.post('/signin', data);
   }
 
-  public async getUser() {
+  public async getUser(): Promise<IUser> {
     try {
-      const response = await this.http.get('/user');
-      const user = JSON.parse(response as string) as IUser;
+      const user = (await this.http.get('/user')) as IUser;
       return user;
     } catch (error) {
       console.error('Error fetching user', error);

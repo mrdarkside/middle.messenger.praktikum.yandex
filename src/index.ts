@@ -9,17 +9,7 @@ import {
   MessengerPage,
   Error404,
 } from './pages';
-
-enum Routes {
-  Index = '/',
-  Login = '/sign-in',
-  Register = '/sign-up',
-  Profile = '/profile',
-  Settings = '/settings',
-  Password = '/password',
-  Messenger = '/messenger',
-  NoPage = '/404',
-}
+import { Routes } from './types';
 
 window.addEventListener('DOMContentLoaded', async () => {
   router
@@ -33,8 +23,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.NoPage, Error404);
 
   let isProtectedRoute = true;
+  const location = window.location.pathname;
 
-  switch (window.location.pathname) {
+  switch (location) {
     case Routes.Index:
     case Routes.Login:
     case Routes.Register:
@@ -45,21 +36,26 @@ window.addEventListener('DOMContentLoaded', async () => {
       break;
   }
 
-  try {
-    await authController.fetchUser();
-    if (store.getState().user.hasError) {
-      throw new Error('user has error');
-    }
-    router.start();
+  if (Object.values(Routes).includes(location as Routes & string)) {
+    try {
+      await authController.fetchUser();
+      if (store.getState().user.hasError) {
+        throw new Error('user has error');
+      }
+      router.start();
 
-    if (!isProtectedRoute) {
-      router.go(Routes.Profile);
-    }
-  } catch (_) {
-    router.start();
+      if (!isProtectedRoute) {
+        router.go(Routes.Profile);
+      }
+    } catch (_) {
+      router.start();
 
-    if (isProtectedRoute) {
-      router.go(Routes.Index);
+      if (isProtectedRoute) {
+        router.go(Routes.Index);
+      }
     }
+  } else {
+    router.start();
+    router.go(Routes.NoPage);
   }
 });

@@ -7,7 +7,7 @@ import { ProfileField, Button, Link } from '../../components';
 import { submitForm } from '../../utils';
 import { withStore } from '../../hocs';
 import { profileController } from '../../controllers';
-import { IProfileData } from '../../types';
+import { IProfileData, Routes } from '../../types';
 
 interface SettingsPageProps {
   avatarPlaceholder: ImageBitmap;
@@ -30,7 +30,7 @@ class SettingsPageBase extends Block<SettingsPageProps> {
 
   init() {
     this.children.back_button = new Link({
-      to: '/profile',
+      to: Routes.Profile,
       isBackIcon: true,
     });
     this.children.field_email = new ProfileField({

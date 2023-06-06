@@ -11,9 +11,12 @@ class ChatController {
   }
 
   async createChat(chatTitle: string) {
-    await this.api.create(chatTitle);
-    await this.getChats();
-    store.setState('addChatPopup', false);
+    try {
+      await this.api.create(chatTitle);
+      await this.getChats();
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   async setActiveChat(chatId: number | null) {
@@ -31,10 +34,14 @@ class ChatController {
     store.emit(StoreEvents.Updated, store.getState());
   }
 
-  async getChats() {
-    const chats: IChat[] = JSON.parse(await this.api.read());
-    store.setState('chats', chats);
-    chats.forEach(({ id }) => this.connectWithChat(id));
+  async getChats(): Promise<void> {
+    try {
+      const chats = (await this.api.read()) as unknown as IChat[];
+      store.setState('chats', chats);
+      chats.forEach(({ id }) => this.connectWithChat(id));
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   async getChatUsers(chatId: string) {
@@ -54,12 +61,17 @@ class ChatController {
       const token = await this.getToken(chatId);
       await messageController.connect(chatId, token);
     } catch (e) {
-      console.log(`Can't connect with chat id=${chatId}: `, e);
+      console.error(`Can't connect with chat id=${chatId}: `, e);
     }
   }
 
   async getToken(chatId: number): Promise<string> {
-    return this.api.getToken(chatId);
+    try {
+      return await this.api.getToken(chatId);
+    } catch (e) {
+      console.error(`Can't get token for chat id=${chatId}: `, e);
+      throw e;
+    }
   }
 }
 

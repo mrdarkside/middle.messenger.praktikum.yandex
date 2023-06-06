@@ -5,7 +5,7 @@ import * as styles from './signup.module.scss';
 import { Button, Link, LoginField } from '../../components';
 import { submitForm } from '../../utils';
 import { authController } from '../../controllers';
-import { ISignupData } from '../../types';
+import { ISignupData, Routes } from '../../types';
 
 export class SignUpPage extends Block {
   constructor() {
@@ -64,7 +64,7 @@ export class SignUpPage extends Block {
     });
     this.children.link = new Link({
       isLogin: true,
-      to: '/',
+      to: Routes.Index,
       label: 'Уже есть аккаунт?',
     });
   }

@@ -3,9 +3,10 @@ import template from './link.hbs';
 import * as styles from './link.module.scss';
 
 import { PropsWithRouter, withRouter } from '../../hocs/withRouter';
+import { Routes } from '../../types';
 
 interface LinkProps extends PropsWithRouter {
-  to: string;
+  to: Routes;
   label: string;
   isLogin?: boolean;
   isProfile?: boolean;

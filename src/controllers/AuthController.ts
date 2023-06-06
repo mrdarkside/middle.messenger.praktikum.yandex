@@ -1,6 +1,7 @@
 import { AuthAPI } from '../api';
-import { ISigninData, ISignupData } from '../types';
+import { ISigninData, ISignupData, Routes } from '../types';
 import { store, router } from '../core';
+import { messageController } from './MessageController';
 
 class AuthController {
   private api: AuthAPI;
@@ -15,7 +16,7 @@ class AuthController {
 
       await this.fetchUser();
 
-      router.go('/profile');
+      router.go(Routes.Profile);
     } catch (e: any) {
       console.error('Signin error', e);
     }
@@ -38,29 +39,29 @@ class AuthController {
       const user = await this.api.getUser();
 
       if (user.reason === 'Cookie is not valid') {
-        // router.go('/');
-        throw new Error('Cookie is not valid');
         store.setState('user.hasError', true);
-        return;
+        throw new Error('Cookie is not valid');
       }
 
       store.setState('user.data', user);
-      store.setState('user.isLoading', false);
       store.setState('user.hasError', false);
     } catch (e) {
       store.setState('user.data', null);
-      store.setState('user.isLoading', false);
       store.setState('user.hasError', true);
+    } finally {
+      store.setState('user.isLoading', false);
     }
   }
 
   async logout() {
     try {
+      router.go(Routes.Index);
+
       await this.api.logout();
 
-      store.setState('user', null);
+      messageController.closeAll();
 
-      router.go('/');
+      store.setState('user', null);
     } catch (e: any) {
       console.error('Logout error', e);
     }

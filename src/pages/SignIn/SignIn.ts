@@ -5,6 +5,7 @@ import * as styles from './signIn.module.scss';
 import { Button, LoginField, Link } from '../../components';
 import { submitForm } from '../../utils';
 import { authController } from '../../controllers';
+import { Routes } from '../../types';
 
 export class SignInPage extends Block {
   constructor() {
@@ -33,7 +34,7 @@ export class SignInPage extends Block {
     });
     this.children.link = new Link({
       isLogin: true,
-      to: '/sign-up',
+      to: Routes.Register,
       label: 'Нет аккаунта?',
     });
   }

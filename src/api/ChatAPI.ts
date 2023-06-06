@@ -31,11 +31,13 @@ export class ChatAPI extends BaseAPI {
   }
 
   async getToken(chatId: number): Promise<string> {
-    const response = JSON.parse(await this.http.post(`/token/${chatId}`));
+    try {
+      const response = (await this.http.post(`/token/${chatId}`)) as { token: string };
 
-    return response.token;
+      return response.token;
+    } catch (e) {
+      console.error('Error fetching token', e);
+      throw e;
+    }
   }
-
-  // mute abstract CRUD methods
-  update = undefined;
 }

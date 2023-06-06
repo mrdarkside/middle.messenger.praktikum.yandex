@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/indent */
 import { store, Block } from '../core';
 import { IState, StoreEvents } from '../types';
 import { isEqual } from '../utils';

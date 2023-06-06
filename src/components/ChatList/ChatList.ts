@@ -9,7 +9,7 @@ import { submitByEnter } from '../../utils';
 import arrow from '../../assets/img/arrow.png';
 import avatarPlaceholder from '../../assets/img/chatavatar.png';
 import { withStore } from '../../hocs';
-import { IChat } from '../../types';
+import { IChat, Routes } from '../../types';
 
 interface ChatListProps {
   chatList: IChat[];
@@ -37,7 +37,7 @@ export class ChatListBase extends Block<ChatListProps> {
       this.children.profileLink = new Link({
         isProfile: true,
         label: 'Профиль',
-        to: '/profile',
+        to: Routes.Profile,
       });
       this.children.search = new Input({
         type: 'text',

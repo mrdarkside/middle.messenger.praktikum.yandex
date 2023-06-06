@@ -1,1 +1,7 @@
-@import url('../Profile/profile.module.scss')
+@import url('../Profile/profile.module.scss');
+
+.header {
+  .pic-container {
+    cursor: pointer;
+  }
+}

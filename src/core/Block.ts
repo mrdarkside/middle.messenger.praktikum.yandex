@@ -138,6 +138,7 @@ export abstract class Block<P extends Record<string, any> = any> {
     this.#element = newElement;
 
     this.#addEvents();
+    this.dispatchComponentDidMount();
   }
 
   protected render(): DocumentFragment {

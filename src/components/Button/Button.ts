@@ -6,6 +6,7 @@ interface ButtonProps {
   type?: string;
   label: string;
   isLogout?: boolean;
+  isUnderline?: boolean;
   events?: {
     click: (e: Event) => void;
   };

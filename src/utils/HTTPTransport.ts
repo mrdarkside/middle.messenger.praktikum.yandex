@@ -24,7 +24,9 @@ export class HTTPTransport {
   }
 
   public get<Response>(path = '/'): Promise<Response> {
-    return this.#request<Response>(this.endpoint + path);
+    return this.#request<Response>(this.endpoint + path, {
+      method: Method.Get,
+    });
   }
 
   public post<Response = void>(path: string, data?: unknown): Promise<Response> {
@@ -55,11 +57,7 @@ export class HTTPTransport {
     });
   }
 
-  #request<Response>(
-    url: string,
-    options: Options = { method: Method.Get },
-    timeout = 5000,
-  ): Promise<Response> {
+  #request<Response>(url: string, options: Options, timeout = 5000): Promise<Response> {
     const { headers = { 'Content-Type': 'application/json' }, method, data } = options;
 
     return new Promise((resolve, reject) => {
@@ -85,6 +83,8 @@ export class HTTPTransport {
 
       if (isGet || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
         xhr.send(JSON.stringify(data));
       }

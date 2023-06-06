@@ -3,10 +3,10 @@ import template from './settings.hbs';
 import * as styles from './settings.module.scss';
 import avatarPlaceholder from '../../assets/img/profile_pic.png';
 
-import { ProfileField, Button, Link } from '../../components';
+import { ProfileField, Button, Link, PopupFileInput } from '../../components';
 import { submitForm } from '../../utils';
 import { withStore } from '../../hocs';
-import { profileController } from '../../controllers';
+import { authController, profileController } from '../../controllers';
 import { IProfileData, Routes } from '../../types';
 
 interface SettingsPageProps {
@@ -18,6 +18,7 @@ interface SettingsPageProps {
     second_name: string;
     display_name: string;
     phone: string;
+    avatar: string;
   };
   isLoading: boolean;
   hasError: boolean;
@@ -29,6 +30,14 @@ class SettingsPageBase extends Block<SettingsPageProps> {
   }
 
   init() {
+    this.children.popup = new PopupFileInput({
+      title: 'Загрузите аватар',
+      inputId: 'file',
+      formId: 'avatar',
+      buttonText: 'Поменять',
+      onSubmit: this.onAvatarChange,
+      id: 'avatar',
+    });
     this.children.back_button = new Link({
       to: Routes.Profile,
       isBackIcon: true,
@@ -78,12 +87,48 @@ class SettingsPageBase extends Block<SettingsPageProps> {
     });
   }
 
+  protected componentDidMount() {
+    const avatar = this.element?.querySelector(`.${styles.pic}`);
+    avatar?.addEventListener('click', this.onOpenPopup);
+  }
   onSubmit(e: Event) {
     e.preventDefault();
     const data = submitForm(e, 'form', styles) as unknown as IProfileData;
     profileController.updateProfile(data);
   }
 
+  onOpenPopup(e: Event): void {
+    e.preventDefault();
+
+    const el = document.getElementById('avatar');
+    if (el) {
+      el.toggleAttribute('active');
+      el.addEventListener('click', (ev: MouseEvent) => {
+        ev.stopPropagation();
+        if (ev.target === el) {
+          el.removeAttribute('active');
+        }
+      });
+    }
+  }
+
+  onAvatarChange(e: Event): boolean {
+    e.preventDefault();
+    const input = document.querySelector('#file') as HTMLInputElement;
+    console.log(input);
+
+    const files = input?.files;
+    if (!files?.length) {
+      return false;
+    }
+    const formData = new FormData();
+    formData.append('avatar', files[0]);
+    profileController.changeAvatar(formData).then(() => {
+      authController.fetchUser();
+    });
+
+    return true;
+  }
   render() {
     return this.compile(template, {
       ...this.props,

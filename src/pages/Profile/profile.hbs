@@ -4,14 +4,14 @@
     {{#if isLoading}}
       Loading...
     {{else}}
-      <form class="{{styles.form}}">
         <header class="{{styles.header}}">
           <div class="{{styles.pic-container}}">
-            <img src="{{avatarPlaceholder}}" alt="photo" class="{{styles.pic}}">
+            <img {{#if data.avatar}}src="https://ya-praktikum.tech/api/v2/resources/{{data.avatar}}"{{else}}src="{{avatarPlaceholder}}"{{/if}} alt="photo" class="{{styles.pic}}">
             <div class="{{styles.overlay}}"><span>Поменять аватар</span></div>
           </div>
           <h2 class="{{styles.name}}">{{data.first_name}}</h2>
         </header>
+      <form class="{{styles.form}}">
         <section class="{{styles.bio}}">
           {{{field_email}}}
           {{{field_login}}}

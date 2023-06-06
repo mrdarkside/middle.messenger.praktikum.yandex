@@ -13,6 +13,7 @@ interface PasswordPageProps {
   avatarPlaceholder: ImageBitmap;
   data: {
     first_name: string;
+    avatar: string;
   };
   isLoading: boolean;
   hasError: boolean;

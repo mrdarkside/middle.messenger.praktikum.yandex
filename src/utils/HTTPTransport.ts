@@ -36,10 +36,11 @@ export class HTTPTransport {
     });
   }
 
-  public put<Response = void>(path: string, data: unknown): Promise<Response> {
+  public put<Response = void>(path: string, data: unknown, headers = {}): Promise<Response> {
     return this.#request<Response>(this.endpoint + path, {
       method: Method.Put,
       data,
+      headers,
     });
   }
 

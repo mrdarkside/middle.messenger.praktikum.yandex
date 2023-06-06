@@ -14,8 +14,9 @@
 }
 
 .header {
+  margin-bottom: 60px;
+  
   .pic-container {
-    cursor: pointer;
     position: relative;
 
     &:hover .profile-header-pic-overlay {
@@ -47,6 +48,7 @@
   .pic {
     width: 130px;
     height: 130px;
+    margin-bottom: 20px;
     border-radius: 50%;
 
   }
@@ -66,7 +68,6 @@
   .header {
     display: flex;
     flex-direction: column;
-    gap: 20px;
     align-items: center;
     justify-content: space-between;
   }

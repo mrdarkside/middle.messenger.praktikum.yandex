@@ -15,4 +15,10 @@
     color: var(--color-error);
     background-color: transparent;
   }
+
+  &-underline {
+    color: var(--color-primary);
+    text-decoration: overline;
+    background-color: transparent;
+  }
 }

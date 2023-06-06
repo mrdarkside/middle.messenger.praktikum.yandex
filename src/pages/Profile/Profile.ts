@@ -17,6 +17,7 @@ interface ProfilePageProps {
     second_name: string;
     display_name: string;
     phone: string;
+    avatar: string;
   };
   isLoading: boolean;
   hasError: boolean;

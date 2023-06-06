@@ -11,3 +11,5 @@ export { RoundButton } from './RoundButton';
 export { TopBar } from './TopBar/TopBar';
 export { MenuButton } from './MenuButton';
 export { MenuPopup } from './MenuPopup';
+export { PopupFileInput } from './PopupFileInput';
+export { FileInput } from './FileInput';

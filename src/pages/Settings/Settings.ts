@@ -115,7 +115,6 @@ class SettingsPageBase extends Block<SettingsPageProps> {
   onAvatarChange(e: Event): boolean {
     e.preventDefault();
     const input = document.querySelector('#file') as HTMLInputElement;
-    console.log(input);
 
     const files = input?.files;
     if (!files?.length) {

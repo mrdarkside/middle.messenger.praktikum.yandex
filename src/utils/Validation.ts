@@ -8,8 +8,10 @@ export type InputName =
   | 'second_name'
   | 'display_name'
   | 'password'
-  | 'old_password'
-  | 'confirm_password';
+  | 'newPassword'
+  | 'oldPassword'
+  | 'confirmPassword'
+  | 'title';
 
 export function validateInput(name: InputName, value: string): boolean {
   const patterns: Record<InputName, RegExp> = {
@@ -18,14 +20,14 @@ export function validateInput(name: InputName, value: string): boolean {
     login: /^(?!\\d+$)[a-zA-Z0-9_-]{3,20}$/,
     search: /^[^<>'"]*$/,
     message: /^[^<>'"]*$/,
-    first_name:
-      /^(?=.{1,50}$)[A-Za-zА-ЯЁ][a-zа-яё]*(?:-[A-Za-zА-ЯЁ][a-zа-яё]*)*$/,
-    second_name:
-      /^(?=.{1,50}$)[A-Za-zА-ЯЁ][a-zа-яё]*(?:-[A-Za-zА-ЯЁ][a-zа-яё]*)*$/,
+    first_name: /^(?=.{1,50}$)[A-Za-zА-ЯЁ][a-zа-яё]*(?:-[A-Za-zА-ЯЁ][a-zа-яё]*)*$/,
+    second_name: /^(?=.{1,50}$)[A-Za-zА-ЯЁ][a-zа-яё]*(?:-[A-Za-zА-ЯЁ][a-zа-яё]*)*$/,
     display_name: /^[a-zA-Zа-яА-Я0-9-_. ]+$/,
     password: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
-    old_password: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
-    confirm_password: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
+    oldPassword: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
+    newPassword: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
+    confirmPassword: /^(?=.*\d)(?=.*[A-Z]).{8,40}$/,
+    title: /^[^<>'"]*$/,
   };
 
   if (!patterns[name]) {
@@ -37,14 +39,14 @@ export function validateInput(name: InputName, value: string): boolean {
   return pattern.test(value);
 }
 
-export function formSubmit(e: Event, styles: any) {
+export function submitForm(e: Event, formId: string, styles: any) {
   e.preventDefault();
-  const form = document.querySelector('#form') as HTMLFormElement;
+  const form = document.querySelector(`#${formId}`) as HTMLFormElement;
   const inputs = form.querySelectorAll('input');
 
-  let data = {};
+  let data: Record<string, string> = {};
 
-  const passwords = { old_password: '', password: '', confirm_password: '' };
+  const passwords = { oldPassword: '', newPassword: '', confirmPassword: '' };
 
   inputs.forEach((input) => {
     const name = input.name as InputName;
@@ -60,11 +62,7 @@ export function formSubmit(e: Event, styles: any) {
       return;
     }
 
-    if (
-      name === 'old_password' ||
-      name === 'password' ||
-      name === 'confirm_password'
-    ) {
+    if (name === 'oldPassword' || name === 'confirmPassword' || name === 'newPassword') {
       passwords[name] = value;
     }
 
@@ -73,12 +71,12 @@ export function formSubmit(e: Event, styles: any) {
       error.innerText = 'Неверное значение';
       return;
     }
-    if (name === 'password' && value === passwords.old_password) {
+    if (name === 'password' && value === passwords.oldPassword) {
       input.classList.add(styles.input_error);
       error.innerText = 'Пароль совпадает со старым';
       return;
     }
-    if (name === 'confirm_password' && value !== passwords.password) {
+    if (name === 'confirmPassword' && value !== passwords.newPassword) {
       input.classList.add(styles.input_error);
       error.innerText = 'Пароли не совпадают';
       return;
@@ -86,13 +84,12 @@ export function formSubmit(e: Event, styles: any) {
 
     data = { ...data, [name]: value };
   });
-
-  console.log(data);
+  return data;
 }
 
-export function buttonSubmit(e: Event) {
+export function submitButton(e: Event, id: string = '#form'): Record<string, string> {
   e.preventDefault();
-  const form = document.querySelector('#form') as HTMLFormElement;
+  const form = document.querySelector(id) as HTMLFormElement;
   const inputs = form.querySelectorAll('input');
 
   let data = {};
@@ -106,26 +103,32 @@ export function buttonSubmit(e: Event) {
     }
 
     if (validateInput(name, value)) {
-      data = { ...data, [name]: value };
+      data = { ...data, name, value };
     }
   });
 
-  console.log(data);
+  inputs.forEach((input) => {
+    // eslint-disable-next-line no-param-reassign
+    input.value = '';
+  });
+  return data;
 }
 
-export function submitByEnter(e: KeyboardEvent) {
+export function submitByEnter(e: KeyboardEvent): Record<string, string> {
   const input = e.target as HTMLInputElement;
   const name = input.name as InputName;
-  const { value } = input;
+  let data = {};
   if (e.key === 'Enter') {
     e.preventDefault();
+    const { value } = input;
     if (value !== '') {
       if (validateInput(name, value)) {
-        console.log({ name: input.name, value: input.value });
+        data = { ...data, name: input.name, value: input.value };
         input.value = '';
       }
     }
   }
+  return data;
 }
 
 export function checkOnBlur(e: Event, styles: any) {

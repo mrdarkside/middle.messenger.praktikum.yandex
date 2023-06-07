@@ -1,7 +1,36 @@
 <div class="{{styles.container}}">
-  {{{nav}}}
   {{{chatList}}}
   <main class="{{styles.messenger}}">
-    Выберите чат чтобы отправить сообщение
+    {{#if activeChatId}}
+      <div class="{{styles.wrapper}}">
+        <section class="{{styles.topbar}}">
+          <img class="{{styles.avatar}}" src="{{avatar}}" alt="аватар">
+          <div class="{{styles.name}}">{{currentChat.title}}</div>
+          {{{menuButton}}}
+          {{{menuPopup}}}
+        </section>
+        <section class="{{styles.bubbles}}">
+          {{#each currentMessages}}
+              <div class="{{../styles.bubble}} {{#if mine}}{{../styles.own}}{{/if}}">
+              <p class="{{../styles.text}}">
+              {{content}}
+              </p>
+            </div>
+          {{/each}}
+        </section>
+        <section class="{{styles.interface}}">
+          <form class="{{styles.form}}" id="form">
+            {{!-- <div class="{{styles.clip}}"></div> --}}
+            {{{input}}}
+            {{{round_button}}}
+          </form>
+        </section>
+      </div>
+    {{else}}
+       Выберите чат чтобы отправить сообщение
+    {{/if}}
+      {{{addChatPopup}}}
+      {{{addUser}}}
+      {{{deleteUser}}}
   </main>
 </div>

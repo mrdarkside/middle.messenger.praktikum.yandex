@@ -1,13 +1,14 @@
-@import './reset.scss';
-@import './variables.scss';
-@import './typography.scss';
+@import url('./reset.scss');
+@import url('./variables.scss');
+@import url('./typography.scss');
 
 main {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  min-height: 100%;
 }
 
 #app {

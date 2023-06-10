@@ -11,6 +11,8 @@ import {
 } from './pages';
 import { Routes } from './types';
 
+import './styles/style.scss';
+
 window.addEventListener('DOMContentLoaded', async () => {
   router
     .use(Routes.Index, SignInPage)

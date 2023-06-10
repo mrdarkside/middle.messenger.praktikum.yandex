@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './error.hbs';
-import * as styles from './error.module.scss';
+import styles from './error.module.scss';
 
 import { Link } from '..';
 import { Routes } from '../../types';

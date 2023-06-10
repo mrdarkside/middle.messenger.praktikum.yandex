@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './popup-file-input.hbs';
-import * as styles from './popup-file-input.module.scss';
+import styles from './popup-file-input.module.scss';
 
 import { Button, FileInput } from '..';
 

@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './signIn.hbs';
-import * as styles from './signIn.module.scss';
+import styles from './signIn.module.scss';
 
 import { Button, LoginField, Link } from '../../components';
 import { submitForm } from '../../utils';

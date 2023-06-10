@@ -1,6 +1,6 @@
 import { Block } from '../../core/Block';
 import template from './password.hbs';
-import * as styles from './password.module.scss';
+import styles from './password.module.scss';
 import avatarPlaceholder from '../../assets/img/profile_pic.png';
 
 import { ProfileField, Button, Link } from '../../components';

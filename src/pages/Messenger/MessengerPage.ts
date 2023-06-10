@@ -1,6 +1,6 @@
 import { Block, store } from '../../core';
 import template from './messenger.hbs';
-import * as styles from './messenger.module.scss';
+import styles from './messenger.module.scss';
 
 import { ChatList, RoundButton, Input, PopupInput, MenuButton, MenuPopup } from '../../components';
 import { submitByEnter, submitButton, submitForm, scrollToBottom } from '../../utils';

@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './menu-popup.hbs';
-import * as styles from './menu-popup.module.scss';
+import styles from './menu-popup.module.scss';
 
 interface MenuPopupProps {
   id: string;

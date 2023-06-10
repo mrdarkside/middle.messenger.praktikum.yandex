@@ -23,20 +23,6 @@ module.exports = {
     fallback: {
       fs: false,
     },
-    alias: {
-      core: path.resolve(__dirname, 'src/core'),
-      pages: path.resolve(__dirname, 'src/pages'),
-      components: path.resolve(__dirname, 'src/components'),
-      img: path.resolve(__dirname, 'src/image'),
-      routes: path.resolve(__dirname, 'src/routes'),
-      types: path.resolve(__dirname, 'src/types'),
-      vendor: path.resolve(__dirname, 'src/vendor'),
-      variables: path.resolve(__dirname, 'src/variables'),
-      utils: path.resolve(__dirname, 'src/utils'),
-      styles: path.resolve(__dirname, 'src/styles'),
-      api: path.resolve(__dirname, 'src/Api'),
-      services: path.resolve(__dirname, 'src/services'),
-    },
   },
   module: {
     rules: [

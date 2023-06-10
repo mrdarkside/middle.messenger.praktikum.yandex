@@ -3,7 +3,7 @@
   "version": "0.3.2",
   "description": "Chat app project for yandex.practicum's \"middle front-end developer\" course",
   "scripts": {
-    "dev": "webpack --mode=development",
+    "dev": "webpack serve",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack --config webpack.prod.js && node ./server.js",
     "test": "./node_modules/.bin/mocha"

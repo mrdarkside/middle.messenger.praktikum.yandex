@@ -35,7 +35,7 @@ class PasswordPageBase extends Block<PasswordPageProps> {
       label: 'Старый пароль',
       value: '',
     });
-    this.children.password = new ProfileField({
+    this.children.new_password = new ProfileField({
       name: 'newPassword',
       type: 'password',
       label: 'Новый пароль',

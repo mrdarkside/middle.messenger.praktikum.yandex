@@ -1,1 +1,1 @@
-export { PasswordPage } from './1Password';
+export { PasswordPage } from './Password';

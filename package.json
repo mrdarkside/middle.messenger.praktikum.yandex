@@ -1,11 +1,12 @@
 {
   "name": "yandex.messenger",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Chat app project for yandex.practicum's \"middle front-end developer\" course",
   "scripts": {
-    "dev": "parcel ./src/index.html --no-cache --open",
-    "build": "parcel build ./src/index.html --no-cache",
-    "start": "parcel build ./src/index.html && node ./server.js"
+    "dev": "webpack-dev-server --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack --config webpack.prod.js && node ./server.js",
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -19,24 +20,42 @@
   },
   "homepage": "https://github.com/mrdarkside/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
-    "@parcel/transformer-sass": "2.8.3",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "5.54.0",
     "@typescript-eslint/parser": "5.54.0",
+    "chai": "^4.3.7",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
     "eslint": "8.35.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-plugin-import": "2.27.5",
-    "parcel": "2.8.3",
+    "file-loader": "^6.2.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.2",
+    "mini-css-extract-plugin": "^2.7.6",
+    "mocha": "^10.2.0",
+    "node-sass": "^9.0.0",
+    "sass": "^1.63.3",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
     "stylelint": "15.2.0",
     "stylelint-config-clean-order": "5.0.0",
     "stylelint-config-standard": "30.0.1",
     "stylelint-scss": "4.4.0",
-    "typescript": "4.9.5"
+    "ts-loader": "^9.4.3",
+    "typescript": "4.9.5",
+    "webpack": "^5.86.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.9.0"
   },
   "dependencies": {
     "express": "4.18.2",
     "handlebars": "4.7.7",
+    "handlebars-loader": "^1.7.3",
     "nanoid": "4.0.1"
   }
 }

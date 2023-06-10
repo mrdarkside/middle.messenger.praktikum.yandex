@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './chat.hbs';
-import * as styles from './chat.module.scss';
+import styles from './chat.module.scss';
 
 interface ChatProps {
   id: number;

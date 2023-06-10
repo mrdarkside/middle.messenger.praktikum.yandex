@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './link.hbs';
-import * as styles from './link.module.scss';
+import styles from './link.module.scss';
 
 import { PropsWithRouter, withRouter } from '../../hocs/withRouter';
 import { Routes } from '../../types';

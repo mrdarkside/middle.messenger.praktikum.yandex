@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './menu-button.hbs';
-import * as styles from './menu-button.module.scss';
+import styles from './menu-button.module.scss';
 
 interface MenuButtonProps {
   type?: string;

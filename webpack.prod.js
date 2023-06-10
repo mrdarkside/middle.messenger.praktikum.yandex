@@ -10,6 +10,9 @@ module.exports = merge(common, {
     filename: '[name].[contentHash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  resolve: {
+    extensions: ['.scss'],
+  },
   plugins: [
     new MiniCssExtractPlugin({ filename: '[name].[contentHash].css' }),
     new CleanWebpackPlugin(),
@@ -20,7 +23,15 @@ module.exports = merge(common, {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                auto: true,
+                localIdentName: '[hash:base64]',
+              },
+            },
+          },
           'sass-loader',
         ],
       },

@@ -17,7 +17,7 @@ interface LinkProps extends PropsWithRouter {
   };
 }
 
-class LinkClass extends Block<LinkProps> {
+export class LinkClass extends Block<LinkProps> {
   constructor(props: LinkProps) {
     super({
       ...props,

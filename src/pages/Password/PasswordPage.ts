@@ -1,5 +1,5 @@
 import { Block } from '../../core/Block';
-import template from './password.hbs';
+import template from './password-page.hbs';
 import styles from './password.module.scss';
 import avatarPlaceholder from '../../assets/img/profile_pic.png';
 

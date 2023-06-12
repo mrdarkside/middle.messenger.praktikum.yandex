@@ -1,12 +1,21 @@
 {
   "name": "yandex.messenger",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Chat app project for yandex.practicum's \"middle front-end developer\" course",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js --open",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack --config webpack.prod.js && node ./server.js",
-    "test": "ts-mocha -p ./tsconfig.json --require ./mochaSetup.js 'src/**/*.test.ts'"
+    "eslint": "npx eslint .",
+    "stylelint": "npx stylelint \"**/*.scss\"",
+    "test": "ts-mocha -p ./tsconfig.json --require ./mochaSetup.js 'src/**/*.test.ts'",
+    "lint:all": "npm run eslint && npm run stylelint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:all",
+      "pre-push": "npm run other command"
+    }
   },
   "repository": {
     "type": "git",
@@ -35,7 +44,8 @@
     "eslint-plugin-import": "2.27.5",
     "html-loader": "4.2.0",
     "html-webpack-plugin": "5.5.2",
-    "jsdom": "^22.1.0",
+    "husky": "8.0.3",
+    "jsdom": "22.1.0",
     "mini-css-extract-plugin": "2.7.6",
     "node-sass": "9.0.0",
     "proxyquire": "2.1.3",

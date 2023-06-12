@@ -121,7 +121,7 @@ export abstract class Block<P extends Record<string, any> = any> {
     return true;
   }
 
-  protected get element() {
+  get element() {
     return this.#element;
   }
 

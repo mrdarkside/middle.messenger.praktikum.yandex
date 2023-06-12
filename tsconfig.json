@@ -12,5 +12,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "lib": ["ESNext", "DOM"]
-  }
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.test.ts"],
+  "exclude": ["/node_modules/"]
 }

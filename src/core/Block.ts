@@ -104,7 +104,7 @@ export abstract class Block<P extends Record<string, any> = any> {
     });
   }
 
-  protected setProps = (nextProps: Partial<P>) => {
+  setProps = (nextProps: Partial<P>) => {
     if (!nextProps) {
       return;
     }

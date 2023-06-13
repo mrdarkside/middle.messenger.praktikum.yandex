@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './file-input.hbs';
-import * as styles from './file-input.module.scss';
+import styles from './file-input.module.scss';
 
 interface FileInputProps {
   name: string;

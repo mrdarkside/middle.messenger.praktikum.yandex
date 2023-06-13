@@ -7,6 +7,7 @@
 
 > Chat app project for yandex.practicum's &#34;middle front-end developer&#34; course
 
+
 ### 🏠 [Homepage](https://github.com/mrdarkside/middle.messenger.praktikum.yandex#readme)
 
 ### ✨ [Demo](https://enchanting-mermaid-704166.netlify.app/)
@@ -29,10 +30,55 @@ npm run dev
 npm run start
 ```
 
+## Restrictions
+
+- No frameworks allowed, only templating engines.
+- Use XMLHttpRequest instead of the Fetch API.
+
+## Technologies Used
+
+- TypeScript
+- ESLint
+- Stylelint
+- Pre-commit hooks
+- Webpack
+- Docker
+
+## Scripts
+
+- `dev`: Starts the development server using webpack-dev-server and opens the app in the browser.
+  ```sh
+  npm run dev
+  ```
+- `build`: Builds the production-ready app using webpack.
+  ```sh
+  npm run build
+  ```
+- `start`: Builds the production-ready app and starts the server.
+  ```sh
+  npm run start
+  ```
+- `eslint`: Runs ESLint to check for code quality issues.
+  ```sh
+  npm run eslint
+  ```
+- `stylelint`: Runs Stylelint to check for styling issues in SCSS files.
+  ```sh
+  npm run stylelint
+  ```
+- `test`: Runs tests using ts-mocha.
+  ```sh
+  npm run test
+  ```
+- `lint:all`: Runs both ESLint and Stylelint.
+  ```sh
+  npm run lint:all
+  ```
+
 ## Author
 
 👤 **Tomi Tomion**
 
 - Github: [@mrdarkside](https://github.com/mrdarkside)
 
-Feel free to check [issues page](https://github.com/mrdarkside/middle.messenger.praktikum.yandex/issues).
+Feel free to check the [issues page](https://github.com/mrdarkside/middle.messenger.praktikum.yandex/issues).

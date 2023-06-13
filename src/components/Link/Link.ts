@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './link.hbs';
-import * as styles from './link.module.scss';
+import styles from './link.module.scss';
 
 import { PropsWithRouter, withRouter } from '../../hocs/withRouter';
 import { Routes } from '../../types';
@@ -17,7 +17,7 @@ interface LinkProps extends PropsWithRouter {
   };
 }
 
-class LinkClass extends Block<LinkProps> {
+export class LinkClass extends Block<LinkProps> {
   constructor(props: LinkProps) {
     super({
       ...props,

@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './profile.hbs';
-import * as styles from './profile.module.scss';
+import styles from './profile.module.scss';
 import avatarPlaceholder from '../../assets/img/profile_pic.png';
 
 import { Button, ProfileField, Link } from '../../components';

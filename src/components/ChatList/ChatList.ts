@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './chat-list.hbs';
-import * as styles from './chat-list.module.scss';
+import styles from './chat-list.module.scss';
 
 import { Input, Link, Button } from '..';
 

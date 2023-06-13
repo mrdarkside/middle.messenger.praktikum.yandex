@@ -1,6 +1,6 @@
 import { Block } from '../../core';
 import template from './round-button.hbs';
-import * as styles from './round-button.module.scss';
+import styles from './round-button.module.scss';
 
 interface RoundButtonProps {
   type?: string;

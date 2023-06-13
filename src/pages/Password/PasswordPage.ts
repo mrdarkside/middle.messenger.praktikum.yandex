@@ -1,6 +1,6 @@
 import { Block } from '../../core/Block';
-import template from './password.hbs';
-import * as styles from './password.module.scss';
+import template from './password-page.hbs';
+import styles from './password.module.scss';
 import avatarPlaceholder from '../../assets/img/profile_pic.png';
 
 import { ProfileField, Button, Link } from '../../components';
@@ -35,7 +35,7 @@ class PasswordPageBase extends Block<PasswordPageProps> {
       label: 'Старый пароль',
       value: '',
     });
-    this.children.password = new ProfileField({
+    this.children.new_password = new ProfileField({
       name: 'newPassword',
       type: 'password',
       label: 'Новый пароль',

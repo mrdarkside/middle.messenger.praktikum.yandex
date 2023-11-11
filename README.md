@@ -15,6 +15,7 @@
 ## Restrictions
 
 - No frameworks allowed, only templating engines.
+- No libaries
 - Use XMLHttpRequest instead of the Fetch API.
 
 ## Technologies Used

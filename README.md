@@ -12,6 +12,21 @@
 
 ### ✨ [Demo](https://enchanting-mermaid-704166.netlify.app/)
 
+## Restrictions
+
+- No frameworks allowed, only templating engines.
+- Use XMLHttpRequest instead of the Fetch API.
+
+## Technologies Used
+
+- TypeScript
+- ESLint
+- Stylelint
+- Pre-commit hooks
+- Webpack
+- Docker
+  
+
 ## Install
 
 ```sh
@@ -29,20 +44,6 @@ npm run dev
 ```sh
 npm run start
 ```
-
-## Restrictions
-
-- No frameworks allowed, only templating engines.
-- Use XMLHttpRequest instead of the Fetch API.
-
-## Technologies Used
-
-- TypeScript
-- ESLint
-- Stylelint
-- Pre-commit hooks
-- Webpack
-- Docker
 
 ## Scripts
 
